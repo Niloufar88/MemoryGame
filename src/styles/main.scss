@@ -7,5 +7,74 @@
 
 body {
   height: 100vh;
-  background-color: $primary-color;
+  width: 100%;
+  background-color: $primary-bg-dark;
+  @include flexCenter(column);
+}
+
+.game-intro {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  @include flexCenter(column);
+  overflow: hidden;
+
+  &::before {
+    position: absolute;
+    content: "";
+    top: 45%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/assets/icons/landing-page/stadia_controller-bg.svg");
+    background-repeat: no-repeat;
+    z-index: -1;
+  }
+}
+
+.landing {
+  @include flexCenter(column);
+  gap: 72px;
+
+  &__title {
+    @include flexStart(column);
+    color: $text-color-intro;
+
+    &--first {
+      font-size: 48px;
+      font-family: $font-h3-intro;
+      font-weight: 400;
+    }
+
+    &--second {
+      font-size: 140px;
+      font-family: $font-h1-intro;
+    }
+  }
+}
+
+.startBtn {
+  @include yellowBtn($secondary-btn-yellow);
+  @include flexSpace(20px);
+  color: $yellow-btn-text;
+  font-family: $font-h1-intro;
+  font-size: 40px;
+  transition: all 250ms ease-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &__icon {
+    transform: rotate(0);
+    @include smoothRotate;
+
+    .startBtn:hover & {
+      transform: rotate(-25deg);
+    }
+  }
+
+  &__arrow {
+    transition: all 250ms ease-out;
+  }
 }

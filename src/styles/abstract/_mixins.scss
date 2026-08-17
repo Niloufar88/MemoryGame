@@ -1,0 +1,30 @@
+@mixin flexCenter($direction) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexStart($direction) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: flex-start;
+}
+
+@mixin flexSpace($gap) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $gap;
+}
+
+@mixin yellowBtn($color) {
+  background-color: $color;
+  padding: 24px;
+  border: none;
+  cursor: pointer;
+}
+
+@mixin smoothRotate {
+  transition: transform 250ms ease-in-out;
+}

@@ -1,5 +1,17 @@
 // @ts-ignore
 import "./styles/main.scss";
-const title = document.getElementById("main-title") as HTMLHeadingElement;
 
-title.innerText = `was man hier sieht, ist ein Test.`;
+const startBtn = document.getElementById("startBtn") as HTMLButtonElement;
+const startBtnArrow = document.getElementById(
+  "startBtn-arrow",
+) as HTMLImageElement;
+const arrowNormal = "/assets/icons/landing-page/play-arrow.svg";
+const arrowHover = "/assets/icons/landing-page/play-arrow-hover.svg";
+
+startBtn.addEventListener("mouseover", () => {
+  startBtnArrow.src = arrowHover;
+});
+
+startBtn.addEventListener("mouseleave", () => {
+  startBtnArrow.src = arrowNormal;
+});
