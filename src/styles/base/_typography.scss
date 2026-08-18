@@ -12,6 +12,21 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Delius Unicase";
+  src: url("/assets/fonts/Delius_Unicase/DeliusUnicase-Bold.ttf")
+    format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Klee One";
+  src: url("/public/assets/fonts/Klee_One/KleeOne-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+
 // .red-rose-main-font {
 //   font-family: "Red Rose", serif;
 //   font-optical-sizing: auto;

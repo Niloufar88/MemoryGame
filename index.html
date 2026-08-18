@@ -6,7 +6,7 @@
     <title>Memory App</title>
   </head>
   <body>
-    <main class="game-intro">
+    <div class="game-intro d-none">
       <div class="landing">
         <div class="landing__title">
           <h3 class="landing__title--first">It’s play time.</h3>
@@ -26,7 +26,35 @@
           />
         </button>
       </div>
-    </main>
+    </div>
+
+    <div class="board">
+      <div class="board__navbar">
+        <div class="board__navbar--playerFigures">
+          <div class="playerFigure">
+            <img class="orange" src="/assets/icons/orangeFigure.svg" alt="" />
+            <span class="playerFigure__score--orange" id="OScore">0</span>
+          </div>
+
+          <div class="playerFigure">
+            <img class="blue" src="/assets/icons/blueFigure.svg" alt="" />
+            <span class="playerFigure__score--blue" id="BScore">0</span>
+          </div>
+        </div>
+        <div class="board__navbar--currentPlayer" id="currentPlayer">
+          Current Player:
+          <img src="/assets/icons/blue-figure.svg" alt="player figure" />
+        </div>
+        <div>
+          <button id="exit-btn" class="exit-button" type="button">
+            <img src="/assets/icons/food/exit-default.svg" alt="exit-btn" />Exit
+            game
+          </button>
+        </div>
+      </div>
+
+      <div class="board__main"></div>
+    </div>
 
     <script type="module" src="/src/main.ts"></script>
   </body>
