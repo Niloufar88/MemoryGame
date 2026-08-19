@@ -1,6 +1,8 @@
 // @ts-ignore
 import "./styles/main.scss";
-import { renderBoardElements } from "./game";
+
+import { cards } from "./type";
+import { renderBoardElements, startGame } from "./game";
 
 const startBtn = document.getElementById("startBtn") as HTMLButtonElement;
 const startBtnArrow = document.getElementById(
@@ -33,3 +35,5 @@ exitBtn?.addEventListener("mouseover", () => {
 exitBtn?.addEventListener("mouseleave", () => {
   if (exitBtnIcon) exitBtnIcon.src = exitNormal;
 });
+
+startGame(cards);
