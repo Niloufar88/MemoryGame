@@ -82,13 +82,6 @@ export function renderCards(cardsList: Card[]) {
     const cardHtml = createCardsElement(card);
     cardsContainer.appendChild(cardHtml);
   });
-
-  // const cardsDeck = shuffleFinalArray(initializeCards(cards));
-
-  // cardsDeck.forEach((card) => {
-  //   const cardHtml = createCardsElement(card);
-  //   cardsContainer.appendChild(cardHtml);
-  // });
 }
 
 export function startGame(cardsArray: string[]) {
@@ -97,26 +90,3 @@ export function startGame(cardsArray: string[]) {
 
   renderCards(shuffeldPack);
 }
-
-// function createBoardElements(): HTMLDivElement {
-//   const mainContainer = document.createElement("div");
-//   mainContainer.classList.add("board-main-container");
-
-//   const boardNavBar = document.createElement("div");
-//   boardNavBar.classList.add("board-navbar");
-
-//   const navPlayers = document.createElement("div");
-//   const navCurrentPlayer = document.createElement("div");
-
-//   const navExitBtn = document.createElement("button");
-//   navExitBtn.classList.add("exit-button");
-
-//   boardNavBar.appendChild(navPlayers);
-//   boardNavBar.appendChild(navCurrentPlayer);
-//   boardNavBar.appendChild(navExitBtn);
-
-//   mainContainer.appendChild(boardNavBar);
-//   bodyEl.appendChild(mainContainer);
-
-//   return mainContainer;
-// }
