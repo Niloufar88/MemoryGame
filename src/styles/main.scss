@@ -217,6 +217,10 @@ body {
   }
 }
 
+.flipCard.flipped .flipCard__inner {
+  transform: rotateY(180deg);
+}
+
 .playerFigure {
   @include flexSpace;
   gap: 4px;

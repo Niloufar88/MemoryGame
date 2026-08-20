@@ -4,6 +4,9 @@ const bodyEl = document.querySelector("body") as HTMLBodyElement;
 const mainContainer = document.querySelector(".game-intro") as HTMLDivElement;
 const cardsContainer = document.querySelector(".board__main") as HTMLDivElement;
 
+let flippedCards: HTMLElement[] = [];
+let lockBoard: boolean = false;
+
 let gameLogic: GameState = {
   currentPlayer: "blue",
 };
@@ -90,3 +93,39 @@ export function startGame(cardsArray: string[]) {
 
   renderCards(shuffeldPack);
 }
+
+function compareCardImg() {
+  const firstCard = flippedCards[0];
+  const secondCard = flippedCards[1];
+
+  const firstCardImg = firstCard.querySelector(
+    ".flipCard__inner--back img",
+  ) as HTMLImageElement;
+  const secondCardImg = secondCard.querySelector(
+    ".flipCard__inner--back img",
+  ) as HTMLImageElement;
+
+  if (firstCardImg.src === secondCardImg.src) flippedCards = [];
+  else {
+    lockBoard = true;
+    setTimeout(() => {
+      firstCard.classList.remove("flipped");
+      secondCard.classList.remove("flipped");
+      flippedCards = [];
+      lockBoard = false;
+    }, 800);
+  }
+}
+
+cardsContainer.addEventListener("click", (event) => {
+  const clickedCard = event.target as HTMLDivElement;
+  const target = clickedCard.closest(".flipCard") as HTMLDivElement;
+
+  if (!target || lockBoard) return;
+  if (target.classList.contains("flipped")) return;
+
+  if (target) target.classList.add("flipped");
+  flippedCards.push(target);
+
+  if (flippedCards.length === 2) compareCardImg();
+});
