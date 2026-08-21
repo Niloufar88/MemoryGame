@@ -1,7 +1,7 @@
 @use "../abstract/variables" as *;
 @use "../abstract/mixins" as *;
 
-.startBtn {
+.playBtn {
   @include yellowBtn($secondary-btn-yellow);
   @include flexSpace;
   gap: 20px;
@@ -18,8 +18,8 @@
     transform: rotate(0);
     @include smoothRotate;
 
-    .startBtn:hover & {
-      transform: rotate(-25deg);
+    .playBtn:hover & {
+      transform: scale(1.1) rotate(-25deg);
     }
   }
 
@@ -28,16 +28,48 @@
   }
 }
 
-.start-game-btn {
+.startGameBtn {
   padding: 14px 20px;
   background-color: $secondary-btn-yellow;
   border: none;
   gap: 8px;
-  font-family: $font-startBtn;
+  font-family: $font-playBtn;
   font-size: 20px;
   cursor: pointer;
   text-transform: capitalize;
   @include flexCenter(row);
+  transition: all 250ms ease-out;
+
+  &:hover {
+    transform: scale(1.15);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    .startGameBtn__icon {
+      opacity: 0.5;
+      filter: grayscale(100%);
+    }
+
+    &:hover {
+      transform: none;
+
+      .startGameBtn__icon {
+        transform: none;
+      }
+    }
+  }
+
+  &__icon {
+    transform: rotate(0);
+    @include smoothRotate;
+
+    .startGameBtn:hover & {
+      transform: scale(1.15) rotate(-5deg);
+    }
+  }
 }
 
 .exit-button {

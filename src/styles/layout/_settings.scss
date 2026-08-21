@@ -9,7 +9,6 @@
   padding: 80px 160px;
 
   & .settings {
-    background-color: yellow;
     gap: 48px;
 
     @include flexStart(column);
@@ -32,7 +31,7 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      background-color: pink;
+
       padding: 8px 16px;
       gap: 180px;
     }
@@ -41,27 +40,26 @@
 
 .details {
   @include flexStart(column);
-  background-color: greenyellow;
+
   gap: 54px;
 
   &__themes,
   &__player,
   &__size {
     @include flexStart(column);
-    background-color: lightblue;
+
     gap: 32px;
 
     &--header {
       display: flex;
       align-items: center;
-      background-color: lightcoral;
+
       gap: 8px;
       font-family: $settings-subtitle-font;
       font-size: 24px;
     }
 
     &--options {
-      background-color: lightgoldenrodyellow;
       padding-left: 44px;
       gap: 12px;
       @include flexStart(column);
@@ -73,14 +71,43 @@
       }
 
       & input {
-        width: 16px;
-        height: 16px;
-        font-weight: 700;
+        appearance: none;
+        -webkit-appearance: none;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background-color: transparent;
+        display: grid;
+        place-content: center;
+        cursor: pointer;
+        outline: none;
+        border: 4px solid #333; // Thick 4px border by default
+        transition: all 0.2s ease;
+
+        &::before {
+          content: "";
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          transform: scale(0);
+          transition: transform 0.15s ease;
+          background-color: #333;
+        }
+
+        &:hover,
+        &:checked {
+          border-width: 2px; // Shrinks to normal line weight
+
+          &::before {
+            transform: scale(1); // Shows the inner selection dot
+          }
+        }
       }
 
       & label {
         font-family: $settings-radio-buttons-font;
         font-size: 20px;
+        cursor: pointer;
       }
     }
   }
@@ -103,6 +130,7 @@
     & span {
       font-family: $settings-box-text;
       font-size: 20px;
+      cursor: pointer;
     }
   }
 }
