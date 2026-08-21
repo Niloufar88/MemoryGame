@@ -1,1 +1,63 @@
-// @use "../abstract/variables";
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+
+.startBtn {
+  @include yellowBtn($secondary-btn-yellow);
+  @include flexSpace;
+  gap: 20px;
+  color: $yellow-btn-text;
+  font-family: $font-h1-intro;
+  font-size: 40px;
+  transition: all 250ms ease-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &__icon {
+    transform: rotate(0);
+    @include smoothRotate;
+
+    .startBtn:hover & {
+      transform: rotate(-25deg);
+    }
+  }
+
+  &__arrow {
+    transition: all 250ms ease-out;
+  }
+}
+
+.start-game-btn {
+  padding: 14px 20px;
+  background-color: $secondary-btn-yellow;
+  border: none;
+  gap: 8px;
+  font-family: $font-startBtn;
+  font-size: 20px;
+  cursor: pointer;
+  text-transform: capitalize;
+  @include flexCenter(row);
+}
+
+.exit-button {
+  @include orangeBtn($exit-btn-bg-color, $exit-btn-text-color, $font-exit-btn);
+  @include flexSpace;
+  gap: 10px;
+  border-image: url("/assets/icons/food/exit-btn-border.svg") 4 round;
+  transition: all 200ms ease-in;
+
+  &:hover {
+    color: $primary-bg-color;
+    background-color: $exit-btn-text-color;
+    box-shadow: 3px 3px 5px 0 rgba(47, 46, 46, 0.2);
+    border-image: none;
+    border: 4px solid transparent;
+  }
+
+  & img {
+    width: 22px;
+    height: 22px;
+    object-fit: cover;
+  }
+}

@@ -1,0 +1,19 @@
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+
+.playerFigure {
+  @include flexSpace;
+  gap: 4px;
+
+  &__score--orange {
+    color: $orange-color;
+    font-family: $font-score;
+    font-size: 30px;
+  }
+
+  &__score--blue {
+    color: $blue-color;
+    font-family: $font-score;
+    font-size: 30px;
+  }
+}

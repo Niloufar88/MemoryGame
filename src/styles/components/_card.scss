@@ -1,0 +1,45 @@
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+
+.flipCard {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: 1px solid transparent;
+  perspective: 1000px;
+  @include flexCenter(row);
+  transform-origin: center;
+  cursor: pointer;
+
+  &__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    transform: translateY(-180deg);
+
+    &--front,
+    &--back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+
+    &--front {
+      background-image: url("/assets/img/foods/back-component.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    &--back {
+      transform: rotateY(180deg);
+    }
+  }
+}
+
+.flipCard.flipped .flipCard__inner {
+  transform: rotateY(180deg);
+}
