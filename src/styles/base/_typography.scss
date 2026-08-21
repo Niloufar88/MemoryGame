@@ -13,6 +13,13 @@
 }
 
 @font-face {
+  font-family: "Almarai-bold";
+  src: url("/assets/fonts/Almarai/Almarai-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
   font-family: "Delius Unicase";
   src: url("/assets/fonts/Delius_Unicase/DeliusUnicase-Bold.ttf")
     format("truetype");

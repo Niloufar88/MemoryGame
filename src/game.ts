@@ -19,7 +19,7 @@ export function renderBoardElements() {
 }
 
 export function initializeCards(array: string[]) {
-  const doubledArray = [...cards, ...cards];
+  const doubledArray = [...array, ...array];
 
   let newCards: Card[] = [];
 
@@ -95,26 +95,34 @@ export function startGame(cardsArray: string[]) {
 }
 
 function compareCardImg() {
-  const firstCard = flippedCards[0];
-  const secondCard = flippedCards[1];
-
-  const firstCardImg = firstCard.querySelector(
+  const firstCardImg = flippedCards[0].querySelector(
     ".flipCard__inner--back img",
   ) as HTMLImageElement;
-  const secondCardImg = secondCard.querySelector(
+  const secondCardImg = flippedCards[1].querySelector(
     ".flipCard__inner--back img",
   ) as HTMLImageElement;
 
-  if (firstCardImg.src === secondCardImg.src) flippedCards = [];
-  else {
+  if (firstCardImg.src === secondCardImg.src) {
+    setTimeout(() => {
+      resetFlippedCardsArray();
+    }, 300);
+  } else {
     lockBoard = true;
     setTimeout(() => {
-      firstCard.classList.remove("flipped");
-      secondCard.classList.remove("flipped");
-      flippedCards = [];
-      lockBoard = false;
+      removeFlippedClass();
+      resetFlippedCardsArray();
     }, 800);
   }
+}
+
+function resetFlippedCardsArray() {
+  flippedCards = [];
+  lockBoard = false;
+}
+
+function removeFlippedClass() {
+  flippedCards[0].classList.remove("flipped");
+  flippedCards[1].classList.remove("flipped");
 }
 
 cardsContainer.addEventListener("click", (event) => {
@@ -124,8 +132,11 @@ cardsContainer.addEventListener("click", (event) => {
   if (!target || lockBoard) return;
   if (target.classList.contains("flipped")) return;
 
-  if (target) target.classList.add("flipped");
+  target.classList.add("flipped");
   flippedCards.push(target);
 
-  if (flippedCards.length === 2) compareCardImg();
+  if (flippedCards.length === 2) {
+    lockBoard = true;
+    compareCardImg();
+  }
 });

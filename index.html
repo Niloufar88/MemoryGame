@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <div class="board">
+    <div class="board d-none">
       <div class="board__navbar">
         <div class="board__navbar--playerFigures">
           <div class="playerFigure">
@@ -54,6 +54,119 @@
       </div>
 
       <div class="board__main"></div>
+    </div>
+
+    <div class="settings-main">
+      <div class="settings">
+        <div class="settings__title">
+          <h1 class="title">settings</h1>
+          <div class="title--line">
+            <img src="/assets/icons/settings/setting-line.svg" alt="" />
+          </div>
+        </div>
+
+        <div class="settings__container">
+          <div class="details">
+            <div class="details__themes">
+              <div class="details__themes--header">
+                <img
+                  class="themes-icon"
+                  src="/public/assets/icons/settings/palette.svg"
+                  alt=""
+                />
+                <h3 class="themes-title">Game themes</h3>
+              </div>
+              <div class="details__themes--options">
+                <div class="options-container">
+                  <input
+                    type="radio"
+                    id="DA"
+                    name="themes"
+                    value="DA-Projects"
+                  />
+                  <label for="DA">DA Projects theme</label>
+                </div>
+
+                <div class="options-container">
+                  <input type="radio" id="food" name="themes" value="foods" />
+                  <label for="food">Foods theme</label>
+                </div>
+              </div>
+            </div>
+            <div class="details__player">
+              <div class="details__player--header">
+                <img
+                  class="player-icon"
+                  src="/public/assets/icons/settings/chess_pawn.svg"
+                  alt=""
+                />
+                <h3 class="player-title">choose player</h3>
+              </div>
+              <div class="details__player--options">
+                <div class="options-container">
+                  <input type="radio" id="blue" name="player" value="blue" />
+                  <label for="blue">Blue</label>
+                </div>
+
+                <div class="options-container">
+                  <input
+                    type="radio"
+                    id="orange"
+                    name="player"
+                    value="orange"
+                  />
+                  <label for="orange">Orange</label>
+                </div>
+              </div>
+            </div>
+            <div class="details__size">
+              <div class="details__size--header">
+                <img
+                  class="size-icon"
+                  src="/public/assets/icons/settings/style.svg"
+                  alt=""
+                />
+                <h3 class="size-title">board size</h3>
+              </div>
+              <div class="details__size--options">
+                <div class="options-container">
+                  <input type="radio" id="4x4" name="size" value="4x4" />
+                  <label for="4x4">16 cards</label>
+                </div>
+
+                <div class="options-container">
+                  <input type="radio" id="4x6" name="size" value="4x6" />
+                  <label for="4x6">24 cards</label>
+                </div>
+
+                <div class="options-container">
+                  <input type="radio" id="6x6" name="size" value="6x6" />
+                  <label for="6x6">36 cards</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="UI">
+            <div class="theme-img">
+              <img
+                src="/public/assets/icons/settings/DA-Projects-Theme Visual .svg"
+                alt=""
+              />
+            </div>
+            <div class="preffered-setting">
+              <span id="game-theme-text">Game theme</span>
+              <img src="/assets/icons/settings/line.svg" alt="" />
+              <span id="player-text">Player</span>
+              <img src="/assets/icons/settings/line.svg" alt="" />
+              <span id="board-size-text">Board size</span>
+              <button type="button" id="start" class="start-btn" disabled>
+                <img src="/assets/icons/settings/start_display.svg" alt="" />
+                start
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script type="module" src="/src/main.ts"></script>

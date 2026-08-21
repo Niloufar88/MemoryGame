@@ -35,5 +35,3 @@ exitBtn?.addEventListener("mouseover", () => {
 exitBtn?.addEventListener("mouseleave", () => {
   if (exitBtnIcon) exitBtnIcon.src = exitNormal;
 });
-
-startGame(cards);
