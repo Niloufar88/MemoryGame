@@ -150,3 +150,25 @@ cardsContainer.addEventListener("click", (event) => {
     compareCardImg();
   }
 });
+
+export function updateCurrentPlayer(playerColor: string): void {
+  gameLogic.currentPlayer = playerColor;
+  console.log("Current Player:", gameLogic.currentPlayer);
+}
+
+export function updateGameTheme(theme: string): void {
+  gameLogic.currentTheme = theme;
+  console.log("Current Theme:", gameLogic.currentTheme);
+}
+
+function updateBoardSize(boardSize: string): void {
+  const [rows, cols] = boardSize.split("x").map(Number);
+  gameLogic.currentRows = rows;
+  gameLogic.currentColumns = cols;
+  gameLogic.currentCardsPair = (rows * cols) / 2;
+}
+
+export function handleBoardSizeChange(radio: HTMLInputElement) {
+  radio.checked = true;
+  updateBoardSize(radio.value);
+}

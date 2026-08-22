@@ -2,7 +2,14 @@
 import "./styles/main.scss";
 
 import { cards } from "./type";
-import { renderBoardElements, startGame, gameLogic } from "./game";
+import {
+  renderBoardElements,
+  startGame,
+  gameLogic,
+  updateCurrentPlayer,
+  updateGameTheme,
+  handleBoardSizeChange,
+} from "./game";
 
 const playBtn = document.getElementById("playBtn") as HTMLButtonElement;
 const playBtnArrow = document.getElementById(
@@ -41,28 +48,18 @@ const chooseGameThemeDiv = document.querySelector(
 ) as HTMLDivElement;
 
 choosePlayerDiv.addEventListener("change", (event) => {
-  const target = event.target as HTMLElement;
-  if (target) gameLogic.currentPlayer = (target as HTMLInputElement).value;
-  console.log("Current Player:", gameLogic.currentPlayer);
+  const target = event.target as HTMLInputElement;
+  if (target && target.type === "radio") updateCurrentPlayer(target.value);
 });
 
 setBoardSizeDiv.addEventListener("change", (event) => {
-  const target = event.target as HTMLElement;
-  const [rows, cols] = (target as HTMLInputElement).value
-    .split("x")
-    .map(Number);
-  if (target) {
-    gameLogic.currentRows = rows;
-    gameLogic.currentColumns = cols;
-    gameLogic.currentCardsPair = (rows * cols) / 2;
-  }
+  const target = event.target as HTMLInputElement;
+  if (target) handleBoardSizeChange(target);
 });
 
 chooseGameThemeDiv.addEventListener("change", (event) => {
-  const target = event.target as HTMLElement;
-  if (target) gameLogic.currentTheme = (target as HTMLInputElement).value;
-
-  console.log("Current Theme:", gameLogic.currentTheme);
+  const target = event.target as HTMLInputElement;
+  if (target && target.type === "radio") updateGameTheme(target.value);
 });
 
 // cardSetsContainer.forEach((setsContainer) => {
