@@ -7,8 +7,13 @@ const cardsContainer = document.querySelector(".board__main") as HTMLDivElement;
 let flippedCards: HTMLElement[] = [];
 let lockBoard: boolean = false;
 
-let gameLogic: GameState = {
+export let gameLogic: GameState = {
   currentPlayer: "blue",
+  changePlayer: false,
+  currentCardsPair: 8,
+  currentRows: 4,
+  currentColumns: 4,
+  currentTheme: "foods",
 };
 
 export function renderBoardElements() {
@@ -19,7 +24,9 @@ export function renderBoardElements() {
 }
 
 export function initializeCards(array: string[]) {
-  const doubledArray = [...array, ...array];
+  const shuffeledArray = shuffleFinalArray(array);
+  const slicedArray = shuffeledArray.slice(0, gameLogic.currentCardsPair);
+  const doubledArray = [...slicedArray, ...slicedArray];
 
   let newCards: Card[] = [];
 
@@ -80,6 +87,9 @@ function createCardsElement(cardData: Card): HTMLDivElement {
 
 export function renderCards(cardsList: Card[]) {
   cardsContainer.innerHTML = "";
+
+  cardsContainer.style.gridTemplateRows = `repeat(${gameLogic.currentRows}, "120px")`;
+  cardsContainer.style.gridTemplateColumns = `repeat(${gameLogic.currentColumns}, "120px")`;
 
   cardsList.forEach((card) => {
     const cardHtml = createCardsElement(card);

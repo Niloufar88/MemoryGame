@@ -120,7 +120,7 @@
   align-items: flex-end;
   gap: 48px;
 
-  & .preffered-setting {
+  & .selected-setting {
     background-color: $setting-box-bg;
     @include flexStart(row);
     align-items: center;

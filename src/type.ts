@@ -7,6 +7,11 @@ export interface Card {
 
 export interface GameState {
   currentPlayer: string;
+  changePlayer: boolean;
+  currentCardsPair: number;
+  currentRows: number;
+  currentColumns: number;
+  currentTheme: string;
 }
 
 export const cards: string[] = [
@@ -18,14 +23,14 @@ export const cards: string[] = [
   "/assets/img/foods/food-06.svg",
   "/assets/img/foods/food-07.svg",
   "/assets/img/foods/food-08.svg",
-  // "/assets/img/foods/food-09.svg",
-  // "/assets/img/foods/food-10.svg",
-  // "/assets/img/foods/food-11.svg",
-  // "/assets/img/foods/food-12.svg",
-  // "/assets/img/foods/food-13.svg",
-  // "/assets/img/foods/food-14.svg",
-  // "/assets/img/foods/food-15.svg",
-  // "/assets/img/foods/food-16.svg",
-  // "/assets/img/foods/food-17.svg",
-  // "/assets/img/foods/food-18.svg",
+  "/assets/img/foods/food-09.svg",
+  "/assets/img/foods/food-10.svg",
+  "/assets/img/foods/food-11.svg",
+  "/assets/img/foods/food-12.svg",
+  "/assets/img/foods/food-13.svg",
+  "/assets/img/foods/food-14.svg",
+  "/assets/img/foods/food-15.svg",
+  "/assets/img/foods/food-16.svg",
+  "/assets/img/foods/food-17.svg",
+  "/assets/img/foods/food-18.svg",
 ];

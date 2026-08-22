@@ -104,18 +104,23 @@
               </div>
               <div class="details__player--options">
                 <div class="options-container">
-                  <input type="radio" id="blue" name="player" value="blue" />
-                  <label for="blue">Blue</label>
+                  <input
+                    type="radio"
+                    id="bluePlayer"
+                    name="player"
+                    value="blue"
+                  />
+                  <label for="bluePlayer">Blue</label>
                 </div>
 
                 <div class="options-container">
                   <input
                     type="radio"
-                    id="orange"
+                    id="orangePlayer"
                     name="player"
                     value="orange"
                   />
-                  <label for="orange">Orange</label>
+                  <label for="orangePlayer">Orange</label>
                 </div>
               </div>
             </div>
@@ -129,19 +134,34 @@
                 <h3 class="size-title">board size</h3>
               </div>
               <div class="details__size--options">
-                <div class="options-container">
-                  <input type="radio" id="4x4" name="size" value="4x4" />
-                  <label for="4x4">16 cards</label>
+                <div class="options-container size-set">
+                  <input
+                    type="radio"
+                    id="grid-4x4"
+                    name="cards-set"
+                    value="4x4"
+                  />
+                  <label for="grid-4x4">16 cards</label>
                 </div>
 
-                <div class="options-container">
-                  <input type="radio" id="4x6" name="size" value="4x6" />
-                  <label for="4x6">24 cards</label>
+                <div class="options-container size-set">
+                  <input
+                    type="radio"
+                    id="grid-4x6"
+                    name="cards-set"
+                    value="4x6"
+                  />
+                  <label for="grid-4x6">24 cards</label>
                 </div>
 
-                <div class="options-container">
-                  <input type="radio" id="6x6" name="size" value="6x6" />
-                  <label for="6x6">36 cards</label>
+                <div class="options-container size-set">
+                  <input
+                    type="radio"
+                    id="grid-6x6"
+                    name="cards-set"
+                    value="6x6"
+                  />
+                  <label for="grid-6x6">36 cards</label>
                 </div>
               </div>
             </div>
@@ -153,13 +173,18 @@
                 alt=""
               />
             </div>
-            <div class="preffered-setting">
+            <div class="selected-setting">
               <span id="game-theme-text">Theme</span>
               <img src="/assets/icons/settings/line.svg" alt="" />
               <span id="player-text">Player</span>
               <img src="/assets/icons/settings/line.svg" alt="" />
               <span id="board-size-text">Board size</span>
-              <button type="button" id="start-Btn" class="startGameBtn">
+              <button
+                type="button"
+                id="start-Btn"
+                class="startGameBtn"
+                disabled
+              >
                 <img
                   class="startGameBtn__icon"
                   src="/assets/icons/settings/start_display.svg"
