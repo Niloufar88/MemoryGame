@@ -88,13 +88,17 @@ function createCardsElement(cardData: Card): HTMLDivElement {
 export function renderCards(cardsList: Card[]) {
   cardsContainer.innerHTML = "";
 
-  cardsContainer.style.gridTemplateRows = `repeat(${gameLogic.currentRows}, "120px")`;
-  cardsContainer.style.gridTemplateColumns = `repeat(${gameLogic.currentColumns}, "120px")`;
+  updateBoardGridTemplate();
 
   cardsList.forEach((card) => {
     const cardHtml = createCardsElement(card);
     cardsContainer.appendChild(cardHtml);
   });
+}
+
+function updateBoardGridTemplate() {
+  cardsContainer.style.gridTemplateRows = `repeat(${gameLogic.currentRows}, "120px")`;
+  cardsContainer.style.gridTemplateColumns = `repeat(${gameLogic.currentColumns}, "120px")`;
 }
 
 export function startGame(cardsArray: string[]) {
@@ -168,7 +172,7 @@ function updateBoardSize(boardSize: string): void {
   gameLogic.currentCardsPair = (rows * cols) / 2;
 }
 
-export function handleBoardSizeChange(radio: HTMLInputElement) {
-  radio.checked = true;
-  updateBoardSize(radio.value);
+export function handleBoardSizeChange(radioBtn: HTMLInputElement) {
+  radioBtn.checked = true;
+  updateBoardSize(radioBtn.value);
 }
