@@ -11,6 +11,7 @@ import {
   updateGameTheme,
   handleBoardSizeChange,
   handleGameThemeChange,
+  updateStartButtonState,
 } from "./game";
 
 const playBtn = document.getElementById("playBtn") as HTMLButtonElement;
@@ -52,36 +53,23 @@ const chooseGameThemeDiv = document.querySelector(
 choosePlayerDiv.addEventListener("change", (event) => {
   const target = event.target as HTMLInputElement;
   if (target && target.type === "radio") handlePlayerChange(target.value);
+
+  updateStartButtonState();
 });
 
 setBoardSizeDiv.addEventListener("change", (event) => {
   const target = event.target as HTMLInputElement;
   if (target && target.type === "radio") handleBoardSizeChange(target);
+
+  updateStartButtonState();
 });
 
 chooseGameThemeDiv.addEventListener("change", (event) => {
   const target = event.target as HTMLInputElement;
-  if (target && target.type === "radio") {
-    handleGameThemeChange(target.value);
-  }
-});
+  if (target && target.type === "radio") handleGameThemeChange(target.value);
 
-// cardSetsContainer.forEach((setsContainer) => {
-//   setsContainer.addEventListener("change", (event) => {
-//     const target = event.target as HTMLInputElement;
-//     if (target && target.type === "radio") {
-//       const boardSize = target.value;
-//       const [rows, columns] = boardSize.split("x").map(Number);
-//       const totalCards = rows * columns;
-//       const totalPairs = totalCards / 2;
-//       gameLogic.currentCardsPair = totalPairs;
-//       gameLogic.currentRows = rows;
-//       gameLogic.currentColumns = columns;
-//       boardSizeSetting.innerText = `${rows * columns}-Cards`;
-//       console.log(boardSizeSetting.innerText);
-//     }
-//   });
-// });
+  updateStartButtonState();
+});
 
 // radioButtonsContainer.forEach((container) => {
 //   container.addEventListener("mouseenter", () => {

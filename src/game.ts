@@ -17,12 +17,12 @@ let flippedCards: HTMLElement[] = [];
 let lockBoard: boolean = false;
 
 export let gameLogic: GameState = {
-  currentPlayer: "blue",
+  currentPlayer: "",
   changePlayer: false,
-  currentCardsPair: 8,
-  currentRows: 4,
-  currentColumns: 4,
-  currentTheme: "foods",
+  currentCardsPair: 0,
+  currentRows: 0,
+  currentColumns: 0,
+  currentTheme: "",
 };
 
 export function renderBoardElements(theme: string) {
@@ -208,4 +208,18 @@ function updateBoardSetting(size: string) {
 export function handlePlayerChange(playerColor: string): void {
   updateCurrentPlayer(playerColor);
   playerText.textContent = playerColor;
+}
+
+function isSettingsComplete(): boolean {
+  const hasSize = gameLogic.currentRows > 0 && gameLogic.currentColumns > 0;
+  const hasPlayer = gameLogic.currentPlayer !== "";
+  const hasTheme = gameLogic.currentTheme !== "";
+
+  return hasSize && hasPlayer && hasTheme;
+}
+
+export function updateStartButtonState(): void {
+  const startBtn = document.getElementById("start-Btn") as HTMLButtonElement;
+
+  if (startBtn) startBtn.disabled = !isSettingsComplete();
 }
