@@ -1,11 +1,6 @@
 @use "../abstract/variables" as *;
 @use "../abstract/mixins" as *;
 
-.board-body {
-  background-color: $primary-bg-color;
-  @include flexStart(column);
-}
-
 .board {
   @include flexStart(column);
   background-color: $primary-bg-color;

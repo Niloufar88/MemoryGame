@@ -2,21 +2,29 @@
 @use "../abstract/mixins" as *;
 
 .game-intro {
-  width: 100%;
-  height: 100%;
+  min-width: 100%;
+  max-width: 1440px;
+  min-height: 100vh;
+  max-height: 1024px;
+  background-color: $primary-bg-dark;
   position: relative;
   @include flexCenter(column);
   overflow: hidden;
+  z-index: 0;
 
   &::before {
     position: absolute;
     content: "";
-    top: 45%;
-    left: 0;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 1440px;
     width: 100%;
+    max-height: 1024px;
     height: 100%;
     background-image: url("/assets/icons/landing-page/stadia_controller-bg.svg");
     background-repeat: no-repeat;
+    background-position: bottom left;
     z-index: -1;
   }
 }

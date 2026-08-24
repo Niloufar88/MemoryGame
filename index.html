@@ -6,7 +6,7 @@
     <title>Memory App</title>
   </head>
   <body>
-    <div class="game-intro d-none">
+    <div class="game-intro">
       <div class="landing">
         <div class="landing__title">
           <h3 class="landing__title--first">It’s play time.</h3>
@@ -28,35 +28,7 @@
       </div>
     </div>
 
-    <div class="board d-none">
-      <div class="board__navbar">
-        <div class="board__navbar--playerFigures">
-          <div class="playerFigure">
-            <img class="orange" src="/assets/icons/orangeFigure.svg" alt="" />
-            <span class="playerFigure__score--orange" id="OScore">0</span>
-          </div>
-
-          <div class="playerFigure">
-            <img class="blue" src="/assets/icons/blueFigure.svg" alt="" />
-            <span class="playerFigure__score--blue" id="BScore">0</span>
-          </div>
-        </div>
-        <div class="board__navbar--currentPlayer" id="currentPlayer">
-          Current Player:
-          <img src="/assets/icons/blue-figure.svg" alt="player figure" />
-        </div>
-        <div>
-          <button id="exit-btn" class="exit-button" type="button">
-            <img src="/assets/icons/food/exit-default.svg" alt="exit-btn" />Exit
-            game
-          </button>
-        </div>
-      </div>
-
-      <div class="board__main"></div>
-    </div>
-
-    <div class="settings-main">
+    <div class="settings-main d-none">
       <div class="settings">
         <div class="settings__title">
           <h1 class="title">settings</h1>
@@ -82,7 +54,7 @@
                     type="radio"
                     id="DA"
                     name="themes"
-                    value="DA-Projects"
+                    value="DAProjects"
                   />
                   <label for="DA">DA Projects theme</label>
                 </div>
@@ -196,6 +168,34 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="board d-none">
+      <div class="board__navbar">
+        <div class="board__navbar--playerFigures">
+          <div class="playerFigure">
+            <img class="orange" src="/assets/icons/orangeFigure.svg" alt="" />
+            <span class="playerFigure__score--orange" id="OScore">0</span>
+          </div>
+
+          <div class="playerFigure">
+            <img class="blue" src="/assets/icons/blueFigure.svg" alt="" />
+            <span class="playerFigure__score--blue" id="BScore">0</span>
+          </div>
+        </div>
+        <div class="board__navbar--currentPlayer" id="currentPlayer">
+          Current Player:
+          <img src="/assets/icons/blue-figure.svg" alt="player figure" />
+        </div>
+        <div>
+          <button id="exit-btn" class="exit-button" type="button">
+            <img src="/assets/icons/food/exit-default.svg" alt="exit-btn" />Exit
+            game
+          </button>
+        </div>
+      </div>
+
+      <div class="board__main"></div>
     </div>
 
     <script type="module" src="/src/main.ts"></script>

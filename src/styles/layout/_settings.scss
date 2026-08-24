@@ -38,6 +38,10 @@
   }
 }
 
+.settings-main.d-none {
+  display: none;
+}
+
 .details {
   @include flexStart(column);
 

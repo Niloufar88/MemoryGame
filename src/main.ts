@@ -1,14 +1,16 @@
 // @ts-ignore
 import "./styles/main.scss";
 
-import { cards } from "./type";
+import { foods, DAProjects, themeObject } from "./type";
 import {
+  renderSettingsPage,
   renderBoardElements,
   startGame,
   gameLogic,
-  updateCurrentPlayer,
+  handlePlayerChange,
   updateGameTheme,
   handleBoardSizeChange,
+  handleGameThemeChange,
 } from "./game";
 
 const playBtn = document.getElementById("playBtn") as HTMLButtonElement;
@@ -49,17 +51,19 @@ const chooseGameThemeDiv = document.querySelector(
 
 choosePlayerDiv.addEventListener("change", (event) => {
   const target = event.target as HTMLInputElement;
-  if (target && target.type === "radio") updateCurrentPlayer(target.value);
+  if (target && target.type === "radio") handlePlayerChange(target.value);
 });
 
 setBoardSizeDiv.addEventListener("change", (event) => {
   const target = event.target as HTMLInputElement;
-  if (target) handleBoardSizeChange(target);
+  if (target && target.type === "radio") handleBoardSizeChange(target);
 });
 
 chooseGameThemeDiv.addEventListener("change", (event) => {
   const target = event.target as HTMLInputElement;
-  if (target && target.type === "radio") updateGameTheme(target.value);
+  if (target && target.type === "radio") {
+    handleGameThemeChange(target.value);
+  }
 });
 
 // cardSetsContainer.forEach((setsContainer) => {
@@ -113,9 +117,11 @@ playBtn.addEventListener("mouseleave", () => {
   playBtnArrow.src = arrowNormal;
 });
 
-// playBtn.addEventListener("click", () => {
-//   renderBoardElements();
-// });
+playBtn.addEventListener("click", () => {
+  renderSettingsPage();
+});
+
+// renderBoardElements(gameLogic.currentTheme);
 
 exitBtn?.addEventListener("mouseover", () => {
   if (exitBtnIcon) exitBtnIcon.src = exitHover;

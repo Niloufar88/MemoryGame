@@ -1,8 +1,17 @@
-import { Card, cards, GameState } from "./type";
+import { Card, foods, GameState, DAProjects, themeObject } from "./type";
 
 const bodyEl = document.querySelector("body") as HTMLBodyElement;
-const mainContainer = document.querySelector(".game-intro") as HTMLDivElement;
+const gameIntroContainer = document.querySelector(
+  ".game-intro",
+) as HTMLDivElement;
+const boardContainer = document.querySelector(".board") as HTMLDivElement;
+const settingsContainer = document.querySelector(
+  ".settings-main",
+) as HTMLDivElement;
 const cardsContainer = document.querySelector(".board__main") as HTMLDivElement;
+const themeText = document.getElementById("game-theme-text") as HTMLSpanElement;
+const boardText = document.getElementById("board-size-text") as HTMLSpanElement;
+const playerText = document.getElementById("player-text") as HTMLSpanElement;
 
 let flippedCards: HTMLElement[] = [];
 let lockBoard: boolean = false;
@@ -16,11 +25,19 @@ export let gameLogic: GameState = {
   currentTheme: "foods",
 };
 
-export function renderBoardElements() {
+export function renderBoardElements(theme: string) {
   bodyEl.innerHTML = "";
-  bodyEl.classList.add("board-body");
-  mainContainer.classList.add("d-none");
-  startGame(cards);
+  bodyEl.classList.add("board-white");
+  gameIntroContainer.classList.add("d-none");
+  startGame(theme === "foods" ? themeObject.foods : themeObject.DAProjects);
+}
+
+export function renderSettingsPage() {
+  // bodyEl.innerHTML = "";
+  bodyEl.classList.add("board-white");
+  gameIntroContainer.classList.add("d-none");
+  boardContainer.classList.add("d-none");
+  settingsContainer.classList.remove("d-none");
 }
 
 export function initializeCards(array: string[]) {
@@ -101,8 +118,8 @@ function updateBoardGridTemplate() {
   cardsContainer.style.gridTemplateColumns = `repeat(${gameLogic.currentColumns}, "120px")`;
 }
 
-export function startGame(cardsArray: string[]) {
-  const cardsPack = initializeCards(cardsArray);
+export function startGame(foodsArray: string[]) {
+  const cardsPack = initializeCards(foodsArray);
   const shuffeldPack = shuffleFinalArray(cardsPack);
 
   renderCards(shuffeldPack);
@@ -155,7 +172,7 @@ cardsContainer.addEventListener("click", (event) => {
   }
 });
 
-export function updateCurrentPlayer(playerColor: string): void {
+function updateCurrentPlayer(playerColor: string): void {
   gameLogic.currentPlayer = playerColor;
   console.log("Current Player:", gameLogic.currentPlayer);
 }
@@ -175,4 +192,20 @@ function updateBoardSize(boardSize: string): void {
 export function handleBoardSizeChange(radioBtn: HTMLInputElement) {
   radioBtn.checked = true;
   updateBoardSize(radioBtn.value);
+  updateBoardSetting(radioBtn.value);
+}
+
+export function handleGameThemeChange(theme: string): void {
+  updateGameTheme(theme);
+  themeText.textContent = theme;
+}
+
+function updateBoardSetting(size: string) {
+  const [rows, cols] = size.split("x").map(Number);
+  boardText.textContent = `${rows * cols}-Cards`;
+}
+
+export function handlePlayerChange(playerColor: string): void {
+  updateCurrentPlayer(playerColor);
+  playerText.textContent = playerColor;
 }

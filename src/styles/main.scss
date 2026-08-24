@@ -11,9 +11,18 @@
 @use "./layout/board" as *;
 
 body {
-  height: 100vh;
+  // height: 1024px;
+  min-height: 100vh;
+  max-height: 100%;
   width: 100%;
-  background-color: $primary-bg-dark;
+  // max-width: 1440px;
+  background-color: $body-bg-color;
   margin: 0 auto;
   @include flexCenter(column);
+  z-index: -10;
+}
+
+.board-white {
+  background-color: $primary-bg-color;
+  // @include flexStart(column);
 }
