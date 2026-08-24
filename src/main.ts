@@ -21,6 +21,8 @@ const playBtnArrow = document.getElementById(
 const arrowNormal = "/assets/icons/landing-page/play-arrow.svg";
 const arrowHover = "/assets/icons/landing-page/play-arrow-hover.svg";
 
+const startBtn = document.getElementById("start-Btn") as HTMLButtonElement;
+
 const exitBtn = document.querySelector(".exit-button") as HTMLButtonElement;
 const exitBtnIcon = exitBtn.querySelector("img") as HTMLImageElement;
 const exitNormal = "/assets/icons/food/exit-default.svg";
@@ -109,7 +111,9 @@ playBtn.addEventListener("click", () => {
   renderSettingsPage();
 });
 
-// renderBoardElements(gameLogic.currentTheme);
+startBtn.addEventListener("click", () => {
+  renderBoardElements(gameLogic.currentTheme);
+});
 
 exitBtn?.addEventListener("mouseover", () => {
   if (exitBtnIcon) exitBtnIcon.src = exitHover;

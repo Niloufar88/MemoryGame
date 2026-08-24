@@ -26,9 +26,10 @@ export let gameLogic: GameState = {
 };
 
 export function renderBoardElements(theme: string) {
-  bodyEl.innerHTML = "";
+  settingsContainer.classList.add("d-none");
   bodyEl.classList.add("board-white");
   gameIntroContainer.classList.add("d-none");
+  boardContainer.classList.remove("d-none");
   startGame(theme === "foods" ? themeObject.foods : themeObject.DAProjects);
 }
 
@@ -104,9 +105,7 @@ function createCardsElement(cardData: Card): HTMLDivElement {
 
 export function renderCards(cardsList: Card[]) {
   cardsContainer.innerHTML = "";
-
   updateBoardGridTemplate();
-
   cardsList.forEach((card) => {
     const cardHtml = createCardsElement(card);
     cardsContainer.appendChild(cardHtml);
@@ -114,8 +113,8 @@ export function renderCards(cardsList: Card[]) {
 }
 
 function updateBoardGridTemplate() {
-  cardsContainer.style.gridTemplateRows = `repeat(${gameLogic.currentRows}, "120px")`;
-  cardsContainer.style.gridTemplateColumns = `repeat(${gameLogic.currentColumns}, "120px")`;
+  cardsContainer.style.gridTemplateRows = `repeat(${gameLogic.currentRows}, 120px)`;
+  cardsContainer.style.gridTemplateColumns = `repeat(${gameLogic.currentColumns}, 120px)`;
 }
 
 export function startGame(foodsArray: string[]) {
