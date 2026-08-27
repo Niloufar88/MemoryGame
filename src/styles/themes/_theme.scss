@@ -1,0 +1,38 @@
+@use "../base/typography" as *;
+
+html[data-theme="DAProjects"] {
+  --current-player-font: "Figtree", sans-serif;
+  --current-player-text-color: rgba(30, 117, 148, 1);
+  --card-back-image: url("/assets/img/DA Projects/back-component.svg");
+  --gameOver-bg-color: rgba(30, 117, 148, 1);
+  --gameOver-winner-draw-font: "Figtree", sans-serif;
+  --exit-btn-bg-color: rgba(191, 229, 242, 1);
+  --exit-btn-text-color: rgba(30, 117, 148, 1);
+  --exit-btn-font: "Figtree", sans-serif;
+  --exit-btn-bg-hover: rgba(30, 117, 148, 1);
+  --exit-btn-text-hover: rgba(255, 255, 255, 1);
+  --navbar-bg: rgba(240, 243, 244, 1);
+  --exit-btn-border-image: none;
+  --matched-card-border: 2px solid rgba(30, 117, 148, 1);
+  --matched-card-border-image: none;
+  --matched-card-border-radius: 13px;
+}
+
+html[data-theme="foods"] {
+  --current-player-font: "Klee One", sans-serif;
+  --current-player-text-color: rgba(164, 82, 18, 1);
+  --card-back-image: url("/assets/img/foods/back-component.svg");
+  --gameOver-bg-color: rgba(244, 131, 46, 1);
+  --gameOver-winner-draw-font: "Klee One", sans-serif;
+  --exit-btn-bg-color: rgba(255, 249, 242, 1);
+  --exit-btn-text-color: rgba(243, 131, 45, 1);
+  --exit-btn-font: "Delius Unicase", sans-serif;
+  --exit-btn-bg-hover: rgba(243, 131, 45, 1);
+  --exit-btn-text-hover: rgba(255, 255, 255, 1);
+  --navbar-bg: rgba(240, 229, 217, 1);
+  --exit-btn-border-image: url("/assets/icons/food/exit-btn-border.svg");
+  --matched-card-border: 8px solid transparent;
+  --matched-card-border-image: url("/assets/icons/food/exit-btn-border.svg") 10
+    stretch;
+  --matched-card-border-radius: 0;
+}

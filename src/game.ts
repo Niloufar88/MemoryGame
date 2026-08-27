@@ -1,4 +1,4 @@
-import { Card, foods, GameState, DAProjects, themeObject } from "./type";
+import { Card, GameState, themeObject } from "./type";
 
 const bodyEl = document.querySelector("body") as HTMLBodyElement;
 const gameIntroContainer = document.querySelector(
@@ -12,17 +12,31 @@ const cardsContainer = document.querySelector(".board__main") as HTMLDivElement;
 const themeText = document.getElementById("game-theme-text") as HTMLSpanElement;
 const boardText = document.getElementById("board-size-text") as HTMLSpanElement;
 const playerText = document.getElementById("player-text") as HTMLSpanElement;
+const playerFigureElement = document.querySelector(
+  ".board__navbar--currentPlayer--figure",
+) as HTMLDivElement;
+const exitBtnSvg = document.getElementById("exit-svg") as HTMLImageElement;
+const orangeScore = document.getElementById("OScore") as HTMLSpanElement;
+const blueScore = document.getElementById("BScore") as HTMLSpanElement;
+const playerFigures = document.querySelectorAll(
+  ".playerFigure span",
+) as NodeListOf<HTMLSpanElement>;
 
 let flippedCards: HTMLElement[] = [];
 let lockBoard: boolean = false;
+let activePlayer: string;
+let score: number = 0;
 
 export let gameLogic: GameState = {
   currentPlayer: "",
-  changePlayer: false,
   currentCardsPair: 0,
   currentRows: 0,
   currentColumns: 0,
   currentTheme: "",
+  playerScore: {
+    orange: 0,
+    blue: 0,
+  },
 };
 
 export function renderBoardElements(theme: string) {
@@ -31,10 +45,24 @@ export function renderBoardElements(theme: string) {
   gameIntroContainer.classList.add("d-none");
   boardContainer.classList.remove("d-none");
   startGame(theme === "foods" ? themeObject.foods : themeObject.DAProjects);
+  changeGameTheme(theme);
+  setCurrentPlayerColor(gameLogic.currentPlayer);
+}
+
+function changeGameTheme(theme: string) {
+  document.documentElement.setAttribute("data-theme", theme);
+  if (theme === "foods")
+    exitBtnSvg.src = "/assets/icons/food/exit-orange-default.svg";
+  else exitBtnSvg.src = "/assets/icons/DA/exit-blue-default.svg";
+}
+
+function setCurrentPlayerColor(color: string) {
+  if (color === "blue")
+    playerFigureElement.style.backgroundColor = "rgba(9, 127, 197, 1)";
+  else playerFigureElement.style.backgroundColor = "rgba(244, 131, 46, 1)";
 }
 
 export function renderSettingsPage() {
-  // bodyEl.innerHTML = "";
   bodyEl.classList.add("board-white");
   gameIntroContainer.classList.add("d-none");
   boardContainer.classList.add("d-none");
@@ -82,43 +110,42 @@ function createCardsElement(cardData: Card): HTMLDivElement {
   const cardElement = document.createElement("div");
   cardElement.classList.add("flipCard");
   cardElement.dataset.id = cardData.id;
-
   const cardInner = document.createElement("div");
   cardInner.classList.add("flipCard__inner");
-
   const cardBack = document.createElement("div");
   cardBack.classList.add("flipCard__inner--back");
-
   const cardFront = document.createElement("div");
   cardFront.classList.add("flipCard__inner--front");
-
   const cardImg = document.createElement("img");
   cardImg.src = cardData.image;
-
   cardBack.appendChild(cardImg);
   cardInner.appendChild(cardBack);
   cardInner.appendChild(cardFront);
   cardElement.appendChild(cardInner);
-
   return cardElement;
 }
 
 export function renderCards(cardsList: Card[]) {
   cardsContainer.innerHTML = "";
-  updateBoardGridTemplate();
+  updateBoardGridTemplate(gameLogic.currentTheme);
   cardsList.forEach((card) => {
     const cardHtml = createCardsElement(card);
     cardsContainer.appendChild(cardHtml);
   });
 }
 
-function updateBoardGridTemplate() {
-  cardsContainer.style.gridTemplateRows = `repeat(${gameLogic.currentRows}, 120px)`;
-  cardsContainer.style.gridTemplateColumns = `repeat(${gameLogic.currentColumns}, 120px)`;
+function updateBoardGridTemplate(theme: string) {
+  if (theme === "foods") {
+    cardsContainer.style.gridTemplateRows = `repeat(${gameLogic.currentRows}, 120px)`;
+    cardsContainer.style.gridTemplateColumns = `repeat(${gameLogic.currentColumns}, 120px)`;
+  } else if (theme === "DAProjects") {
+    cardsContainer.style.gridTemplateRows = `repeat(${gameLogic.currentRows}, 100px)`;
+    cardsContainer.style.gridTemplateColumns = `repeat(${gameLogic.currentColumns}, 120px)`;
+  }
 }
 
-export function startGame(foodsArray: string[]) {
-  const cardsPack = initializeCards(foodsArray);
+export function startGame(cardsArray: string[]) {
+  const cardsPack = initializeCards(cardsArray);
   const shuffeldPack = shuffleFinalArray(cardsPack);
 
   renderCards(shuffeldPack);
@@ -133,16 +160,39 @@ function compareCardImg() {
   ) as HTMLImageElement;
 
   if (firstCardImg.src === secondCardImg.src) {
+    scoreManager();
     setTimeout(() => {
+      flippedCards[0].classList.add("matched");
+      flippedCards[1].classList.add("matched");
       resetFlippedCardsArray();
-    }, 300);
+    }, 400);
   } else {
     lockBoard = true;
+
     setTimeout(() => {
       removeFlippedClass();
       resetFlippedCardsArray();
+      changePlayerTurn();
     }, 800);
   }
+}
+
+function changePlayerTurn() {
+  if (activePlayer === "orange") activePlayer = "blue";
+  else if (activePlayer === "blue") activePlayer = "orange";
+  gameLogic.currentPlayer = activePlayer;
+  setCurrentPlayerColor(gameLogic.currentPlayer);
+}
+
+function scoreManager() {
+  const currentPlayer = gameLogic.currentPlayer as "orange" | "blue";
+  gameLogic.playerScore[currentPlayer]++;
+  playerFigures.forEach((figure) => {
+    const figureColor = figure.getAttribute("data-color");
+    if (figureColor && figureColor === currentPlayer) {
+      figure.innerText = String(gameLogic.playerScore[currentPlayer]);
+    }
+  });
 }
 
 function resetFlippedCardsArray() {
@@ -173,12 +223,11 @@ cardsContainer.addEventListener("click", (event) => {
 
 function updateCurrentPlayer(playerColor: string): void {
   gameLogic.currentPlayer = playerColor;
-  console.log("Current Player:", gameLogic.currentPlayer);
+  activePlayer = gameLogic.currentPlayer;
 }
 
 export function updateGameTheme(theme: string): void {
   gameLogic.currentTheme = theme;
-  console.log("Current Theme:", gameLogic.currentTheme);
 }
 
 function updateBoardSize(boardSize: string): void {

@@ -29,8 +29,16 @@
 
 @font-face {
   font-family: "Klee One";
-  src: url("/public/assets/fonts/Klee_One/KleeOne-SemiBold.ttf");
+  src: url("/assets/fonts/Klee_One/KleeOne-SemiBold.ttf") format("truetype");
   font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree/Figtree-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 400 800;
   font-style: normal;
 }
 

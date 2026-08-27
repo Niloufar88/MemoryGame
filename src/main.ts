@@ -1,7 +1,7 @@
 // @ts-ignore
 import "./styles/main.scss";
 
-import { foods, DAProjects, themeObject } from "./type";
+import { themeObject } from "./type";
 import {
   renderSettingsPage,
   renderBoardElements,

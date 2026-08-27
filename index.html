@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -176,23 +176,40 @@
       <div class="board__navbar">
         <div class="board__navbar--playerFigures">
           <div class="playerFigure">
-            <img class="orange" src="/assets/icons/orangeFigure.svg" alt="" />
-            <span class="playerFigure__score--orange" id="OScore">0</span>
+            <img src="/assets/icons/orangeFigure.svg" alt="" />
+            <span
+              class="playerFigure__score--orange"
+              id="OScore"
+              data-color="orange"
+              >0</span
+            >
           </div>
 
           <div class="playerFigure">
-            <img class="blue" src="/assets/icons/blueFigure.svg" alt="" />
-            <span class="playerFigure__score--blue" id="BScore">0</span>
+            <img src="/assets/icons/blueFigure.svg" alt="" />
+            <span
+              class="playerFigure__score--blue"
+              id="BScore"
+              data-color="blue"
+              >0</span
+            >
           </div>
         </div>
         <div class="board__navbar--currentPlayer" id="currentPlayer">
-          Current Player:
-          <img src="/assets/icons/blue-figure.svg" alt="player figure" />
+          <span class="board__navbar--currentPlayer--text"
+            >Current Player:</span
+          >
+          <div class="board__navbar--currentPlayer--figure">
+            <img src="/assets/icons/chess_pawn.svg" alt="player figure" />
+          </div>
         </div>
         <div>
           <button id="exit-btn" class="exit-button" type="button">
-            <img src="/assets/icons/food/exit-default.svg" alt="exit-btn" />Exit
-            game
+            <img
+              id="exit-svg"
+              src="/assets/icons/food/exit-orange-default.svg"
+              alt="exit-btn"
+            />Exit game
           </button>
         </div>
       </div>

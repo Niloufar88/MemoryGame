@@ -9,6 +9,7 @@
 @use "./layout/intro" as *;
 @use "./layout/settings" as *;
 @use "./layout/board" as *;
+@use "./themes/theme" as *;
 
 body {
   // height: 1024px;

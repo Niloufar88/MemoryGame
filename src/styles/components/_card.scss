@@ -16,7 +16,10 @@
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s;
+    transition:
+      transform 0.8s,
+      border 0.3s ease-in-out,
+      border-image 0.3s ease-in-out;
     transform-style: preserve-3d;
     transform: translateY(-180deg);
 
@@ -29,7 +32,7 @@
     }
 
     &--front {
-      background-image: url("/assets/img/foods/back-component.svg");
+      background-image: var(--card-back-image);
       background-repeat: no-repeat;
       background-size: cover;
     }
@@ -42,4 +45,10 @@
 
 .flipCard.flipped .flipCard__inner {
   transform: rotateY(180deg);
+}
+
+.flipCard.matched .flipCard__inner {
+  border: var(--matched-card-border);
+  border-image: var(--matched-card-border-image);
+  border-radius: var(--matched-card-border-radius);
 }
