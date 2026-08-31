@@ -2,10 +2,18 @@
 
 html[data-theme="DAProjects"] {
   --current-player-font: "Figtree", sans-serif;
+  --current-player-font-weight: 700;
   --current-player-text-color: rgba(30, 117, 148, 1);
   --card-back-image: url("/assets/img/DA Projects/back-component.svg");
   --gameOver-bg-color: rgba(30, 117, 148, 1);
   --gameOver-winner-draw-font: "Figtree", sans-serif;
+  --gameOver-font-weight: 800;
+  --gameOver-font-color: rgba(253, 91, 79, 1);
+  --finalScore-font: "Figtree", sans-serif;
+  --finalScore-font-weight: 400;
+  --finalScore-font-size: 40px;
+  --finalScore-text-color: rgba(253, 91, 79, 1);
+  --finalScore-scorebox-radius: 10px;
   --exit-btn-bg-color: rgba(191, 229, 242, 1);
   --exit-btn-text-color: rgba(30, 117, 148, 1);
   --exit-btn-font: "Figtree", sans-serif;
@@ -20,10 +28,17 @@ html[data-theme="DAProjects"] {
 
 html[data-theme="foods"] {
   --current-player-font: "Klee One", sans-serif;
+  --current-player-font-weight: 600;
   --current-player-text-color: rgba(164, 82, 18, 1);
   --card-back-image: url("/assets/img/foods/back-component.svg");
   --gameOver-bg-color: rgba(244, 131, 46, 1);
   --gameOver-winner-draw-font: "Klee One", sans-serif;
+  --gameOver-font-weight: 600;
+  --gameOver-font-color: rgba(255, 255, 255, 1);
+  --finalScore-font: "Klee One", sans-serif;
+  --finalScore-font-weight: 600;
+  --finalScore-font-size: 42px;
+  --finalScore-scorebox-radius: 0;
   --exit-btn-bg-color: rgba(255, 249, 242, 1);
   --exit-btn-text-color: rgba(243, 131, 45, 1);
   --exit-btn-font: "Delius Unicase", sans-serif;

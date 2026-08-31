@@ -10,6 +10,7 @@
 @use "./layout/settings" as *;
 @use "./layout/board" as *;
 @use "./themes/theme" as *;
+@use "./layout/_gameOver" as *;
 
 body {
   // height: 1024px;

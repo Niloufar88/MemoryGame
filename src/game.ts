@@ -21,11 +21,12 @@ const blueScore = document.getElementById("BScore") as HTMLSpanElement;
 const playerFigures = document.querySelectorAll(
   ".playerFigure span",
 ) as NodeListOf<HTMLSpanElement>;
+const gameOverDialog = document.querySelector(".gameOver") as HTMLDialogElement;
 
 let flippedCards: HTMLElement[] = [];
 let lockBoard: boolean = false;
 let activePlayer: string;
-let score: number = 0;
+let maxScore: number;
 
 export let gameLogic: GameState = {
   currentPlayer: "",
@@ -168,7 +169,6 @@ function compareCardImg() {
     }, 400);
   } else {
     lockBoard = true;
-
     setTimeout(() => {
       removeFlippedClass();
       resetFlippedCardsArray();
@@ -193,6 +193,41 @@ function scoreManager() {
       figure.innerText = String(gameLogic.playerScore[currentPlayer]);
     }
   });
+
+  checkGameOver();
+}
+
+function checkGameOver() {
+  const totalScore = gameLogic.playerScore.orange + gameLogic.playerScore.blue;
+  const maxScore = gameLogic.currentCardsPair;
+
+  if (totalScore !== maxScore) return;
+  setTimeout(() => {
+    showGameOverScreen();
+  }, 1000);
+
+  // setTimeout(() => {
+  //   hideGameOverScreen();
+  //   if (
+  //     gameLogic.playerScore.orange > gameLogic.playerScore.blue ||
+  //     gameLogic.playerScore.orange < gameLogic.playerScore.blue
+  //   )
+  //     showWinnerScreen();
+  //   else showDrawScreen();
+  // }, 2000);
+}
+
+function showGameOverScreen() {
+  gameOverDialog.classList.add("show");
+
+  const orangeScore = document.getElementById("orangeScore") as HTMLSpanElement;
+  orangeScore.innerText = String(gameLogic.playerScore.orange);
+  const blueScore = document.getElementById("blueScore") as HTMLSpanElement;
+  blueScore.innerText = String(gameLogic.playerScore.blue);
+}
+
+function hideGameOverScreen() {
+  gameOverDialog.classList.remove("show");
 }
 
 function resetFlippedCardsArray() {

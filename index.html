@@ -217,6 +217,26 @@
       <div class="board__main"></div>
     </div>
 
+    <div class="gameOver d-none">
+      <div class="gameOver__content">
+        <h1 class="gameOver__content--title">GAME OVER</h1>
+        <div class="gameOver__content--scoreBox">
+          <h3 class="gameOver__content--scoreBox--title">Final score</h3>
+          <div class="gameOver__content--scoreBox--scores">
+            <div class="orangePlayer">
+              <img src="/assets/icons/orangeFigure.svg" alt="" />
+              <span id="orangeScore">0</span>
+            </div>
+
+            <div class="bluePlayer">
+              <img src="/assets/icons/blueFigure.svg" alt="" />
+              <span id="blueScore">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
