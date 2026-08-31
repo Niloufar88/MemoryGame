@@ -122,3 +122,46 @@
     // border: var(--winner-home-btn-border);
   }
 }
+
+.back {
+  @include orangeBtn(
+    var(--exit-btn-bg-color),
+    var(--exit-btn-text-color),
+    var(--exit-btn-font)
+  );
+  border-image: var(--exit-btn-border-image) 4 round;
+  border-radius: 10px;
+  font-weight: 700;
+  box-shadow: var(--overlay-btn-shadow);
+  transition: all 200ms ease-in;
+
+  &:hover {
+    color: var(--exit-btn-text-hover);
+    background-color: var(--exit-btn-bg-hover);
+    box-shadow: 3px 3px 5px 0 rgba(47, 46, 46, 0.2);
+    border-image: none;
+    border: 4px solid transparent;
+  }
+}
+
+.exit {
+  @include orangeBtn(
+    var(--overlay-exit-bg-color),
+    var(--overlay-exit-text-color),
+    var(--exit-btn-font)
+  );
+  font-weight: 700;
+  box-shadow: var(--overlay-btn-shadow);
+  border-image: var(--exit-btn-border-image) 4 round;
+  border-radius: 10px;
+  padding: 12px;
+  transition: all 200ms ease-in;
+
+  &:hover {
+    color: var(--overlay-exit-text-hover);
+    background-color: var(--overlay-exit-bg-hover);
+    box-shadow: var(--overlay-btn-shadow-hover);
+    border-image: none;
+    border: 4px solid transparent;
+  }
+}

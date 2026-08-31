@@ -35,6 +35,9 @@ const exitNormalBlue = "/assets/icons/DA/exit-blue-default.svg";
 const exitHover = "/assets/icons/food/exit-hover.svg";
 const homeBtn = document.querySelector(".home-btn") as HTMLButtonElement;
 const exitGame = document.getElementById("exitGame") as HTMLButtonElement;
+const backToGameBtn = document.getElementById(
+  "backToGame",
+) as HTMLButtonElement;
 const radioButtonsContainer = document.querySelectorAll(
   ".options-container",
 ) as NodeListOf<HTMLDivElement>;
@@ -159,3 +162,4 @@ exitGame?.addEventListener("click", () => {
   closeDialog();
   resetGame();
 });
+backToGameBtn?.addEventListener("click", closeDialog);

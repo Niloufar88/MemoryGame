@@ -42,6 +42,12 @@ html[data-theme="DAProjects"] {
   --overlay-text-font: "Figtree", sans-serif;
   --overlay-text-weight: 700;
   --overlay-text-color: rgba(41, 79, 96, 1);
+  --overlay-exit-bg-color: rgba(253, 138, 129, 1);
+  --overlay-exit-text-color: rgba(255, 255, 255, 1);
+  --overlay-exit-text-hover: rgba(255, 255, 255, 1);
+  --overlay-btn-shadow: 3px 3px 5px 0 rgba(47, 46, 46, 0.2);
+  --overlay-btn-shadow-hover: 0;
+  --overlay-exit-bg-hover: rgba(237, 91, 80, 1);
 }
 
 html[data-theme="foods"] {
@@ -86,4 +92,10 @@ html[data-theme="foods"] {
   --overlay-text-font: "Klee One", sans-serif;
   --overlay-text-weight: 600;
   --overlay-text-color: rgba(164, 82, 18, 1);
+  --overlay-exit-bg-color: rgba(255, 249, 242, 1);
+  --overlay-exit-text-color: rgba(243, 131, 45, 1);
+  --overlay-exit-text-hover: rgba(255, 255, 255, 1);
+  --overlay-btn-shadow: 0 rgba(0, 0, 0, 0);
+  --overlay-btn-shadow-hover: 3px 3px 5px 0 rgba(47, 46, 46, 0.2);
+  --overlay-exit-bg-hover: rgba(243, 131, 45, 1);
 }
