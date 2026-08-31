@@ -98,3 +98,26 @@
     object-fit: cover;
   }
 }
+
+.home-btn {
+  font-family: var(--winner-home-btn-font);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--winner-home-btn-text-color);
+  background-color: var(--winner-home-btn-bg-color);
+  box-shadow: var(--winner-figure-bg-shadow);
+  padding: 12px 20px;
+  text-transform: capitalize;
+  border: none;
+  border-image: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 200ms ease-in;
+
+  &:hover {
+    background-color: var(--winner-home-btn-bg-hover);
+    box-shadow: 3px 3px 5px 0 rgba(47, 46, 46, 0.2);
+    // border-image: var(--winner-home-btn-border-image) 4 round;
+    // border: var(--winner-home-btn-border);
+  }
+}

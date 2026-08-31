@@ -13,6 +13,9 @@ export interface GameState {
   currentRows: number;
   currentColumns: number;
   currentTheme: string;
+  activePlayer: string;
+  lockBoard: boolean;
+  flippedCards: HTMLElement[];
   playerScore: {
     orange: number;
     blue: number;

@@ -21,12 +21,13 @@ const blueScore = document.getElementById("BScore") as HTMLSpanElement;
 const playerFigures = document.querySelectorAll(
   ".playerFigure span",
 ) as NodeListOf<HTMLSpanElement>;
-const gameOverDialog = document.querySelector(".gameOver") as HTMLDialogElement;
-
-let flippedCards: HTMLElement[] = [];
-let lockBoard: boolean = false;
-let activePlayer: string;
-let maxScore: number;
+const gameOverDiv = document.querySelector(".gameOver") as HTMLDivElement;
+const winnerScreenDiv = document.querySelector(
+  ".winnerScreen",
+) as HTMLDivElement;
+const winnerImg = document.querySelector(
+  ".winner__content--figure img",
+) as HTMLImageElement;
 
 export let gameLogic: GameState = {
   currentPlayer: "",
@@ -34,6 +35,9 @@ export let gameLogic: GameState = {
   currentRows: 0,
   currentColumns: 0,
   currentTheme: "",
+  activePlayer: "",
+  lockBoard: false,
+  flippedCards: [],
   playerScore: {
     orange: 0,
     blue: 0,
@@ -153,22 +157,22 @@ export function startGame(cardsArray: string[]) {
 }
 
 function compareCardImg() {
-  const firstCardImg = flippedCards[0].querySelector(
+  const firstCardImg = gameLogic.flippedCards[0].querySelector(
     ".flipCard__inner--back img",
   ) as HTMLImageElement;
-  const secondCardImg = flippedCards[1].querySelector(
+  const secondCardImg = gameLogic.flippedCards[1].querySelector(
     ".flipCard__inner--back img",
   ) as HTMLImageElement;
 
   if (firstCardImg.src === secondCardImg.src) {
     scoreManager();
     setTimeout(() => {
-      flippedCards[0].classList.add("matched");
-      flippedCards[1].classList.add("matched");
+      gameLogic.flippedCards[0].classList.add("matched");
+      gameLogic.flippedCards[1].classList.add("matched");
       resetFlippedCardsArray();
     }, 400);
   } else {
-    lockBoard = true;
+    gameLogic.lockBoard = true;
     setTimeout(() => {
       removeFlippedClass();
       resetFlippedCardsArray();
@@ -178,9 +182,9 @@ function compareCardImg() {
 }
 
 function changePlayerTurn() {
-  if (activePlayer === "orange") activePlayer = "blue";
-  else if (activePlayer === "blue") activePlayer = "orange";
-  gameLogic.currentPlayer = activePlayer;
+  if (gameLogic.activePlayer === "orange") gameLogic.activePlayer = "blue";
+  else if (gameLogic.activePlayer === "blue") gameLogic.activePlayer = "orange";
+  gameLogic.currentPlayer = gameLogic.activePlayer;
   setCurrentPlayerColor(gameLogic.currentPlayer);
 }
 
@@ -206,19 +210,14 @@ function checkGameOver() {
     showGameOverScreen();
   }, 1000);
 
-  // setTimeout(() => {
-  //   hideGameOverScreen();
-  //   if (
-  //     gameLogic.playerScore.orange > gameLogic.playerScore.blue ||
-  //     gameLogic.playerScore.orange < gameLogic.playerScore.blue
-  //   )
-  //     showWinnerScreen();
-  //   else showDrawScreen();
-  // }, 2000);
+  setTimeout(() => {
+    hideGameOverScreen();
+    showWinnerScreen();
+  }, 2500);
 }
 
 function showGameOverScreen() {
-  gameOverDialog.classList.add("show");
+  gameOverDiv.classList.add("show");
 
   const orangeScore = document.getElementById("orangeScore") as HTMLSpanElement;
   orangeScore.innerText = String(gameLogic.playerScore.orange);
@@ -226,39 +225,89 @@ function showGameOverScreen() {
   blueScore.innerText = String(gameLogic.playerScore.blue);
 }
 
+function showWinnerScreen() {
+  winnerScreenDiv.classList.add("show");
+  blueOrOrangeFigure();
+  blueOrOrangeWinner();
+}
+
+function hideWinnerScreen() {
+  winnerScreenDiv.classList.remove("show");
+}
+
+function blueOrOrangeFigure() {
+  const orangeScore = gameLogic.playerScore.orange;
+  const blueScore = gameLogic.playerScore.blue;
+
+  if (orangeScore > blueScore) {
+    if (gameLogic.currentTheme === "orange")
+      winnerImg.src = "/assets/icons/orange-orange-winner.svg";
+    else winnerImg.src = "/assets/icons/blue-orange-winner.svg";
+  } else if (blueScore > orangeScore) {
+    if (gameLogic.currentTheme === "orange")
+      winnerImg.src = "/assets/icons/orange-blue-winner.svg";
+    else winnerImg.src = "/assets/icons/blue-blue-winner.svg";
+  } else {
+    if (gameLogic.currentTheme === "orange")
+      winnerImg.src = "/assets/icons/orange-draw-img.svg";
+    else winnerImg.src = "/assets/icons/blue-draw-img.svg";
+  }
+}
+
+function blueOrOrangeWinner() {
+  const winner = document.querySelector(".winner") as HTMLHeadingElement;
+  const winnerTitle = document.querySelector(
+    ".winner-title",
+  ) as HTMLHeadingElement;
+
+  const orangeScore = gameLogic.playerScore.orange;
+  const blueScore = gameLogic.playerScore.blue;
+
+  if (orangeScore > blueScore) {
+    winnerTitle.innerText = `The winner is`;
+    winner.innerText = `Orange Player`;
+  } else if (orangeScore < blueScore) {
+    winnerTitle.innerText = `The winner is`;
+    winner.innerText = `Blue Player`;
+  } else {
+    winnerTitle.innerText = `It’s a`;
+    winner.innerText = `DRAW`;
+  }
+}
+
 function hideGameOverScreen() {
-  gameOverDialog.classList.remove("show");
+  gameOverDiv.classList.remove("show");
 }
 
 function resetFlippedCardsArray() {
-  flippedCards = [];
-  lockBoard = false;
+  gameLogic.flippedCards = [];
+  gameLogic.lockBoard = false;
 }
 
 function removeFlippedClass() {
-  flippedCards[0].classList.remove("flipped");
-  flippedCards[1].classList.remove("flipped");
+  gameLogic.flippedCards[0].classList.remove("flipped");
+  gameLogic.flippedCards[1].classList.remove("flipped");
 }
 
 cardsContainer.addEventListener("click", (event) => {
   const clickedCard = event.target as HTMLDivElement;
   const target = clickedCard.closest(".flipCard") as HTMLDivElement;
 
-  if (!target || lockBoard) return;
+  if (!target || gameLogic.lockBoard) return;
   if (target.classList.contains("flipped")) return;
 
   target.classList.add("flipped");
-  flippedCards.push(target);
+  gameLogic.flippedCards.push(target);
 
-  if (flippedCards.length === 2) {
-    lockBoard = true;
+  if (gameLogic.flippedCards.length === 2) {
+    gameLogic.lockBoard = true;
     compareCardImg();
   }
 });
 
 function updateCurrentPlayer(playerColor: string): void {
   gameLogic.currentPlayer = playerColor;
-  activePlayer = gameLogic.currentPlayer;
+  gameLogic.activePlayer = gameLogic.currentPlayer;
 }
 
 export function updateGameTheme(theme: string): void {
@@ -305,4 +354,11 @@ export function updateStartButtonState(): void {
   const startBtn = document.getElementById("start-Btn") as HTMLButtonElement;
 
   if (startBtn) startBtn.disabled = !isSettingsComplete();
+}
+
+export function goBackToHome() {
+  hideWinnerScreen();
+  boardContainer.classList.add("d-none");
+  bodyEl.classList.remove("board-white");
+  gameIntroContainer.classList.remove("d-none");
 }

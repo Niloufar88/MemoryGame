@@ -12,6 +12,7 @@ import {
   handleBoardSizeChange,
   handleGameThemeChange,
   updateStartButtonState,
+  goBackToHome,
 } from "./game";
 
 const playBtn = document.getElementById("playBtn") as HTMLButtonElement;
@@ -27,7 +28,7 @@ const exitBtn = document.querySelector(".exit-button") as HTMLButtonElement;
 const exitBtnIcon = exitBtn.querySelector("img") as HTMLImageElement;
 const exitNormal = "/assets/icons/food/exit-default.svg";
 const exitHover = "/assets/icons/food/exit-hover.svg";
-
+const homeBtn = document.querySelector(".home-btn") as HTMLButtonElement;
 const radioButtonsContainer = document.querySelectorAll(
   ".options-container",
 ) as NodeListOf<HTMLDivElement>;
@@ -122,3 +123,5 @@ exitBtn?.addEventListener("mouseover", () => {
 exitBtn?.addEventListener("mouseleave", () => {
   if (exitBtnIcon) exitBtnIcon.src = exitNormal;
 });
+
+homeBtn?.addEventListener("click", goBackToHome);

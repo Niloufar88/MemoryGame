@@ -1,0 +1,65 @@
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+@use "../themes/theme" as *;
+
+.winnerScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--winner-draw-bg-color);
+  border: none;
+  @include flexCenter(column);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(50%);
+  transition:
+    opacity 0.5s ease-in,
+    transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+
+  &.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+}
+
+.winner__content {
+  background-color: var(--winner-draw-bg-color);
+  @include flexCenter(column);
+  gap: 54px;
+
+  &--text {
+    @include flexCenter(column);
+
+    & .winner-title {
+      color: var(--winner-text-color);
+      font-family: var(--gameOver-winner-draw-font);
+      font-weight: var(--winner-title-weight);
+      font-size: 40px;
+    }
+
+    & .winner {
+      color: var(--winner-text-color);
+      font-family: var(--gameOver-winner-draw-font);
+      font-weight: var(--winner-player-weight);
+      font-size: 80px;
+    }
+  }
+
+  &--figure {
+    width: 260px;
+    height: 300px;
+    padding: 24px 30px;
+    background-color: var(--winner-figure-bg-color);
+    box-shadow: var(--winner-figure-bg-shadow);
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
