@@ -13,6 +13,10 @@ import {
   handleGameThemeChange,
   updateStartButtonState,
   goBackToHome,
+  openDialog,
+  closeDialog,
+  resetGameState,
+  playerFigures,
 } from "./game";
 
 const playBtn = document.getElementById("playBtn") as HTMLButtonElement;
@@ -26,9 +30,11 @@ const startBtn = document.getElementById("start-Btn") as HTMLButtonElement;
 
 const exitBtn = document.querySelector(".exit-button") as HTMLButtonElement;
 const exitBtnIcon = exitBtn.querySelector("img") as HTMLImageElement;
-const exitNormal = "/assets/icons/food/exit-default.svg";
+const exitNormalOrange = "/assets/icons/food/exit-default.svg";
+const exitNormalBlue = "/assets/icons/DA/exit-blue-default.svg";
 const exitHover = "/assets/icons/food/exit-hover.svg";
 const homeBtn = document.querySelector(".home-btn") as HTMLButtonElement;
+const exitGame = document.getElementById("exitGame") as HTMLButtonElement;
 const radioButtonsContainer = document.querySelectorAll(
   ".options-container",
 ) as NodeListOf<HTMLDivElement>;
@@ -121,7 +127,35 @@ exitBtn?.addEventListener("mouseover", () => {
 });
 
 exitBtn?.addEventListener("mouseleave", () => {
-  if (exitBtnIcon) exitBtnIcon.src = exitNormal;
+  if (exitBtnIcon && gameLogic.currentTheme === "DAProjects")
+    exitBtnIcon.src = exitNormalBlue;
+  else if (exitBtnIcon && gameLogic.currentTheme === "foods")
+    exitBtnIcon.src = exitNormalOrange;
 });
 
-homeBtn?.addEventListener("click", goBackToHome);
+function resetGame() {
+  resetGameState();
+  resetradioButtons();
+  goBackToHome();
+  updateStartButtonState();
+  playerFigures.forEach((figure) => {
+    figure.innerText = String(0);
+  });
+}
+
+function resetradioButtons() {
+  const allRadioInputs = document.querySelectorAll<HTMLInputElement>(
+    'input[type="radio"]',
+  );
+
+  allRadioInputs.forEach((input: HTMLInputElement) => {
+    input.checked = false;
+  });
+}
+
+exitBtn?.addEventListener("click", openDialog);
+homeBtn?.addEventListener("click", resetGame);
+exitGame?.addEventListener("click", () => {
+  closeDialog();
+  resetGame();
+});

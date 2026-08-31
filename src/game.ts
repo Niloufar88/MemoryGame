@@ -18,7 +18,7 @@ const playerFigureElement = document.querySelector(
 const exitBtnSvg = document.getElementById("exit-svg") as HTMLImageElement;
 const orangeScore = document.getElementById("OScore") as HTMLSpanElement;
 const blueScore = document.getElementById("BScore") as HTMLSpanElement;
-const playerFigures = document.querySelectorAll(
+export const playerFigures = document.querySelectorAll(
   ".playerFigure span",
 ) as NodeListOf<HTMLSpanElement>;
 const gameOverDiv = document.querySelector(".gameOver") as HTMLDivElement;
@@ -240,15 +240,15 @@ function blueOrOrangeFigure() {
   const blueScore = gameLogic.playerScore.blue;
 
   if (orangeScore > blueScore) {
-    if (gameLogic.currentTheme === "orange")
+    if (gameLogic.currentTheme === "foods")
       winnerImg.src = "/assets/icons/orange-orange-winner.svg";
     else winnerImg.src = "/assets/icons/blue-orange-winner.svg";
   } else if (blueScore > orangeScore) {
-    if (gameLogic.currentTheme === "orange")
+    if (gameLogic.currentTheme === "foods")
       winnerImg.src = "/assets/icons/orange-blue-winner.svg";
     else winnerImg.src = "/assets/icons/blue-blue-winner.svg";
   } else {
-    if (gameLogic.currentTheme === "orange")
+    if (gameLogic.currentTheme === "foods")
       winnerImg.src = "/assets/icons/orange-draw-img.svg";
     else winnerImg.src = "/assets/icons/blue-draw-img.svg";
   }
@@ -361,4 +361,28 @@ export function goBackToHome() {
   boardContainer.classList.add("d-none");
   bodyEl.classList.remove("board-white");
   gameIntroContainer.classList.remove("d-none");
+  resetGameState();
+}
+
+export function openDialog() {
+  const dialog = document.querySelector(".exitOverlay") as HTMLDialogElement;
+
+  if (dialog) dialog.showModal();
+}
+
+export function closeDialog() {
+  const dialog = document.querySelector(".exitOverlay") as HTMLDialogElement;
+  dialog.close();
+}
+
+export function resetGameState() {
+  gameLogic.currentPlayer = "";
+  gameLogic.currentCardsPair = 0;
+  gameLogic.currentTheme = "";
+  gameLogic.activePlayer = "";
+  gameLogic.playerScore.orange = 0;
+  gameLogic.playerScore.blue = 0;
+  gameLogic.flippedCards = [];
+  gameLogic.currentColumns = 0;
+  gameLogic.lockBoard = false;
 }

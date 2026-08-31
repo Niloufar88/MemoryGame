@@ -24,7 +24,8 @@ html[data-theme="DAProjects"] {
   --winner-home-btn-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   --winner-home-btn-font: "Figtree", sans-serif;
   --winner-home-btn-text-color: rgba(30, 117, 148, 1);
-  --winner-home-btn-bg-hover: rgba(30, 117, 148, 1);
+  --winner-home-btn-text-hover: rgba(255, 255, 255, 1);
+  // --winner-home-btn-bg-hover: rgba(30, 117, 148, 1);
   --winner-home-btn-border-image: none;
   --winner-home-btn-border: none;
   --exit-btn-bg-color: rgba(191, 229, 242, 1);
@@ -37,6 +38,10 @@ html[data-theme="DAProjects"] {
   --matched-card-border: 2px solid rgba(30, 117, 148, 1);
   --matched-card-border-image: none;
   --matched-card-border-radius: 13px;
+  --overlay-bg-color: rgba(240, 246, 249, 1);
+  --overlay-text-font: "Figtree", sans-serif;
+  --overlay-text-weight: 700;
+  --overlay-text-color: rgba(41, 79, 96, 1);
 }
 
 html[data-theme="foods"] {
@@ -62,7 +67,8 @@ html[data-theme="foods"] {
   --winner-home-btn-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.2);
   --winner-home-btn-font: "Delius Unicase", sans-serif;
   --winner-home-btn-text-color: rgba(255, 255, 255, 1);
-  --winner-home-btn-bg-hover: rgba(255, 171, 62, 1);
+  --winner-home-btn-text-hover: rgba(255, 255, 255, 1);
+  // --winner-home-btn-bg-hover: rgba(255, 171, 62, 1);
   --winner-home-btn-border-image: url("/assets/icons/food/exit-btn-border.svg");
   --winner-home-btn-border: 8px solid transparent;
   --exit-btn-bg-color: rgba(255, 249, 242, 1);
@@ -76,4 +82,8 @@ html[data-theme="foods"] {
   --matched-card-border-image: url("/assets/icons/food/exit-btn-border.svg") 10
     stretch;
   --matched-card-border-radius: 0;
+  --overlay-bg-color: rgba(246, 246, 246, 1);
+  --overlay-text-font: "Klee One", sans-serif;
+  --overlay-text-weight: 600;
+  --overlay-text-color: rgba(164, 82, 18, 1);
 }

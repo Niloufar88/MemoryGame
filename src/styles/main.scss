@@ -12,6 +12,7 @@
 @use "./themes/theme" as *;
 @use "./layout/gameOver" as *;
 @use "./layout/winner" as *;
+@use "./layout/exitPopup" as *;
 
 body {
   // height: 1024px;
