@@ -1,11 +1,13 @@
 import { Card, GameState, themeObject } from "./type";
 
-const bodyEl = document.querySelector("body") as HTMLBodyElement;
-const gameIntroContainer = document.querySelector(
+export const bodyEl = document.querySelector("body") as HTMLBodyElement;
+export const gameIntroContainer = document.querySelector(
   ".game-intro",
 ) as HTMLDivElement;
-const boardContainer = document.querySelector(".board") as HTMLDivElement;
-const settingsContainer = document.querySelector(
+export const boardContainer = document.querySelector(
+  ".board",
+) as HTMLDivElement;
+export const settingsContainer = document.querySelector(
   ".settings-main",
 ) as HTMLDivElement;
 const cardsContainer = document.querySelector(".board__main") as HTMLDivElement;
@@ -231,7 +233,7 @@ function showWinnerScreen() {
   blueOrOrangeWinner();
 }
 
-function hideWinnerScreen() {
+export function hideWinnerScreen() {
   winnerScreenDiv.classList.remove("show");
 }
 
@@ -354,42 +356,4 @@ export function updateStartButtonState(): void {
   const startBtn = document.getElementById("start-Btn") as HTMLButtonElement;
 
   if (startBtn) startBtn.disabled = !isSettingsComplete();
-}
-
-export function goBackToHome() {
-  hideWinnerScreen();
-  boardContainer.classList.add("d-none");
-  bodyEl.classList.remove("board-white");
-  gameIntroContainer.classList.remove("d-none");
-  resetGameState();
-}
-
-export function goBackToSettings() {
-  hideWinnerScreen();
-  boardContainer.classList.add("d-none");
-  settingsContainer.classList.remove("d-none");
-  resetGameState();
-}
-
-export function openDialog() {
-  const dialog = document.querySelector(".exitOverlay") as HTMLDialogElement;
-
-  if (dialog) dialog.showModal();
-}
-
-export function closeDialog() {
-  const dialog = document.querySelector(".exitOverlay") as HTMLDialogElement;
-  dialog.close();
-}
-
-export function resetGameState() {
-  gameLogic.currentPlayer = "";
-  gameLogic.currentCardsPair = 0;
-  gameLogic.currentTheme = "";
-  gameLogic.activePlayer = "";
-  gameLogic.playerScore.orange = 0;
-  gameLogic.playerScore.blue = 0;
-  gameLogic.flippedCards = [];
-  gameLogic.currentColumns = 0;
-  gameLogic.lockBoard = false;
 }

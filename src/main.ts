@@ -12,13 +12,16 @@ import {
   handleBoardSizeChange,
   handleGameThemeChange,
   updateStartButtonState,
-  goBackToHome,
+  playerFigures,
+} from "./game";
+
+import {
   openDialog,
   closeDialog,
   resetGameState,
-  playerFigures,
   goBackToSettings,
-} from "./game";
+  resetGame,
+} from "./dialog and reset";
 
 const playBtn = document.getElementById("playBtn") as HTMLButtonElement;
 const playBtnArrow = document.getElementById(
@@ -34,12 +37,7 @@ const exitBtnIcon = exitBtn.querySelector("img") as HTMLImageElement;
 const exitNormalOrange = "/assets/icons/food/exit-default.svg";
 const exitNormalBlue = "/assets/icons/DA/exit-blue-default.svg";
 const exitHover = "/assets/icons/food/exit-hover.svg";
-const homeBtn = document.querySelector(".home-btn") as HTMLButtonElement;
-const exitGame = document.getElementById("exitGame") as HTMLButtonElement;
-const backToGameBtn = document.getElementById(
-  "backToGame",
-) as HTMLButtonElement;
-const dialogEl = document.getElementById("overlayDialog") as HTMLDialogElement;
+
 const radioButtonsContainer = document.querySelectorAll(
   ".options-container",
 ) as NodeListOf<HTMLDivElement>;
@@ -138,34 +136,4 @@ exitBtn?.addEventListener("mouseleave", () => {
     exitBtnIcon.src = exitNormalOrange;
 });
 
-function resetGame() {
-  resetGameState();
-  resetradioButtons();
-  goBackToSettings();
-  updateStartButtonState();
-  playerFigures.forEach((figure) => {
-    figure.innerText = String(0);
-  });
-}
-
-function resetradioButtons() {
-  const allRadioInputs = document.querySelectorAll<HTMLInputElement>(
-    'input[type="radio"]',
-  );
-
-  allRadioInputs.forEach((input: HTMLInputElement) => {
-    input.checked = false;
-  });
-}
-
 exitBtn?.addEventListener("click", openDialog);
-homeBtn?.addEventListener("click", resetGame);
-exitGame?.addEventListener("click", () => {
-  closeDialog();
-  resetGame();
-});
-backToGameBtn?.addEventListener("click", closeDialog);
-
-dialogEl.addEventListener("click", (event: MouseEvent) => {
-  if (event.target === dialogEl) closeDialog();
-});
