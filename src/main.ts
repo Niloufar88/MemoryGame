@@ -17,6 +17,7 @@ import {
   closeDialog,
   resetGameState,
   playerFigures,
+  goBackToSettings,
 } from "./game";
 
 const playBtn = document.getElementById("playBtn") as HTMLButtonElement;
@@ -38,6 +39,7 @@ const exitGame = document.getElementById("exitGame") as HTMLButtonElement;
 const backToGameBtn = document.getElementById(
   "backToGame",
 ) as HTMLButtonElement;
+const dialogEl = document.getElementById("overlayDialog") as HTMLDialogElement;
 const radioButtonsContainer = document.querySelectorAll(
   ".options-container",
 ) as NodeListOf<HTMLDivElement>;
@@ -139,7 +141,7 @@ exitBtn?.addEventListener("mouseleave", () => {
 function resetGame() {
   resetGameState();
   resetradioButtons();
-  goBackToHome();
+  goBackToSettings();
   updateStartButtonState();
   playerFigures.forEach((figure) => {
     figure.innerText = String(0);
@@ -163,3 +165,7 @@ exitGame?.addEventListener("click", () => {
   resetGame();
 });
 backToGameBtn?.addEventListener("click", closeDialog);
+
+dialogEl.addEventListener("click", (event: MouseEvent) => {
+  if (event.target === dialogEl) closeDialog();
+});

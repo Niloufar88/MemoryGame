@@ -364,6 +364,13 @@ export function goBackToHome() {
   resetGameState();
 }
 
+export function goBackToSettings() {
+  hideWinnerScreen();
+  boardContainer.classList.add("d-none");
+  settingsContainer.classList.remove("d-none");
+  resetGameState();
+}
+
 export function openDialog() {
   const dialog = document.querySelector(".exitOverlay") as HTMLDialogElement;
 
