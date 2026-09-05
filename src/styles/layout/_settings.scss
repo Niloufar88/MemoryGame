@@ -116,8 +116,8 @@
     }
 
     & img {
-      display: none;
-      transition: all 0.2s ease;
+      visibility: hidden;
+      transition: all 0.1s ease-in;
     }
   }
 }
