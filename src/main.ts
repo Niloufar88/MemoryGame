@@ -62,13 +62,13 @@ const chooseGameThemeDiv = document.querySelector(
   ".details__themes--options",
 ) as HTMLDivElement;
 
-const activelySelectedRadios = {
+export const activelySelectedRadios = {
   player: null as HTMLInputElement | null,
   boardSize: null as HTMLInputElement | null,
   gameTheme: null as HTMLInputElement | null,
 };
 
-function resetContainerVisuals(container: HTMLDivElement): void {
+export function resetContainerVisuals(container: HTMLDivElement): void {
   const radioBtn = container.querySelector(
     'input[type="radio"]',
   ) as HTMLInputElement;
@@ -196,13 +196,13 @@ chooseGameThemeDiv.addEventListener("click", (event) => {
 //   }
 // });
 
-const playerButtons = choosePlayerDiv.querySelectorAll(
+export const playerButtons = choosePlayerDiv.querySelectorAll(
   ".options-container",
 ) as NodeListOf<HTMLDivElement>;
-const themesButtons = chooseGameThemeDiv.querySelectorAll(
+export const themesButtons = chooseGameThemeDiv.querySelectorAll(
   ".options-container",
 ) as NodeListOf<HTMLDivElement>;
-const boardSizeButtons = setBoardSizeDiv.querySelectorAll(
+export const boardSizeButtons = setBoardSizeDiv.querySelectorAll(
   ".options-container",
 ) as NodeListOf<HTMLDivElement>;
 
@@ -280,35 +280,35 @@ function handleMouseLeave(
   }
 }
 
-radioButtonsContainer.forEach((container) => {
-  container.addEventListener("mouseenter", () => {
-    const radioButton = container.querySelector(
-      'input[type="radio"]',
-    ) as HTMLInputElement;
-    const labelText = container.querySelector("label") as HTMLLabelElement;
-    if (radioButton) {
-      // Prüfen, ob in der Gruppe dieses Buttons bereits ein Klick stattgefunden hat
-      const currentActiveForGroup =
-        activelySelectedRadios.player?.name === radioButton.name
-          ? activelySelectedRadios.player
-          : activelySelectedRadios.boardSize?.name === radioButton.name
-            ? activelySelectedRadios.boardSize
-            : activelySelectedRadios.gameTheme?.name === radioButton.name
-              ? activelySelectedRadios.gameTheme
-              : null;
+// radioButtonsContainer.forEach((container) => {
+//   container.addEventListener("mouseenter", () => {
+//     const radioButton = container.querySelector(
+//       'input[type="radio"]',
+//     ) as HTMLInputElement;
+//     const labelText = container.querySelector("label") as HTMLLabelElement;
+//     if (radioButton) {
+//       // Prüfen, ob in der Gruppe dieses Buttons bereits ein Klick stattgefunden hat
+//       const currentActiveForGroup =
+//         activelySelectedRadios.player?.name === radioButton.name
+//           ? activelySelectedRadios.player
+//           : activelySelectedRadios.boardSize?.name === radioButton.name
+//             ? activelySelectedRadios.boardSize
+//             : activelySelectedRadios.gameTheme?.name === radioButton.name
+//               ? activelySelectedRadios.gameTheme
+//               : null;
 
-      // Wenn in dieser Kategorie bereits ein Button FEST geklickt wurde,
-      // ignorieren wir den Hover für ALLE anderen Buttons dieser Gruppe!
-      if (currentActiveForGroup) {
-        return;
-      }
+//       // Wenn in dieser Kategorie bereits ein Button FEST geklickt wurde,
+//       // ignorieren wir den Hover für ALLE anderen Buttons dieser Gruppe!
+//       if (currentActiveForGroup) {
+//         return;
+//       }
 
-      // Wenn in dieser Gruppe noch gar nichts geklickt wurde, ist Hover erlaubt
-      radioButton.checked = true;
-      labelText.style.fontWeight = "bold";
-    }
-  });
-});
+//       // Wenn in dieser Gruppe noch gar nichts geklickt wurde, ist Hover erlaubt
+//       radioButton.checked = true;
+//       labelText.style.fontWeight = "bold";
+//     }
+//   });
+// });
 
 playBtn.addEventListener("mouseover", () => {
   playBtnArrow.src = arrowHover;

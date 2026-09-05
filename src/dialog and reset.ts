@@ -1,3 +1,4 @@
+import { themeObject } from "./type";
 import {
   gameLogic,
   hideWinnerScreen,
@@ -8,6 +9,14 @@ import {
   updateStartButtonState,
   playerFigures,
 } from "./game";
+
+import {
+  activelySelectedRadios,
+  resetContainerVisuals,
+  playerButtons,
+  themesButtons,
+  boardSizeButtons,
+} from "./main";
 
 const homeBtn = document.querySelector(".home-btn") as HTMLButtonElement;
 
@@ -40,6 +49,28 @@ export function resetGameState() {
   gameLogic.lockBoard = false;
 }
 
+function resetActivelySelectedBtns() {
+  activelySelectedRadios.boardSize = null;
+  activelySelectedRadios.player = null;
+  activelySelectedRadios.gameTheme = null;
+}
+
+function resetVisuals(
+  players: NodeListOf<HTMLDivElement>,
+  sizes: NodeListOf<HTMLDivElement>,
+  themes: NodeListOf<HTMLDivElement>,
+) {
+  players.forEach((player) => {
+    resetContainerVisuals(player);
+  });
+  sizes.forEach((size) => {
+    resetContainerVisuals(size);
+  });
+  themes.forEach((theme) => {
+    resetContainerVisuals(theme);
+  });
+}
+
 export function goBackToHome() {
   hideWinnerScreen();
   boardContainer.classList.add("d-none");
@@ -57,6 +88,8 @@ export function goBackToSettings() {
 
 export function resetGame() {
   resetGameState();
+  resetActivelySelectedBtns();
+  resetVisuals(playerButtons, boardSizeButtons, themesButtons);
   resetradioButtons();
   goBackToSettings();
   updateStartButtonState();
