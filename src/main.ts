@@ -40,6 +40,15 @@ const chooseGameThemeDiv = document.querySelector(
   ".details__themes--options",
 ) as HTMLDivElement;
 
+const themePreviewImg = document.querySelector(
+  ".theme-img img",
+) as HTMLImageElement;
+
+const THEME_IMAGES: Record<string, string> = {
+  DAProjects: "/assets/icons/settings/DA-Projects-Theme Visual .svg",
+  foods: "/assets/icons/settings/Food-Theme Visual.svg",
+};
+
 export const activelySelectedRadios = {
   player: null as HTMLInputElement | null,
   boardSize: null as HTMLInputElement | null,
@@ -109,6 +118,8 @@ chooseGameThemeDiv.addEventListener("click", (event) => {
   if (target && target.type === "radio") {
     handleGameThemeChange(target.value);
     activelySelectedRadios.gameTheme = target;
+    if (themePreviewImg && THEME_IMAGES[target.value])
+      themePreviewImg.src = THEME_IMAGES[target.value];
     handleRadioBtnSelection(target, themesButtons);
     updateStartButtonState();
   }
@@ -159,7 +170,10 @@ function handleMouseEnter(
   const radioButton = container.querySelector(
     'input[type="radio"]',
   ) as HTMLInputElement;
-  if (radioButton) radioButton.checked = true;
+  if (radioButton && themePreviewImg && THEME_IMAGES[radioButton.value]) {
+    radioButton.checked = true;
+    themePreviewImg.src = THEME_IMAGES[radioButton.value];
+  }
   activateVisualls(container);
 }
 
@@ -173,6 +187,14 @@ function handleMouseLeave(
 
   if (radioButton !== selectedElement) {
     resetContainerVisuals(container);
+    if (themePreviewImg) {
+      if (activelySelectedRadios.gameTheme) {
+        themePreviewImg.src =
+          THEME_IMAGES[activelySelectedRadios.gameTheme.value];
+      } else {
+        themePreviewImg.src = THEME_IMAGES["DAProjects"];
+      }
+    }
   }
 }
 

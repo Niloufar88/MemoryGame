@@ -1,4 +1,4 @@
-import { themeObject } from "./type";
+import { THEME_OBJECTS } from "./type";
 import {
   gameLogic,
   boardContainer,

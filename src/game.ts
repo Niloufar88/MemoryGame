@@ -1,4 +1,4 @@
-import { Card, GameState, themeObject } from "./type";
+import { Card, GameState, THEME_OBJECTS } from "./type";
 import {
   showGameOverScreen,
   hideGameOverScreen,
@@ -49,7 +49,7 @@ export function renderBoardElements(theme: string) {
   bodyEl.classList.add("board-white");
   gameIntroContainer.classList.add("d-none");
   boardContainer.classList.remove("d-none");
-  startGame(theme === "foods" ? themeObject.foods : themeObject.DAProjects);
+  startGame(theme === "foods" ? THEME_OBJECTS.foods : THEME_OBJECTS.DAProjects);
   changeGameTheme(theme);
   setCurrentPlayerColor(gameLogic.currentPlayer);
 }
