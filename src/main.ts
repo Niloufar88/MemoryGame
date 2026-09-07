@@ -28,18 +28,6 @@ const exitNormalOrange = "/assets/icons/food/exit-default.svg";
 const exitNormalBlue = "/assets/icons/DA/exit-blue-default.svg";
 const exitHover = "/assets/icons/food/exit-hover.svg";
 
-const radioButtonsContainer = document.querySelectorAll(
-  ".options-container",
-) as NodeListOf<HTMLDivElement>;
-
-const cardSetsContainer = document.querySelectorAll(
-  ".options-container.size-set",
-) as NodeListOf<HTMLDivElement>;
-
-const boardSizeSetting = document.getElementById(
-  "board-size-text",
-) as HTMLSpanElement;
-
 const choosePlayerDiv = document.querySelector(
   ".details__player--options",
 ) as HTMLDivElement;
@@ -126,66 +114,6 @@ chooseGameThemeDiv.addEventListener("click", (event) => {
   }
 });
 
-// choosePlayerDiv.addEventListener("click", (event) => {
-//   const target = event.target as HTMLInputElement;
-//   if (target && target.type === "radio") {
-//     handlePlayerChange(target.value);
-//     activelySelectedRadios.player = target;
-
-//     playerButtons.forEach((container) => {
-//       const radioBtn = container.querySelector(
-//         'input[type="radio"]',
-//       ) as HTMLInputElement;
-//       const label = container.querySelector("label") as HTMLLabelElement;
-//       const img = container.querySelector("img") as HTMLImageElement;
-
-//       if (radioBtn !== target) {
-//         radioBtn.checked = false;
-//         if (label) label.style.fontWeight = "normal";
-//         if (img) img.style.visibility = "hidden";
-//       }
-
-//       const currentContainer = target.closest(
-//         ".options-container",
-//       ) as HTMLDivElement;
-//       if (currentContainer) {
-//         const currentLabel = currentContainer.querySelector(
-//           "label",
-//         ) as HTMLLabelElement;
-//         const yellowLine = currentContainer.querySelector(
-//           "img",
-//         ) as HTMLImageElement;
-//         if (currentLabel) currentLabel.style.fontWeight = "bold";
-//         if (yellowLine) yellowLine.style.visibility = "visible";
-//       }
-//     });
-
-//     updateStartButtonState();
-//   }
-// });
-
-// setBoardSizeDiv.addEventListener("click", (event) => {
-//   const target = event.target as HTMLInputElement;
-//   if (target && target.type === "radio") {
-//     handleBoardSizeChange(target);
-//     activelySelectedRadios.boardSize = target;
-//     const yellowLine = target.closest("img") as HTMLImageElement;
-//     yellowLine.style.visibility = "visible";
-//     updateStartButtonState();
-//   }
-// });
-
-// chooseGameThemeDiv.addEventListener("click", (event) => {
-//   const target = event.target as HTMLInputElement;
-//   if (target && target.type === "radio") {
-//     handleGameThemeChange(target.value);
-//     activelySelectedRadios.gameTheme = target;
-//     const yellowLine = target.closest("img") as HTMLImageElement;
-//     yellowLine.style.visibility = "visible";
-//     updateStartButtonState();
-//   }
-// });
-
 export const playerButtons = choosePlayerDiv.querySelectorAll(
   ".options-container",
 ) as NodeListOf<HTMLDivElement>;
@@ -203,28 +131,6 @@ playerButtons.forEach((container) => {
   container.addEventListener("mouseleave", () => {
     handleMouseLeave(container, activelySelectedRadios.player);
   });
-  // const radioButton = container.querySelector(
-  //   'input[type="radio"]',
-  // ) as HTMLInputElement;
-  // const labelText = container.querySelector("label") as HTMLLabelElement;
-  // const yellowLine = container.querySelector("img") as HTMLImageElement;
-
-  // container.addEventListener("mouseenter", () => {
-  //   if (activelySelectedRadios.player !== null) return;
-  //   radioButton.checked = true;
-  //   activateVisualls(container);
-  //   // if (labelText) labelText.style.fontWeight = "bold";
-  //   // if (yellowLine) yellowLine.style.visibility = "visible";
-  // });
-
-  // container.addEventListener("mouseleave", () => {
-  //   if (radioButton !== activelySelectedRadios.player) {
-  //     resetContainerVisuals(container);
-  //     // radioButton.checked = false;
-  //     // if (labelText) labelText.style.fontWeight = "normal";
-  //     // if (yellowLine) yellowLine.style.visibility = "hidden";
-  //   }
-  // });
 });
 
 themesButtons.forEach((container) => {

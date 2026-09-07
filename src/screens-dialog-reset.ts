@@ -88,11 +88,13 @@ export function resetGame() {
   resetActivelySelectedBtns();
   resetVisuals(playerButtons, boardSizeButtons, themesButtons);
   resetradioButtons();
-  goBackToSettings();
-  updateStartButtonState();
-  playerFigures.forEach((figure) => {
-    figure.innerText = String(0);
-  });
+  setTimeout(() => {
+    goBackToSettings();
+    updateStartButtonState();
+    playerFigures.forEach((figure) => {
+      figure.innerText = String(0);
+    });
+  }, 400);
 }
 
 function resetradioButtons() {
@@ -164,22 +166,24 @@ export function showWinnerScreen() {
   if (winnerScreenDiv) {
     renderWinnerDrawScreen();
     winnerScreenDiv.classList.add("show");
-    const winnerImg = winnerScreenDiv.querySelector(
-      ".winner__content--figure img",
-    ) as HTMLImageElement;
-    const winner = winnerScreenDiv.querySelector(
-      ".winner",
-    ) as HTMLHeadingElement;
-    const winnerTitle = winnerScreenDiv.querySelector(
-      ".winner-title",
-    ) as HTMLHeadingElement;
-    blueOrOrangeFigure(winnerImg);
-    blueOrOrangeWinner(winner, winnerTitle);
+    updateWinnerVisuals(winnerScreenDiv);
     const homeBtn = winnerScreenDiv.querySelector(
       ".home-btn",
     ) as HTMLButtonElement;
     homeBtn.addEventListener("click", resetGame);
   }
+}
+
+function updateWinnerVisuals(screen: HTMLDivElement) {
+  const img = screen.querySelector(
+    ".winner__content--figure img",
+  ) as HTMLImageElement;
+  const winner = screen.querySelector(".winner") as HTMLHeadingElement;
+  const winnerTitle = screen.querySelector(
+    ".winner-title",
+  ) as HTMLHeadingElement;
+  if (img) blueOrOrangeFigure(img);
+  if (winner && winnerTitle) blueOrOrangeWinner(winner, winnerTitle);
 }
 
 function blueOrOrangeFigure(img: HTMLImageElement) {
