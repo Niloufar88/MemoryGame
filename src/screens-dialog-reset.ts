@@ -1,7 +1,6 @@
 import { themeObject } from "./type";
 import {
   gameLogic,
-  hideWinnerScreen,
   boardContainer,
   bodyEl,
   gameIntroContainer,
@@ -21,6 +20,13 @@ import {
 const homeBtn = document.querySelector(".home-btn") as HTMLButtonElement;
 
 const dialogEl = document.getElementById("overlayDialog") as HTMLDialogElement;
+
+const winnerScreenDiv = document.querySelector(
+  ".winnerScreen",
+) as HTMLDivElement;
+const winnerImg = document.querySelector(
+  ".winner__content--figure img",
+) as HTMLImageElement;
 
 export function openDialog() {
   const dialog = document.querySelector(".exitOverlay") as HTMLDialogElement;
@@ -151,3 +157,97 @@ homeBtn?.addEventListener("click", resetGame);
 dialogEl.addEventListener("click", (event: MouseEvent) => {
   if (event.target === dialogEl) closeDialog();
 });
+
+export function showGameOverScreen() {
+  const gameOver = renderGameOverElements();
+  gameOver.classList.add("show");
+
+  const orangeScore = document.getElementById("orangeScore") as HTMLSpanElement;
+  orangeScore.innerText = String(gameLogic.playerScore.orange);
+  const blueScore = document.getElementById("blueScore") as HTMLSpanElement;
+  blueScore.innerText = String(gameLogic.playerScore.blue);
+}
+
+export function showWinnerScreen() {
+  winnerScreenDiv.classList.add("show");
+  blueOrOrangeFigure();
+  blueOrOrangeWinner();
+}
+
+function blueOrOrangeFigure() {
+  const orangeScore = gameLogic.playerScore.orange;
+  const blueScore = gameLogic.playerScore.blue;
+
+  if (orangeScore > blueScore) {
+    if (gameLogic.currentTheme === "foods")
+      winnerImg.src = "/assets/icons/orange-orange-winner.svg";
+    else winnerImg.src = "/assets/icons/blue-orange-winner.svg";
+  } else if (blueScore > orangeScore) {
+    if (gameLogic.currentTheme === "foods")
+      winnerImg.src = "/assets/icons/orange-blue-winner.svg";
+    else winnerImg.src = "/assets/icons/blue-blue-winner.svg";
+  } else {
+    if (gameLogic.currentTheme === "foods")
+      winnerImg.src = "/assets/icons/orange-draw-img.svg";
+    else winnerImg.src = "/assets/icons/blue-draw-img.svg";
+  }
+}
+
+function blueOrOrangeWinner() {
+  const winner = document.querySelector(".winner") as HTMLHeadingElement;
+  const winnerTitle = document.querySelector(
+    ".winner-title",
+  ) as HTMLHeadingElement;
+
+  const orangeScore = gameLogic.playerScore.orange;
+  const blueScore = gameLogic.playerScore.blue;
+
+  if (orangeScore > blueScore) {
+    winnerTitle.innerText = `The winner is`;
+    winner.innerText = `Orange Player`;
+  } else if (orangeScore < blueScore) {
+    winnerTitle.innerText = `The winner is`;
+    winner.innerText = `Blue Player`;
+  } else {
+    winnerTitle.innerText = `It’s a`;
+    winner.innerText = `DRAW`;
+  }
+}
+
+export function hideGameOverScreen() {
+  const gameOverDiv = document.querySelector(".gameOver") as HTMLDivElement;
+  gameOverDiv.classList.remove("show");
+}
+
+function hideWinnerScreen() {
+  winnerScreenDiv.classList.remove("show");
+}
+
+function gameOverElementTemplate() {
+  return `
+  <div class="gameOver__content">
+        <h1 class="gameOver__content--title">GAME OVER</h1>
+        <div class="gameOver__content--scoreBox">
+          <h3 class="gameOver__content--scoreBox--title">Final score</h3>
+          <div class="gameOver__content--scoreBox--scores">
+            <div class="orangePlayer">
+              <img src="/assets/icons/orangeFigure.svg" alt="" />
+              <span id="orangeScore">0</span>
+            </div>
+
+            <div class="bluePlayer">
+              <img src="/assets/icons/blueFigure.svg" alt="" />
+              <span id="blueScore">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  `;
+}
+
+function renderGameOverElements(): HTMLDivElement {
+  const gameOverDiv = document.querySelector(".gameOver") as HTMLDivElement;
+
+  gameOverDiv.innerHTML = gameOverElementTemplate();
+  return gameOverDiv;
+}

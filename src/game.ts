@@ -1,4 +1,9 @@
 import { Card, GameState, themeObject } from "./type";
+import {
+  showGameOverScreen,
+  hideGameOverScreen,
+  showWinnerScreen,
+} from "./screens-dialog-reset";
 
 export const bodyEl = document.querySelector("body") as HTMLBodyElement;
 export const gameIntroContainer = document.querySelector(
@@ -23,13 +28,13 @@ const blueScore = document.getElementById("BScore") as HTMLSpanElement;
 export const playerFigures = document.querySelectorAll(
   ".playerFigure span",
 ) as NodeListOf<HTMLSpanElement>;
-const gameOverDiv = document.querySelector(".gameOver") as HTMLDivElement;
-const winnerScreenDiv = document.querySelector(
-  ".winnerScreen",
-) as HTMLDivElement;
-const winnerImg = document.querySelector(
-  ".winner__content--figure img",
-) as HTMLImageElement;
+// const gameOverDiv = document.querySelector(".gameOver") as HTMLDivElement;
+// const winnerScreenDiv = document.querySelector(
+//   ".winnerScreen",
+// ) as HTMLDivElement;
+// const winnerImg = document.querySelector(
+//   ".winner__content--figure img",
+// ) as HTMLImageElement;
 
 export let gameLogic: GameState = {
   currentPlayer: "",
@@ -218,68 +223,68 @@ function checkGameOver() {
   }, 2500);
 }
 
-function showGameOverScreen() {
-  gameOverDiv.classList.add("show");
+// function showGameOverScreen() {
+//   gameOverDiv.classList.add("show");
 
-  const orangeScore = document.getElementById("orangeScore") as HTMLSpanElement;
-  orangeScore.innerText = String(gameLogic.playerScore.orange);
-  const blueScore = document.getElementById("blueScore") as HTMLSpanElement;
-  blueScore.innerText = String(gameLogic.playerScore.blue);
-}
+//   const orangeScore = document.getElementById("orangeScore") as HTMLSpanElement;
+//   orangeScore.innerText = String(gameLogic.playerScore.orange);
+//   const blueScore = document.getElementById("blueScore") as HTMLSpanElement;
+//   blueScore.innerText = String(gameLogic.playerScore.blue);
+// }
 
-function showWinnerScreen() {
-  winnerScreenDiv.classList.add("show");
-  blueOrOrangeFigure();
-  blueOrOrangeWinner();
-}
+// function showWinnerScreen() {
+//   winnerScreenDiv.classList.add("show");
+//   blueOrOrangeFigure();
+//   blueOrOrangeWinner();
+// }
 
-export function hideWinnerScreen() {
-  winnerScreenDiv.classList.remove("show");
-}
+// export function hideWinnerScreen() {
+//   winnerScreenDiv.classList.remove("show");
+// }
 
-function blueOrOrangeFigure() {
-  const orangeScore = gameLogic.playerScore.orange;
-  const blueScore = gameLogic.playerScore.blue;
+// function blueOrOrangeFigure() {
+//   const orangeScore = gameLogic.playerScore.orange;
+//   const blueScore = gameLogic.playerScore.blue;
 
-  if (orangeScore > blueScore) {
-    if (gameLogic.currentTheme === "foods")
-      winnerImg.src = "/assets/icons/orange-orange-winner.svg";
-    else winnerImg.src = "/assets/icons/blue-orange-winner.svg";
-  } else if (blueScore > orangeScore) {
-    if (gameLogic.currentTheme === "foods")
-      winnerImg.src = "/assets/icons/orange-blue-winner.svg";
-    else winnerImg.src = "/assets/icons/blue-blue-winner.svg";
-  } else {
-    if (gameLogic.currentTheme === "foods")
-      winnerImg.src = "/assets/icons/orange-draw-img.svg";
-    else winnerImg.src = "/assets/icons/blue-draw-img.svg";
-  }
-}
+//   if (orangeScore > blueScore) {
+//     if (gameLogic.currentTheme === "foods")
+//       winnerImg.src = "/assets/icons/orange-orange-winner.svg";
+//     else winnerImg.src = "/assets/icons/blue-orange-winner.svg";
+//   } else if (blueScore > orangeScore) {
+//     if (gameLogic.currentTheme === "foods")
+//       winnerImg.src = "/assets/icons/orange-blue-winner.svg";
+//     else winnerImg.src = "/assets/icons/blue-blue-winner.svg";
+//   } else {
+//     if (gameLogic.currentTheme === "foods")
+//       winnerImg.src = "/assets/icons/orange-draw-img.svg";
+//     else winnerImg.src = "/assets/icons/blue-draw-img.svg";
+//   }
+// }
 
-function blueOrOrangeWinner() {
-  const winner = document.querySelector(".winner") as HTMLHeadingElement;
-  const winnerTitle = document.querySelector(
-    ".winner-title",
-  ) as HTMLHeadingElement;
+// function blueOrOrangeWinner() {
+//   const winner = document.querySelector(".winner") as HTMLHeadingElement;
+//   const winnerTitle = document.querySelector(
+//     ".winner-title",
+//   ) as HTMLHeadingElement;
 
-  const orangeScore = gameLogic.playerScore.orange;
-  const blueScore = gameLogic.playerScore.blue;
+//   const orangeScore = gameLogic.playerScore.orange;
+//   const blueScore = gameLogic.playerScore.blue;
 
-  if (orangeScore > blueScore) {
-    winnerTitle.innerText = `The winner is`;
-    winner.innerText = `Orange Player`;
-  } else if (orangeScore < blueScore) {
-    winnerTitle.innerText = `The winner is`;
-    winner.innerText = `Blue Player`;
-  } else {
-    winnerTitle.innerText = `It’s a`;
-    winner.innerText = `DRAW`;
-  }
-}
+//   if (orangeScore > blueScore) {
+//     winnerTitle.innerText = `The winner is`;
+//     winner.innerText = `Orange Player`;
+//   } else if (orangeScore < blueScore) {
+//     winnerTitle.innerText = `The winner is`;
+//     winner.innerText = `Blue Player`;
+//   } else {
+//     winnerTitle.innerText = `It’s a`;
+//     winner.innerText = `DRAW`;
+//   }
+// }
 
-function hideGameOverScreen() {
-  gameOverDiv.classList.remove("show");
-}
+// function hideGameOverScreen() {
+//   gameOverDiv.classList.remove("show");
+// }
 
 function resetFlippedCardsArray() {
   gameLogic.flippedCards = [];

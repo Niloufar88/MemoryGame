@@ -21,7 +21,7 @@ import {
   resetGameState,
   goBackToSettings,
   resetGame,
-} from "./dialog and reset";
+} from "./screens-dialog-reset";
 
 const playBtn = document.getElementById("playBtn") as HTMLButtonElement;
 const playBtnArrow = document.getElementById(
