@@ -17,16 +17,7 @@ import {
   boardSizeButtons,
 } from "./main";
 
-const homeBtn = document.querySelector(".home-btn") as HTMLButtonElement;
-
 const dialogEl = document.getElementById("overlayDialog") as HTMLDialogElement;
-
-const winnerScreenDiv = document.querySelector(
-  ".winnerScreen",
-) as HTMLDivElement;
-const winnerImg = document.querySelector(
-  ".winner__content--figure img",
-) as HTMLImageElement;
 
 export function openDialog() {
   const dialog = document.querySelector(".exitOverlay") as HTMLDialogElement;
@@ -152,8 +143,6 @@ function dialogListeners() {
   backToGameBtn.addEventListener("click", closeDialog);
 }
 
-homeBtn?.addEventListener("click", resetGame);
-
 dialogEl.addEventListener("click", (event: MouseEvent) => {
   if (event.target === dialogEl) closeDialog();
 });
@@ -169,47 +158,64 @@ export function showGameOverScreen() {
 }
 
 export function showWinnerScreen() {
-  winnerScreenDiv.classList.add("show");
-  blueOrOrangeFigure();
-  blueOrOrangeWinner();
-}
-
-function blueOrOrangeFigure() {
-  const orangeScore = gameLogic.playerScore.orange;
-  const blueScore = gameLogic.playerScore.blue;
-
-  if (orangeScore > blueScore) {
-    if (gameLogic.currentTheme === "foods")
-      winnerImg.src = "/assets/icons/orange-orange-winner.svg";
-    else winnerImg.src = "/assets/icons/blue-orange-winner.svg";
-  } else if (blueScore > orangeScore) {
-    if (gameLogic.currentTheme === "foods")
-      winnerImg.src = "/assets/icons/orange-blue-winner.svg";
-    else winnerImg.src = "/assets/icons/blue-blue-winner.svg";
-  } else {
-    if (gameLogic.currentTheme === "foods")
-      winnerImg.src = "/assets/icons/orange-draw-img.svg";
-    else winnerImg.src = "/assets/icons/blue-draw-img.svg";
+  const winnerScreenDiv = document.querySelector(
+    ".winnerScreen",
+  ) as HTMLDivElement;
+  if (winnerScreenDiv) {
+    renderWinnerDrawScreen();
+    winnerScreenDiv.classList.add("show");
+    const winnerImg = winnerScreenDiv.querySelector(
+      ".winner__content--figure img",
+    ) as HTMLImageElement;
+    const winner = winnerScreenDiv.querySelector(
+      ".winner",
+    ) as HTMLHeadingElement;
+    const winnerTitle = winnerScreenDiv.querySelector(
+      ".winner-title",
+    ) as HTMLHeadingElement;
+    blueOrOrangeFigure(winnerImg);
+    blueOrOrangeWinner(winner, winnerTitle);
+    const homeBtn = winnerScreenDiv.querySelector(
+      ".home-btn",
+    ) as HTMLButtonElement;
+    homeBtn.addEventListener("click", resetGame);
   }
 }
 
-function blueOrOrangeWinner() {
-  const winner = document.querySelector(".winner") as HTMLHeadingElement;
-  const winnerTitle = document.querySelector(
-    ".winner-title",
-  ) as HTMLHeadingElement;
-
+function blueOrOrangeFigure(img: HTMLImageElement) {
   const orangeScore = gameLogic.playerScore.orange;
   const blueScore = gameLogic.playerScore.blue;
 
   if (orangeScore > blueScore) {
-    winnerTitle.innerText = `The winner is`;
+    if (gameLogic.currentTheme === "foods")
+      img.src = "/assets/icons/orange-orange-winner.svg";
+    else img.src = "/assets/icons/blue-orange-winner.svg";
+  } else if (blueScore > orangeScore) {
+    if (gameLogic.currentTheme === "foods")
+      img.src = "/assets/icons/orange-blue-winner.svg";
+    else img.src = "/assets/icons/blue-blue-winner.svg";
+  } else {
+    if (gameLogic.currentTheme === "foods")
+      img.src = "/assets/icons/orange-draw-img.svg";
+    else img.src = "/assets/icons/blue-draw-img.svg";
+  }
+}
+
+function blueOrOrangeWinner(
+  winner: HTMLHeadingElement,
+  title: HTMLHeadingElement,
+) {
+  const orangeScore = gameLogic.playerScore.orange;
+  const blueScore = gameLogic.playerScore.blue;
+
+  if (orangeScore > blueScore) {
+    title.innerText = `The winner is`;
     winner.innerText = `Orange Player`;
   } else if (orangeScore < blueScore) {
-    winnerTitle.innerText = `The winner is`;
+    title.innerText = `The winner is`;
     winner.innerText = `Blue Player`;
   } else {
-    winnerTitle.innerText = `It’s a`;
+    title.innerText = `It’s a`;
     winner.innerText = `DRAW`;
   }
 }
@@ -220,6 +226,9 @@ export function hideGameOverScreen() {
 }
 
 function hideWinnerScreen() {
+  const winnerScreenDiv = document.querySelector(
+    ".winnerScreen",
+  ) as HTMLDivElement;
   winnerScreenDiv.classList.remove("show");
 }
 
@@ -250,4 +259,27 @@ function renderGameOverElements(): HTMLDivElement {
 
   gameOverDiv.innerHTML = gameOverElementTemplate();
   return gameOverDiv;
+}
+
+function winnerDrawScreenTemplate() {
+  return `
+  <div class="winner__content">
+        <div class="winner__content--text">
+          <h3 class="winner-title">The winner is</h3>
+          <h3 class="winner"></h3>
+        </div>
+        <div class="winner__content--figure">
+          <img src="" alt="" />
+        </div>
+        <button class="home-btn" type="button">Home</button>
+      </div>
+  `;
+}
+
+function renderWinnerDrawScreen(): HTMLDivElement {
+  const winnerScreenDiv = document.querySelector(
+    ".winnerScreen",
+  ) as HTMLDivElement;
+  winnerScreenDiv.innerHTML = winnerDrawScreenTemplate();
+  return winnerScreenDiv;
 }

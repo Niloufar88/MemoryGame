@@ -1,27 +1,17 @@
 // @ts-ignore
 import "./styles/main.scss";
 
-import { themeObject } from "./type";
 import {
   renderSettingsPage,
   renderBoardElements,
-  startGame,
   gameLogic,
   handlePlayerChange,
-  updateGameTheme,
   handleBoardSizeChange,
   handleGameThemeChange,
   updateStartButtonState,
-  playerFigures,
 } from "./game";
 
-import {
-  openDialog,
-  closeDialog,
-  resetGameState,
-  goBackToSettings,
-  resetGame,
-} from "./screens-dialog-reset";
+import { openDialog } from "./screens-dialog-reset";
 
 const playBtn = document.getElementById("playBtn") as HTMLButtonElement;
 const playBtnArrow = document.getElementById(

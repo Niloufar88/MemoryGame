@@ -28,13 +28,6 @@ const blueScore = document.getElementById("BScore") as HTMLSpanElement;
 export const playerFigures = document.querySelectorAll(
   ".playerFigure span",
 ) as NodeListOf<HTMLSpanElement>;
-// const gameOverDiv = document.querySelector(".gameOver") as HTMLDivElement;
-// const winnerScreenDiv = document.querySelector(
-//   ".winnerScreen",
-// ) as HTMLDivElement;
-// const winnerImg = document.querySelector(
-//   ".winner__content--figure img",
-// ) as HTMLImageElement;
 
 export let gameLogic: GameState = {
   currentPlayer: "",
