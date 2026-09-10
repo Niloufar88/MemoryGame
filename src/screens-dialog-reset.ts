@@ -15,6 +15,7 @@ import {
   playerButtons,
   themesButtons,
   boardSizeButtons,
+  settingBox,
 } from "./main";
 
 const dialogEl = document.getElementById("overlayDialog") as HTMLDialogElement;
@@ -80,6 +81,7 @@ export function goBackToSettings() {
   hideWinnerScreen();
   boardContainer.classList.add("d-none");
   settingsContainer.classList.remove("d-none");
+  settingBox.classList.remove("streched");
   resetGameState();
 }
 

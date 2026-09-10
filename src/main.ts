@@ -9,6 +9,7 @@ import {
   handleBoardSizeChange,
   handleGameThemeChange,
   updateStartButtonState,
+  isSettingsComplete,
 } from "./game";
 
 import { openDialog } from "./screens-dialog-reset";
@@ -48,6 +49,10 @@ const THEME_IMAGES: Record<string, string> = {
   DAProjects: "/assets/icons/settings/DA-Projects-Theme Visual .svg",
   foods: "/assets/icons/settings/Food-Theme Visual.svg",
 };
+
+export const settingBox = document.getElementById(
+  "setting-box",
+) as HTMLDivElement;
 
 export const activelySelectedRadios = {
   player: null as HTMLInputElement | null,
@@ -198,36 +203,6 @@ function handleMouseLeave(
   }
 }
 
-// radioButtonsContainer.forEach((container) => {
-//   container.addEventListener("mouseenter", () => {
-//     const radioButton = container.querySelector(
-//       'input[type="radio"]',
-//     ) as HTMLInputElement;
-//     const labelText = container.querySelector("label") as HTMLLabelElement;
-//     if (radioButton) {
-//       // Prüfen, ob in der Gruppe dieses Buttons bereits ein Klick stattgefunden hat
-//       const currentActiveForGroup =
-//         activelySelectedRadios.player?.name === radioButton.name
-//           ? activelySelectedRadios.player
-//           : activelySelectedRadios.boardSize?.name === radioButton.name
-//             ? activelySelectedRadios.boardSize
-//             : activelySelectedRadios.gameTheme?.name === radioButton.name
-//               ? activelySelectedRadios.gameTheme
-//               : null;
-
-//       // Wenn in dieser Kategorie bereits ein Button FEST geklickt wurde,
-//       // ignorieren wir den Hover für ALLE anderen Buttons dieser Gruppe!
-//       if (currentActiveForGroup) {
-//         return;
-//       }
-
-//       // Wenn in dieser Gruppe noch gar nichts geklickt wurde, ist Hover erlaubt
-//       radioButton.checked = true;
-//       labelText.style.fontWeight = "bold";
-//     }
-//   });
-// });
-
 playBtn.addEventListener("mouseover", () => {
   playBtnArrow.src = arrowHover;
 });
@@ -239,6 +214,33 @@ playBtn.addEventListener("mouseleave", () => {
 playBtn.addEventListener("click", () => {
   renderSettingsPage();
 });
+
+settingBox.addEventListener("click", () => {
+  if (isSettingsComplete() && !settingBox.classList.contains("streched")) {
+    updateSettingBoxTexts();
+    updateSettingBoxVisuals();
+    settingBox.classList.add("streched");
+  }
+});
+
+function updateSettingBoxTexts() {
+  const theme = document.getElementById("game-theme-text") as HTMLSpanElement;
+  const player = document.getElementById("player-text") as HTMLSpanElement;
+  const size = document.getElementById("board-size-text") as HTMLSpanElement;
+
+  theme.innerText = gameLogic.currentTheme;
+  player.innerText = gameLogic.currentPlayer;
+  size.innerText = `${gameLogic.currentRows}x${gameLogic.currentColumns}-Cards`;
+}
+
+function updateSettingBoxVisuals() {
+  const yellowLines = settingBox.querySelectorAll(
+    ".selected-setting img",
+  ) as NodeListOf<HTMLImageElement>;
+  yellowLines.forEach((line) => {
+    line.src = "/assets/icons/settings/line-selected.svg";
+  });
+}
 
 startBtn.addEventListener("click", () => {
   renderBoardElements(gameLogic.currentTheme);

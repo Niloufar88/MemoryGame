@@ -113,11 +113,11 @@
         font-size: 20px;
         cursor: pointer;
       }
-    }
 
-    & img {
-      visibility: hidden;
-      transition: all 0.1s ease-in;
+      & img {
+        visibility: hidden;
+        transition: all 0.1s ease-in;
+      }
     }
   }
 }
@@ -134,12 +134,31 @@
     @include flexStart(row);
     align-items: center;
     padding: 14px 20px;
-    gap: 32px;
+    gap: 18px;
+    cursor: pointer;
+    overflow: hidden;
+    transition:
+      transform 0.4s ease-in-out,
+      gap 0.4s ease-in-out;
+    transform-origin: left;
 
     & span {
       font-family: $settings-box-text;
       font-size: 20px;
-      cursor: pointer;
+    }
+
+    & .settingBox {
+      @include flexStart(row);
+      align-items: center;
+      gap: 18px;
+
+      &.streched .selected-setting {
+        gap: 24px;
+      }
+    }
+
+    &:has(.settingBox.streched) {
+      transform: scaleX(1.14);
     }
   }
 }

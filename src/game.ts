@@ -216,69 +216,6 @@ function checkGameOver() {
   }, 2500);
 }
 
-// function showGameOverScreen() {
-//   gameOverDiv.classList.add("show");
-
-//   const orangeScore = document.getElementById("orangeScore") as HTMLSpanElement;
-//   orangeScore.innerText = String(gameLogic.playerScore.orange);
-//   const blueScore = document.getElementById("blueScore") as HTMLSpanElement;
-//   blueScore.innerText = String(gameLogic.playerScore.blue);
-// }
-
-// function showWinnerScreen() {
-//   winnerScreenDiv.classList.add("show");
-//   blueOrOrangeFigure();
-//   blueOrOrangeWinner();
-// }
-
-// export function hideWinnerScreen() {
-//   winnerScreenDiv.classList.remove("show");
-// }
-
-// function blueOrOrangeFigure() {
-//   const orangeScore = gameLogic.playerScore.orange;
-//   const blueScore = gameLogic.playerScore.blue;
-
-//   if (orangeScore > blueScore) {
-//     if (gameLogic.currentTheme === "foods")
-//       winnerImg.src = "/assets/icons/orange-orange-winner.svg";
-//     else winnerImg.src = "/assets/icons/blue-orange-winner.svg";
-//   } else if (blueScore > orangeScore) {
-//     if (gameLogic.currentTheme === "foods")
-//       winnerImg.src = "/assets/icons/orange-blue-winner.svg";
-//     else winnerImg.src = "/assets/icons/blue-blue-winner.svg";
-//   } else {
-//     if (gameLogic.currentTheme === "foods")
-//       winnerImg.src = "/assets/icons/orange-draw-img.svg";
-//     else winnerImg.src = "/assets/icons/blue-draw-img.svg";
-//   }
-// }
-
-// function blueOrOrangeWinner() {
-//   const winner = document.querySelector(".winner") as HTMLHeadingElement;
-//   const winnerTitle = document.querySelector(
-//     ".winner-title",
-//   ) as HTMLHeadingElement;
-
-//   const orangeScore = gameLogic.playerScore.orange;
-//   const blueScore = gameLogic.playerScore.blue;
-
-//   if (orangeScore > blueScore) {
-//     winnerTitle.innerText = `The winner is`;
-//     winner.innerText = `Orange Player`;
-//   } else if (orangeScore < blueScore) {
-//     winnerTitle.innerText = `The winner is`;
-//     winner.innerText = `Blue Player`;
-//   } else {
-//     winnerTitle.innerText = `It’s a`;
-//     winner.innerText = `DRAW`;
-//   }
-// }
-
-// function hideGameOverScreen() {
-//   gameOverDiv.classList.remove("show");
-// }
-
 function resetFlippedCardsArray() {
   gameLogic.flippedCards = [];
   gameLogic.lockBoard = false;
@@ -324,25 +261,25 @@ function updateBoardSize(boardSize: string): void {
 export function handleBoardSizeChange(radioBtn: HTMLInputElement) {
   radioBtn.checked = true;
   updateBoardSize(radioBtn.value);
-  updateBoardSetting(radioBtn.value);
+  // updateBoardSetting(radioBtn.value);
 }
 
 export function handleGameThemeChange(theme: string): void {
   updateGameTheme(theme);
-  themeText.textContent = theme;
+  // themeText.textContent = theme;
 }
 
 function updateBoardSetting(size: string) {
   const [rows, cols] = size.split("x").map(Number);
-  boardText.textContent = `${rows * cols}-Cards`;
+  // boardText.textContent = `${rows * cols}-Cards`;
 }
 
 export function handlePlayerChange(playerColor: string): void {
   updateCurrentPlayer(playerColor);
-  playerText.textContent = playerColor;
+  // playerText.textContent = playerColor;
 }
 
-function isSettingsComplete(): boolean {
+export function isSettingsComplete(): boolean {
   const hasSize = gameLogic.currentRows > 0 && gameLogic.currentColumns > 0;
   const hasPlayer = gameLogic.currentPlayer !== "";
   const hasTheme = gameLogic.currentTheme !== "";
