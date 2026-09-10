@@ -85,7 +85,7 @@
         place-content: center;
         cursor: pointer;
         outline: none;
-        border: 4px solid #333; // Thick 4px border by default
+        border: 4px solid #333;
         transition: all 0.2s ease;
 
         &::before {
@@ -100,10 +100,10 @@
 
         &:hover,
         &:checked {
-          border-width: 2px; // Shrinks to normal line weight
+          border-width: 2px;
 
           &::before {
-            transform: scale(1); // Shows the inner selection dot
+            transform: scale(1);
           }
         }
       }

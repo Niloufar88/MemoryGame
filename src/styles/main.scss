@@ -15,11 +15,9 @@
 @use "./layout/exitPopup" as *;
 
 body {
-  // height: 1024px;
   min-height: 100vh;
   max-height: 100%;
   width: 100%;
-  // max-width: 1440px;
   background-color: $body-bg-color;
   margin: 0 auto;
   @include flexCenter(column);
@@ -28,5 +26,4 @@ body {
 
 .board-white {
   background-color: $primary-bg-color;
-  // @include flexStart(column);
 }

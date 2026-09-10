@@ -2,10 +2,6 @@
 @use "../abstract/mixins" as *;
 @use "../themes/theme" as *;
 
-// .gameOver.d-none {
-//   display: none;
-// }
-
 .gameOver {
   position: fixed;
   top: 0;
