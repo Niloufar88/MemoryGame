@@ -18,8 +18,15 @@ import {
   SETTING_BOX,
 } from "./main";
 
+/**
+ * overlay dialog element
+ */
 const DIALOG_EL = document.getElementById("overlayDialog") as HTMLDialogElement;
 
+/**
+ * finding and opening the overlay dialog for exiting the game
+ * and runs accordingly the listeners for the dialog
+ */
 export function openDialog(): void {
   const DIALOG = document.querySelector(".exitOverlay") as HTMLDialogElement;
 
@@ -30,11 +37,17 @@ export function openDialog(): void {
   }
 }
 
+/**
+ * closing the overlay dialog for exiting the game
+ */
 export function closeDialog(): void {
   const DIALOG = document.querySelector(".exitOverlay") as HTMLDialogElement;
   DIALOG.close();
 }
 
+/**
+ * reseting all factors in gameLogic by returning to settings page
+ */
 export function resetGameState(): void {
   gameLogic.currentPlayer = "";
   gameLogic.currentCardsPair = 0;
@@ -47,12 +60,21 @@ export function resetGameState(): void {
   gameLogic.lockBoard = false;
 }
 
+/**
+ * reset all actively selected buttons to return to their default state by returning to settings page
+ */
 function resetActivelySelectedBtns(): void {
   ACTIVELY_SELECTED_RADIOS.boardSize = null;
   ACTIVELY_SELECTED_RADIOS.player = null;
   ACTIVELY_SELECTED_RADIOS.gameTheme = null;
 }
 
+/**
+ * making a loop on all provided radio input elements and resetting their visuals
+ * @param players radio input elements
+ * @param sizes radio input elements
+ * @param themes radio input elements
+ */
 function resetVisuals(
   players: NodeListOf<HTMLDivElement>,
   sizes: NodeListOf<HTMLDivElement>,
@@ -69,6 +91,9 @@ function resetVisuals(
   });
 }
 
+/**
+ * managing going back to the home screen by adding or removing necessary classes and resetting the game state
+ */
 export function goBackToHome(): void {
   hideWinnerScreen();
   BOARD_CONTAINER.classList.add("d-none");
@@ -77,6 +102,9 @@ export function goBackToHome(): void {
   resetGameState();
 }
 
+/**
+ * managing the reset process by adding or removing classes to main containers and resetting game state
+ */
 export function goBackToSettings(): void {
   hideWinnerScreen();
   BOARD_CONTAINER.classList.add("d-none");
@@ -86,6 +114,9 @@ export function goBackToSettings(): void {
   resetGameState();
 }
 
+/**
+ * returning the text in the setting box to their default phase
+ */
 function resetSettinBoxTexts() {
   const THEME = document.getElementById("game-theme-text") as HTMLSpanElement;
   const PLAYER = document.getElementById("player-text") as HTMLSpanElement;
@@ -96,6 +127,9 @@ function resetSettinBoxTexts() {
   SIZE.innerText = `Board-Size`;
 }
 
+/**
+ * managing reset game by setting different factors to their default phase and returning to the settings page
+ */
 export function resetGame(): void {
   resetGameState();
   resetActivelySelectedBtns();
@@ -110,6 +144,9 @@ export function resetGame(): void {
   }, 400);
 }
 
+/**
+ * oresetting all radio input buttons to their deafult phase by setting their attribute checked to false.
+ */
 function resetradioButtons(): void {
   const ALL_RADIO_INPUTS = document.querySelectorAll<HTMLInputElement>(
     'input[type="radio"]',
@@ -120,16 +157,23 @@ function resetradioButtons(): void {
   });
 }
 
+/**
+ * making a dialog ready to be rendered on the screen scoordingly to the selected theme of the game.
+ * @param theme game theme which saved in gameLogic
+ * @returns a dialog accordingly to the selected theme of the game
+ */
 function renderDialogElements(theme: string): HTMLDialogElement {
   const DIALOG = document.getElementById("overlayDialog") as HTMLDialogElement;
-
   let backBtnText = theme === "foods" ? `No, back to game` : `Back to game`;
-
   DIALOG.innerHTML = dialogElementTemplate(backBtnText);
-
   return DIALOG;
 }
 
+/**
+ * generate a template to be shown on the screen when exit button clicked.
+ * @param text the text to be displayed on the back button in the dialog accordingly to the selected theme of the game
+ * @returns a HTML-Template to be shown on the screen when exit button clicked
+ */
 function dialogElementTemplate(text: string): string {
   return `
     <div class="exitOverlay__container">
@@ -144,9 +188,11 @@ function dialogElementTemplate(text: string): string {
     `;
 }
 
+/**
+ * adding event listeners to the dialog buttons for exiting the game or going back to the game.
+ */
 function dialogListeners(): void {
   const DIALOG = renderDialogElements(gameLogic.currentTheme);
-
   const EXIT_GAME = DIALOG.querySelector("#exitGame") as HTMLButtonElement;
   EXIT_GAME.addEventListener("click", () => {
     closeDialog();
@@ -158,14 +204,19 @@ function dialogListeners(): void {
   BACK_TO_GAME_BTN.addEventListener("click", closeDialog);
 }
 
+/**
+ * managing a click listener to close a dialog when it is open by ckicking outside of the dialog everywhere on the screen.
+ */
 DIALOG_EL.addEventListener("click", (event: MouseEvent) => {
   if (event.target === DIALOG_EL) closeDialog();
 });
 
+/**
+ * showing the game over screen with the final scores of both players.
+ */
 export function showGameOverScreen(): void {
   const GAME_OVER = renderGameOverElements();
   GAME_OVER.classList.add("show");
-
   const ORANGE_SCORE = document.getElementById(
     "orangeScore",
   ) as HTMLSpanElement;
@@ -174,6 +225,9 @@ export function showGameOverScreen(): void {
   BLUE_SCORE.innerText = String(gameLogic.playerScore.blue);
 }
 
+/**
+ * show winnerscreen and updating its visuals and managing a click listener for home button.
+ */
 export function showWinnerScreen(): void {
   const WINNER_SCREEN_DIV = document.querySelector(
     ".winnerScreen",
@@ -189,6 +243,10 @@ export function showWinnerScreen(): void {
   }
 }
 
+/**
+ * updating the image and the text on the winner screen
+ * @param screen winner screen div.
+ */
 function updateWinnerVisuals(screen: HTMLDivElement): void {
   const IMG = screen.querySelector(
     ".winner__content--figure img",
@@ -201,6 +259,10 @@ function updateWinnerVisuals(screen: HTMLDivElement): void {
   if (WINNER && WINNER_TITLE) blueOrOrangeWinner(WINNER, WINNER_TITLE);
 }
 
+/**
+ * checking teh scores to see which figure should be rendered on the winner screen
+ * @param img image of the winner figure
+ */
 function blueOrOrangeFigure(img: HTMLImageElement): void {
   const ORANGE_SCORE = gameLogic.playerScore.orange;
   const BLUE_SCORE = gameLogic.playerScore.blue;
@@ -220,6 +282,11 @@ function blueOrOrangeFigure(img: HTMLImageElement): void {
   }
 }
 
+/**
+ * checks if there is any winner or should it display a draw.
+ * @param winner winner text or draw text
+ * @param title winner title or draw title
+ */
 function blueOrOrangeWinner(
   winner: HTMLHeadingElement,
   title: HTMLHeadingElement,
@@ -239,11 +306,17 @@ function blueOrOrangeWinner(
   }
 }
 
+/**
+ * manage to hide game over screen by removing show class of it.
+ */
 export function hideGameOverScreen(): void {
   const GAME_OVER_DIV = document.querySelector(".gameOver") as HTMLDivElement;
   GAME_OVER_DIV.classList.remove("show");
 }
 
+/**
+ * managing to hide the winner screen by removing show class of it
+ */
 function hideWinnerScreen(): void {
   const WINNER_SCREEN_DIV = document.querySelector(
     ".winnerScreen",
@@ -251,6 +324,10 @@ function hideWinnerScreen(): void {
   WINNER_SCREEN_DIV.classList.remove("show");
 }
 
+/**
+ * generate content of the game over screen
+ * @returns HTML-Template which holds the content of game over screen
+ */
 function gameOverElementTemplate(): string {
   return `
   <div class="gameOver__content">
@@ -273,6 +350,10 @@ function gameOverElementTemplate(): string {
   `;
 }
 
+/**
+ * rendering game over elmenets by generating its inner html.
+ * @returns a div which holds game over content
+ */
 function renderGameOverElements(): HTMLDivElement {
   const GAME_OVER_DIV = document.querySelector(".gameOver") as HTMLDivElement;
 
@@ -280,6 +361,10 @@ function renderGameOverElements(): HTMLDivElement {
   return GAME_OVER_DIV;
 }
 
+/**
+ * generating html content of the winner screen
+ * @returns HTML-Template of the winner screen
+ */
 function winnerDrawScreenTemplate(): string {
   return `
   <div class="winner__content">
@@ -295,6 +380,10 @@ function winnerDrawScreenTemplate(): string {
   `;
 }
 
+/**
+ * rendering winner screen by generating its inner html.
+ * @returns a div which holds winner screen content
+ */
 function renderWinnerDrawScreen(): HTMLDivElement {
   const WINNER_SCREEN_DIV = document.querySelector(
     ".winnerScreen",
