@@ -4,6 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory App</title>
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./assets/favicon/site.webmanifest" />
   </head>
   <body>
     <div class="game-intro">
@@ -33,7 +52,7 @@
         <div class="settings__title">
           <h1 class="title">settings</h1>
           <div class="title--line">
-            <img src="/assets/icons/settings/setting-line.svg" alt="" />
+            <img src="./assets/icons/settings/setting-line.svg" alt="" />
           </div>
         </div>
 
@@ -43,7 +62,7 @@
               <div class="details__themes--header">
                 <img
                   class="themes-icon"
-                  src="/public/assets/icons/settings/palette.svg"
+                  src="./assets/icons/settings/palette.svg"
                   alt=""
                 />
                 <h3 class="themes-title">Game themes</h3>
@@ -57,13 +76,13 @@
                     value="DAProjects"
                   />
                   <label for="DA">DA Projects theme</label>
-                  <img src="/assets/icons/settings/selected-line.svg" alt="" />
+                  <img src="./assets/icons/settings/selected-line.svg" alt="" />
                 </div>
 
                 <div class="options-container">
                   <input type="radio" id="food" name="themes" value="foods" />
                   <label for="food">Foods theme</label>
-                  <img src="/assets/icons/settings/selected-line.svg" alt="" />
+                  <img src="./assets/icons/settings/selected-line.svg" alt="" />
                 </div>
               </div>
             </div>
@@ -71,7 +90,7 @@
               <div class="details__player--header">
                 <img
                   class="player-icon"
-                  src="/public/assets/icons/settings/chess_pawn.svg"
+                  src="./assets/icons/settings/chess_pawn.svg"
                   alt=""
                 />
                 <h3 class="player-title">choose player</h3>
@@ -85,7 +104,7 @@
                     value="blue"
                   />
                   <label for="bluePlayer">Blue</label>
-                  <img src="/assets/icons/settings/selected-line.svg" alt="" />
+                  <img src="./assets/icons/settings/selected-line.svg" alt="" />
                 </div>
 
                 <div class="options-container">
@@ -96,7 +115,7 @@
                     value="orange"
                   />
                   <label for="orangePlayer">Orange</label>
-                  <img src="/assets/icons/settings/selected-line.svg" alt="" />
+                  <img src="./assets/icons/settings/selected-line.svg" alt="" />
                 </div>
               </div>
             </div>
@@ -104,7 +123,7 @@
               <div class="details__size--header">
                 <img
                   class="size-icon"
-                  src="/public/assets/icons/settings/style.svg"
+                  src="./assets/icons/settings/style.svg"
                   alt=""
                 />
                 <h3 class="size-title">board size</h3>
@@ -118,7 +137,7 @@
                     value="4x4"
                   />
                   <label for="grid-4x4">16 cards</label>
-                  <img src="/assets/icons/settings/selected-line.svg" alt="" />
+                  <img src="./assets/icons/settings/selected-line.svg" alt="" />
                 </div>
 
                 <div class="options-container size-set">
@@ -129,7 +148,7 @@
                     value="4x6"
                   />
                   <label for="grid-4x6">24 cards</label>
-                  <img src="/assets/icons/settings/selected-line.svg" alt="" />
+                  <img src="./assets/icons/settings/selected-line.svg" alt="" />
                 </div>
 
                 <div class="options-container size-set">
@@ -140,7 +159,7 @@
                     value="6x6"
                   />
                   <label for="grid-6x6">36 cards</label>
-                  <img src="/assets/icons/settings/selected-line.svg" alt="" />
+                  <img src="./assets/icons/settings/selected-line.svg" alt="" />
                 </div>
               </div>
             </div>
@@ -148,7 +167,7 @@
           <div class="UI">
             <div class="theme-img">
               <img
-                src="/public/assets/icons/settings/DA-Projects-Theme Visual .svg"
+                src="./assets/icons/settings/DA-Projects-Theme Visual .svg"
                 alt=""
               />
             </div>
@@ -156,9 +175,9 @@
             <div class="selected-setting">
               <div class="settingBox" id="setting-box">
                 <span id="game-theme-text">Theme</span>
-                <img src="/assets/icons/settings/line.svg" alt="" />
+                <img src="./assets/icons/settings/line.svg" alt="" />
                 <span id="player-text">Player</span>
-                <img src="/assets/icons/settings/line.svg" alt="" />
+                <img src="./assets/icons/settings/line.svg" alt="" />
                 <span id="board-size-text">Board-size</span>
               </div>
 
@@ -170,7 +189,7 @@
               >
                 <img
                   class="startGameBtn__icon"
-                  src="/assets/icons/settings/start_display.svg"
+                  src="./assets/icons/settings/start_display.svg"
                   alt=""
                 />
                 start
@@ -185,7 +204,7 @@
       <div class="board__navbar">
         <div class="board__navbar--playerFigures">
           <div class="playerFigure">
-            <img src="/assets/icons/orangeFigure.svg" alt="" />
+            <img src="./assets/icons/orangeFigure.svg" alt="" />
             <span
               class="playerFigure__score--orange"
               id="OScore"
@@ -195,7 +214,7 @@
           </div>
 
           <div class="playerFigure">
-            <img src="/assets/icons/blueFigure.svg" alt="" />
+            <img src="./assets/icons/blueFigure.svg" alt="" />
             <span
               class="playerFigure__score--blue"
               id="BScore"
@@ -209,14 +228,14 @@
             >Current Player:</span
           >
           <div class="board__navbar--currentPlayer--figure">
-            <img src="/assets/icons/chess_pawn.svg" alt="player figure" />
+            <img src="./assets/icons/chess_pawn.svg" alt="player figure" />
           </div>
         </div>
         <div>
           <button id="exit-btn" class="exit-button" type="button">
             <img
               id="exit-svg"
-              src="/assets/icons/food/exit-orange-default.svg"
+              src="./assets/icons/food/exit-orange-default.svg"
               alt="exit-btn"
             />Exit game
           </button>

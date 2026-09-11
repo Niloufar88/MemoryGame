@@ -337,10 +337,10 @@ PLAY_BTN.addEventListener("click", () => {
  * handeling click event on selected setting box to make necessary visual changes
  */
 SETTING_BOX.addEventListener("click", () => {
-  if (isSettingsComplete() && !SETTING_BOX.classList.contains("streched")) {
+  if (isSettingsComplete() && !SETTING_BOX.classList.contains("stretched")) {
     updateSettingBoxTexts();
     updateSettingBoxVisuals();
-    SETTING_BOX.classList.add("streched");
+    SETTING_BOX.classList.add("stretched");
   }
 });
 

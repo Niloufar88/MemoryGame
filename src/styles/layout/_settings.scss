@@ -142,17 +142,22 @@
       align-items: center;
       gap: 18px;
 
-      &.streched .selected-setting {
+      &.stretched .selected-setting {
         gap: 24px;
       }
     }
 
-    &:has(.settingBox.streched) {
+    &:has(.settingBox.stretched) {
       transform: scaleX(1.14);
 
       & .startGameBtn {
         transform: scaleX(0.877) translateX(16px);
         transition: transform 0.4s ease-in-out;
+        transform-origin: top left;
+
+        &:hover {
+          transform: scale(1.01);
+        }
       }
     }
   }
