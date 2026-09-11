@@ -5,8 +5,6 @@ export interface Card {
   isMatched: boolean;
 }
 
-// export type Player = "orange" | "blue";
-
 export interface GameState {
   currentPlayer: string;
   currentCardsPair: number;
@@ -16,10 +14,7 @@ export interface GameState {
   activePlayer: string;
   lockBoard: boolean;
   flippedCards: HTMLElement[];
-  playerScore: {
-    orange: number;
-    blue: number;
-  };
+  playerScore: Record<string, number>;
 }
 
 export const THEME_OBJECTS: Record<string, string[]> = {

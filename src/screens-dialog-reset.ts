@@ -1,41 +1,41 @@
 import { THEME_OBJECTS } from "./type";
 import {
   gameLogic,
-  boardContainer,
-  bodyEl,
-  gameIntroContainer,
-  settingsContainer,
+  BOARD_CONTAINER,
+  BODY_EL,
+  GAME_INTRO_CONTAINER,
+  SETTINGS_CONTAINER,
   updateStartButtonState,
-  playerFigures,
+  PLAYER_FIGURES,
 } from "./game";
 
 import {
-  activelySelectedRadios,
+  ACTIVELY_SELECTED_RADIOS,
   resetContainerVisuals,
-  playerButtons,
-  themesButtons,
-  boardSizeButtons,
-  settingBox,
+  PLAYER_BUTTONS,
+  THEMES_BUTTONS,
+  BOARD_SIZE_BUTTONS,
+  SETTING_BOX,
 } from "./main";
 
-const dialogEl = document.getElementById("overlayDialog") as HTMLDialogElement;
+const DIALOG_EL = document.getElementById("overlayDialog") as HTMLDialogElement;
 
-export function openDialog() {
-  const dialog = document.querySelector(".exitOverlay") as HTMLDialogElement;
+export function openDialog(): void {
+  const DIALOG = document.querySelector(".exitOverlay") as HTMLDialogElement;
 
-  if (dialog) {
+  if (DIALOG) {
     renderDialogElements(gameLogic.currentTheme);
-    dialog.showModal();
+    DIALOG.showModal();
     dialogListeners();
   }
 }
 
-export function closeDialog() {
-  const dialog = document.querySelector(".exitOverlay") as HTMLDialogElement;
-  dialog.close();
+export function closeDialog(): void {
+  const DIALOG = document.querySelector(".exitOverlay") as HTMLDialogElement;
+  DIALOG.close();
 }
 
-export function resetGameState() {
+export function resetGameState(): void {
   gameLogic.currentPlayer = "";
   gameLogic.currentCardsPair = 0;
   gameLogic.currentTheme = "";
@@ -47,17 +47,17 @@ export function resetGameState() {
   gameLogic.lockBoard = false;
 }
 
-function resetActivelySelectedBtns() {
-  activelySelectedRadios.boardSize = null;
-  activelySelectedRadios.player = null;
-  activelySelectedRadios.gameTheme = null;
+function resetActivelySelectedBtns(): void {
+  ACTIVELY_SELECTED_RADIOS.boardSize = null;
+  ACTIVELY_SELECTED_RADIOS.player = null;
+  ACTIVELY_SELECTED_RADIOS.gameTheme = null;
 }
 
 function resetVisuals(
   players: NodeListOf<HTMLDivElement>,
   sizes: NodeListOf<HTMLDivElement>,
   themes: NodeListOf<HTMLDivElement>,
-) {
+): void {
   players.forEach((player) => {
     resetContainerVisuals(player);
   });
@@ -69,68 +69,68 @@ function resetVisuals(
   });
 }
 
-export function goBackToHome() {
+export function goBackToHome(): void {
   hideWinnerScreen();
-  boardContainer.classList.add("d-none");
-  bodyEl.classList.remove("board-white");
-  gameIntroContainer.classList.remove("d-none");
+  BOARD_CONTAINER.classList.add("d-none");
+  BODY_EL.classList.remove("board-white");
+  GAME_INTRO_CONTAINER.classList.remove("d-none");
   resetGameState();
 }
 
-export function goBackToSettings() {
+export function goBackToSettings(): void {
   hideWinnerScreen();
-  boardContainer.classList.add("d-none");
-  settingsContainer.classList.remove("d-none");
+  BOARD_CONTAINER.classList.add("d-none");
+  SETTINGS_CONTAINER.classList.remove("d-none");
   resetSettinBoxTexts();
-  settingBox.classList.remove("streched");
+  SETTING_BOX.classList.remove("streched");
   resetGameState();
 }
 
 function resetSettinBoxTexts() {
-  const theme = document.getElementById("game-theme-text") as HTMLSpanElement;
-  const player = document.getElementById("player-text") as HTMLSpanElement;
-  const size = document.getElementById("board-size-text") as HTMLSpanElement;
+  const THEME = document.getElementById("game-theme-text") as HTMLSpanElement;
+  const PLAYER = document.getElementById("player-text") as HTMLSpanElement;
+  const SIZE = document.getElementById("board-size-text") as HTMLSpanElement;
 
-  theme.innerText = `Theme`;
-  player.innerText = `Player`;
-  size.innerText = `Board-Size`;
+  THEME.innerText = `Theme`;
+  PLAYER.innerText = `Player`;
+  SIZE.innerText = `Board-Size`;
 }
 
-export function resetGame() {
+export function resetGame(): void {
   resetGameState();
   resetActivelySelectedBtns();
-  resetVisuals(playerButtons, boardSizeButtons, themesButtons);
+  resetVisuals(PLAYER_BUTTONS, BOARD_SIZE_BUTTONS, THEMES_BUTTONS);
   resetradioButtons();
   setTimeout(() => {
     goBackToSettings();
     updateStartButtonState();
-    playerFigures.forEach((figure) => {
+    PLAYER_FIGURES.forEach((figure) => {
       figure.innerText = String(0);
     });
   }, 400);
 }
 
-function resetradioButtons() {
-  const allRadioInputs = document.querySelectorAll<HTMLInputElement>(
+function resetradioButtons(): void {
+  const ALL_RADIO_INPUTS = document.querySelectorAll<HTMLInputElement>(
     'input[type="radio"]',
   );
 
-  allRadioInputs.forEach((input: HTMLInputElement) => {
+  ALL_RADIO_INPUTS.forEach((input: HTMLInputElement) => {
     input.checked = false;
   });
 }
 
 function renderDialogElements(theme: string): HTMLDialogElement {
-  const dialog = document.getElementById("overlayDialog") as HTMLDialogElement;
+  const DIALOG = document.getElementById("overlayDialog") as HTMLDialogElement;
 
   let backBtnText = theme === "foods" ? `No, back to game` : `Back to game`;
 
-  dialog.innerHTML = dialogElementTemplate(backBtnText);
+  DIALOG.innerHTML = dialogElementTemplate(backBtnText);
 
-  return dialog;
+  return DIALOG;
 }
 
-function dialogElementTemplate(text: string) {
+function dialogElementTemplate(text: string): string {
   return `
     <div class="exitOverlay__container">
         <p class="overlay-text">Are you sure you want to quit the game?</p>
@@ -144,70 +144,72 @@ function dialogElementTemplate(text: string) {
     `;
 }
 
-function dialogListeners() {
-  const dialog = renderDialogElements(gameLogic.currentTheme);
+function dialogListeners(): void {
+  const DIALOG = renderDialogElements(gameLogic.currentTheme);
 
-  const exitGame = dialog.querySelector("#exitGame") as HTMLButtonElement;
-  exitGame.addEventListener("click", () => {
+  const EXIT_GAME = DIALOG.querySelector("#exitGame") as HTMLButtonElement;
+  EXIT_GAME.addEventListener("click", () => {
     closeDialog();
     resetGame();
   });
-  const backToGameBtn = dialog.querySelector(
+  const BACK_TO_GAME_BTN = DIALOG.querySelector(
     "#backToGame",
   ) as HTMLButtonElement;
-  backToGameBtn.addEventListener("click", closeDialog);
+  BACK_TO_GAME_BTN.addEventListener("click", closeDialog);
 }
 
-dialogEl.addEventListener("click", (event: MouseEvent) => {
-  if (event.target === dialogEl) closeDialog();
+DIALOG_EL.addEventListener("click", (event: MouseEvent) => {
+  if (event.target === DIALOG_EL) closeDialog();
 });
 
-export function showGameOverScreen() {
-  const gameOver = renderGameOverElements();
-  gameOver.classList.add("show");
+export function showGameOverScreen(): void {
+  const GAME_OVER = renderGameOverElements();
+  GAME_OVER.classList.add("show");
 
-  const orangeScore = document.getElementById("orangeScore") as HTMLSpanElement;
-  orangeScore.innerText = String(gameLogic.playerScore.orange);
-  const blueScore = document.getElementById("blueScore") as HTMLSpanElement;
-  blueScore.innerText = String(gameLogic.playerScore.blue);
+  const ORANGE_SCORE = document.getElementById(
+    "orangeScore",
+  ) as HTMLSpanElement;
+  ORANGE_SCORE.innerText = String(gameLogic.playerScore.orange);
+  const BLUE_SCORE = document.getElementById("blueScore") as HTMLSpanElement;
+  BLUE_SCORE.innerText = String(gameLogic.playerScore.blue);
 }
 
-export function showWinnerScreen() {
-  const winnerScreenDiv = document.querySelector(
+export function showWinnerScreen(): void {
+  const WINNER_SCREEN_DIV = document.querySelector(
     ".winnerScreen",
   ) as HTMLDivElement;
-  if (winnerScreenDiv) {
+  if (WINNER_SCREEN_DIV) {
     renderWinnerDrawScreen();
-    winnerScreenDiv.classList.add("show");
-    updateWinnerVisuals(winnerScreenDiv);
-    const homeBtn = winnerScreenDiv.querySelector(
+    WINNER_SCREEN_DIV.classList.add("show");
+    updateWinnerVisuals(WINNER_SCREEN_DIV);
+    const HOME_BTN = WINNER_SCREEN_DIV.querySelector(
       ".home-btn",
     ) as HTMLButtonElement;
-    homeBtn.addEventListener("click", resetGame);
+    HOME_BTN.addEventListener("click", resetGame);
   }
 }
 
-function updateWinnerVisuals(screen: HTMLDivElement) {
-  const img = screen.querySelector(
+function updateWinnerVisuals(screen: HTMLDivElement): void {
+  const IMG = screen.querySelector(
     ".winner__content--figure img",
   ) as HTMLImageElement;
-  const winner = screen.querySelector(".winner") as HTMLHeadingElement;
-  const winnerTitle = screen.querySelector(
+  const WINNER = screen.querySelector(".winner") as HTMLHeadingElement;
+  const WINNER_TITLE = screen.querySelector(
     ".winner-title",
   ) as HTMLHeadingElement;
-  if (img) blueOrOrangeFigure(img);
-  if (winner && winnerTitle) blueOrOrangeWinner(winner, winnerTitle);
+  if (IMG) blueOrOrangeFigure(IMG);
+  if (WINNER && WINNER_TITLE) blueOrOrangeWinner(WINNER, WINNER_TITLE);
 }
 
-function blueOrOrangeFigure(img: HTMLImageElement) {
-  const orangeScore = gameLogic.playerScore.orange;
-  const blueScore = gameLogic.playerScore.blue;
+function blueOrOrangeFigure(img: HTMLImageElement): void {
+  const ORANGE_SCORE = gameLogic.playerScore.orange;
+  const BLUE_SCORE = gameLogic.playerScore.blue;
 
-  if (orangeScore > blueScore) {
+  if (ORANGE_SCORE > BLUE_SCORE) {
     if (gameLogic.currentTheme === "foods")
       img.src = "/assets/icons/orange-orange-winner.svg";
     else img.src = "/assets/icons/blue-orange-winner.svg";
-  } else if (blueScore > orangeScore) {
+  } else if (BLUE_SCORE > ORANGE_SCORE) {
     if (gameLogic.currentTheme === "foods")
       img.src = "/assets/icons/orange-blue-winner.svg";
     else img.src = "/assets/icons/blue-blue-winner.svg";
@@ -221,14 +223,14 @@ function blueOrOrangeFigure(img: HTMLImageElement) {
 function blueOrOrangeWinner(
   winner: HTMLHeadingElement,
   title: HTMLHeadingElement,
-) {
-  const orangeScore = gameLogic.playerScore.orange;
-  const blueScore = gameLogic.playerScore.blue;
+): void {
+  const ORANGE_SCORE = gameLogic.playerScore.orange;
+  const BLUE_SCORE = gameLogic.playerScore.blue;
 
-  if (orangeScore > blueScore) {
+  if (ORANGE_SCORE > BLUE_SCORE) {
     title.innerText = `The winner is`;
     winner.innerText = `Orange Player`;
-  } else if (orangeScore < blueScore) {
+  } else if (ORANGE_SCORE < BLUE_SCORE) {
     title.innerText = `The winner is`;
     winner.innerText = `Blue Player`;
   } else {
@@ -237,19 +239,19 @@ function blueOrOrangeWinner(
   }
 }
 
-export function hideGameOverScreen() {
-  const gameOverDiv = document.querySelector(".gameOver") as HTMLDivElement;
-  gameOverDiv.classList.remove("show");
+export function hideGameOverScreen(): void {
+  const GAME_OVER_DIV = document.querySelector(".gameOver") as HTMLDivElement;
+  GAME_OVER_DIV.classList.remove("show");
 }
 
-function hideWinnerScreen() {
-  const winnerScreenDiv = document.querySelector(
+function hideWinnerScreen(): void {
+  const WINNER_SCREEN_DIV = document.querySelector(
     ".winnerScreen",
   ) as HTMLDivElement;
-  winnerScreenDiv.classList.remove("show");
+  WINNER_SCREEN_DIV.classList.remove("show");
 }
 
-function gameOverElementTemplate() {
+function gameOverElementTemplate(): string {
   return `
   <div class="gameOver__content">
         <h1 class="gameOver__content--title">GAME OVER</h1>
@@ -272,13 +274,13 @@ function gameOverElementTemplate() {
 }
 
 function renderGameOverElements(): HTMLDivElement {
-  const gameOverDiv = document.querySelector(".gameOver") as HTMLDivElement;
+  const GAME_OVER_DIV = document.querySelector(".gameOver") as HTMLDivElement;
 
-  gameOverDiv.innerHTML = gameOverElementTemplate();
-  return gameOverDiv;
+  GAME_OVER_DIV.innerHTML = gameOverElementTemplate();
+  return GAME_OVER_DIV;
 }
 
-function winnerDrawScreenTemplate() {
+function winnerDrawScreenTemplate(): string {
   return `
   <div class="winner__content">
         <div class="winner__content--text">
@@ -294,9 +296,9 @@ function winnerDrawScreenTemplate() {
 }
 
 function renderWinnerDrawScreen(): HTMLDivElement {
-  const winnerScreenDiv = document.querySelector(
+  const WINNER_SCREEN_DIV = document.querySelector(
     ".winnerScreen",
   ) as HTMLDivElement;
-  winnerScreenDiv.innerHTML = winnerDrawScreenTemplate();
-  return winnerScreenDiv;
+  WINNER_SCREEN_DIV.innerHTML = winnerDrawScreenTemplate();
+  return WINNER_SCREEN_DIV;
 }

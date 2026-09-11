@@ -14,34 +14,34 @@ import {
 
 import { openDialog } from "./screens-dialog-reset";
 
-const playBtn = document.getElementById("playBtn") as HTMLButtonElement;
-const playBtnArrow = document.getElementById(
+const PLAY_BTN = document.getElementById("playBtn") as HTMLButtonElement;
+const PLAY_BUTTON_ARROW = document.getElementById(
   "playBtn-arrow",
 ) as HTMLImageElement;
-const arrowNormal = "/assets/icons/landing-page/play-arrow.svg";
-const arrowHover = "/assets/icons/landing-page/play-arrow-hover.svg";
+const ARROW_NORMAL = "/assets/icons/landing-page/play-arrow.svg";
+const ARROW_HOVER = "/assets/icons/landing-page/play-arrow-hover.svg";
 
-const startBtn = document.getElementById("start-Btn") as HTMLButtonElement;
+const START_BTN = document.getElementById("start-Btn") as HTMLButtonElement;
 
-const exitBtn = document.querySelector(".exit-button") as HTMLButtonElement;
-const exitBtnIcon = exitBtn.querySelector("img") as HTMLImageElement;
-const exitNormalOrange = "/assets/icons/food/exit-default.svg";
-const exitNormalBlue = "/assets/icons/DA/exit-blue-default.svg";
-const exitHover = "/assets/icons/food/exit-hover.svg";
+const EXIT_BTN = document.querySelector(".exit-button") as HTMLButtonElement;
+const EXIT_BTN_ICON = EXIT_BTN.querySelector("img") as HTMLImageElement;
+const EXIT_NORMAL_ORANGE = "/assets/icons/food/exit-default.svg";
+const EXIT_NORMAL_BLUE = "/assets/icons/DA/exit-blue-default.svg";
+const EXIT_HOVER = "/assets/icons/food/exit-hover.svg";
 
-const choosePlayerDiv = document.querySelector(
+const CHOOSE_PLAYER_DIV = document.querySelector(
   ".details__player--options",
 ) as HTMLDivElement;
 
-const setBoardSizeDiv = document.querySelector(
+const SET_BORAD_SIZE_DIV = document.querySelector(
   ".details__size--options",
 ) as HTMLDivElement;
 
-const chooseGameThemeDiv = document.querySelector(
+const CHOOSE_GAME_THEME_DIV = document.querySelector(
   ".details__themes--options",
 ) as HTMLDivElement;
 
-const themePreviewImg = document.querySelector(
+const THEME_PREVIEW_IMG = document.querySelector(
   ".theme-img img",
 ) as HTMLImageElement;
 
@@ -50,34 +50,34 @@ const THEME_IMAGES: Record<string, string> = {
   foods: "/assets/icons/settings/Food-Theme Visual.svg",
 };
 
-export const settingBox = document.getElementById(
+export const SETTING_BOX = document.getElementById(
   "setting-box",
 ) as HTMLDivElement;
 
-export const activelySelectedRadios = {
+export const ACTIVELY_SELECTED_RADIOS = {
   player: null as HTMLInputElement | null,
   boardSize: null as HTMLInputElement | null,
   gameTheme: null as HTMLInputElement | null,
 };
 
 export function resetContainerVisuals(container: HTMLDivElement): void {
-  const radioBtn = container.querySelector(
+  const RADIO_BTN = container.querySelector(
     'input[type="radio"]',
   ) as HTMLInputElement;
-  const label = container.querySelector("label") as HTMLLabelElement;
-  const img = container.querySelector("img") as HTMLImageElement;
+  const LABEL = container.querySelector("label") as HTMLLabelElement;
+  const IMG = container.querySelector("img") as HTMLImageElement;
 
-  if (radioBtn) radioBtn.checked = false;
-  if (label) label.style.fontWeight = "normal";
-  if (img) img.style.visibility = "hidden";
+  if (RADIO_BTN) RADIO_BTN.checked = false;
+  if (LABEL) LABEL.style.fontWeight = "normal";
+  if (IMG) IMG.style.visibility = "hidden";
 }
 
 function activateVisualls(container: HTMLDivElement): void {
-  const label = container.querySelector("label") as HTMLLabelElement;
-  const img = container.querySelector("img") as HTMLImageElement;
+  const LABEL = container.querySelector("label") as HTMLLabelElement;
+  const IMG = container.querySelector("img") as HTMLImageElement;
 
-  if (label) label.style.fontWeight = "bold";
-  if (img) img.style.visibility = "visible";
+  if (LABEL) LABEL.style.fontWeight = "bold";
+  if (IMG) IMG.style.visibility = "visible";
 }
 
 function handleRadioBtnSelection(
@@ -85,85 +85,85 @@ function handleRadioBtnSelection(
   containers: NodeListOf<HTMLDivElement>,
 ): void {
   containers.forEach((container) => {
-    const radioBtn = container.querySelector('input[type="radio"]');
-    if (radioBtn !== target) resetContainerVisuals(container);
+    const RADIO_BTN = container.querySelector('input[type="radio"]');
+    if (RADIO_BTN !== target) resetContainerVisuals(container);
   });
 
-  const currentContainer = target.closest(
+  const CURRENT_CONTAINER = target.closest(
     ".options-container",
   ) as HTMLDivElement;
-  if (currentContainer) {
+  if (CURRENT_CONTAINER) {
     target.checked = true;
-    activateVisualls(currentContainer);
+    activateVisualls(CURRENT_CONTAINER);
   }
 }
 
-choosePlayerDiv.addEventListener("click", (event) => {
-  const target = event.target as HTMLInputElement;
-  if (target && target.type === "radio") {
-    handlePlayerChange(target.value);
-    activelySelectedRadios.player = target;
-    handleRadioBtnSelection(target, playerButtons);
+CHOOSE_PLAYER_DIV.addEventListener("click", (event) => {
+  const TARGET = event.target as HTMLInputElement;
+  if (TARGET && TARGET.type === "radio") {
+    handlePlayerChange(TARGET.value);
+    ACTIVELY_SELECTED_RADIOS.player = TARGET;
+    handleRadioBtnSelection(TARGET, PLAYER_BUTTONS);
     updateStartButtonState();
   }
 });
 
-setBoardSizeDiv.addEventListener("click", (event) => {
-  const target = event.target as HTMLInputElement;
-  if (target && target.type === "radio") {
-    handleBoardSizeChange(target);
-    activelySelectedRadios.boardSize = target;
-    handleRadioBtnSelection(target, boardSizeButtons);
+SET_BORAD_SIZE_DIV.addEventListener("click", (event) => {
+  const TARGET = event.target as HTMLInputElement;
+  if (TARGET && TARGET.type === "radio") {
+    handleBoardSizeChange(TARGET);
+    ACTIVELY_SELECTED_RADIOS.boardSize = TARGET;
+    handleRadioBtnSelection(TARGET, BOARD_SIZE_BUTTONS);
     updateStartButtonState();
   }
 });
 
-chooseGameThemeDiv.addEventListener("click", (event) => {
-  const target = event.target as HTMLInputElement;
-  if (target && target.type === "radio") {
-    handleGameThemeChange(target.value);
-    activelySelectedRadios.gameTheme = target;
-    if (themePreviewImg && THEME_IMAGES[target.value])
-      themePreviewImg.src = THEME_IMAGES[target.value];
-    handleRadioBtnSelection(target, themesButtons);
+CHOOSE_GAME_THEME_DIV.addEventListener("click", (event) => {
+  const TARGET = event.target as HTMLInputElement;
+  if (TARGET && TARGET.type === "radio") {
+    handleGameThemeChange(TARGET.value);
+    ACTIVELY_SELECTED_RADIOS.gameTheme = TARGET;
+    if (THEME_PREVIEW_IMG && THEME_IMAGES[TARGET.value])
+      THEME_PREVIEW_IMG.src = THEME_IMAGES[TARGET.value];
+    handleRadioBtnSelection(TARGET, THEMES_BUTTONS);
     updateStartButtonState();
   }
 });
 
-export const playerButtons = choosePlayerDiv.querySelectorAll(
+export const PLAYER_BUTTONS = CHOOSE_PLAYER_DIV.querySelectorAll(
   ".options-container",
 ) as NodeListOf<HTMLDivElement>;
-export const themesButtons = chooseGameThemeDiv.querySelectorAll(
+export const THEMES_BUTTONS = CHOOSE_GAME_THEME_DIV.querySelectorAll(
   ".options-container",
 ) as NodeListOf<HTMLDivElement>;
-export const boardSizeButtons = setBoardSizeDiv.querySelectorAll(
+export const BOARD_SIZE_BUTTONS = SET_BORAD_SIZE_DIV.querySelectorAll(
   ".options-container",
 ) as NodeListOf<HTMLDivElement>;
 
-playerButtons.forEach((container) => {
+PLAYER_BUTTONS.forEach((container) => {
   container.addEventListener("mouseenter", () => {
-    handleMouseEnter(container, activelySelectedRadios.player);
+    handleMouseEnter(container, ACTIVELY_SELECTED_RADIOS.player);
   });
   container.addEventListener("mouseleave", () => {
-    handleMouseLeave(container, activelySelectedRadios.player);
+    handleMouseLeave(container, ACTIVELY_SELECTED_RADIOS.player);
   });
 });
 
-themesButtons.forEach((container) => {
+THEMES_BUTTONS.forEach((container) => {
   container.addEventListener("mouseenter", () => {
-    handleMouseEnter(container, activelySelectedRadios.gameTheme);
+    handleMouseEnter(container, ACTIVELY_SELECTED_RADIOS.gameTheme);
   });
   container.addEventListener("mouseleave", () => {
-    handleMouseLeave(container, activelySelectedRadios.gameTheme);
+    handleMouseLeave(container, ACTIVELY_SELECTED_RADIOS.gameTheme);
   });
 });
 
-boardSizeButtons.forEach((container) => {
+BOARD_SIZE_BUTTONS.forEach((container) => {
   container.addEventListener("mouseenter", () => {
-    handleMouseEnter(container, activelySelectedRadios.boardSize);
+    handleMouseEnter(container, ACTIVELY_SELECTED_RADIOS.boardSize);
   });
   container.addEventListener("mouseleave", () => {
-    handleMouseLeave(container, activelySelectedRadios.boardSize);
+    handleMouseLeave(container, ACTIVELY_SELECTED_RADIOS.boardSize);
   });
 });
 
@@ -172,12 +172,12 @@ function handleMouseEnter(
   selectedElement: HTMLInputElement | null,
 ): void {
   if (selectedElement !== null) return;
-  const radioButton = container.querySelector(
+  const RADIO_BUTTON = container.querySelector(
     'input[type="radio"]',
   ) as HTMLInputElement;
-  if (radioButton && themePreviewImg && THEME_IMAGES[radioButton.value]) {
-    radioButton.checked = true;
-    themePreviewImg.src = THEME_IMAGES[radioButton.value];
+  if (RADIO_BUTTON && THEME_PREVIEW_IMG && THEME_IMAGES[RADIO_BUTTON.value]) {
+    RADIO_BUTTON.checked = true;
+    THEME_PREVIEW_IMG.src = THEME_IMAGES[RADIO_BUTTON.value];
   }
   activateVisualls(container);
 }
@@ -186,75 +186,75 @@ function handleMouseLeave(
   container: HTMLDivElement,
   selectedElement: HTMLInputElement | null,
 ): void {
-  const radioButton = container.querySelector(
+  const RADIO_BUTTON = container.querySelector(
     'input[type="radio"]',
   ) as HTMLInputElement;
 
-  if (radioButton !== selectedElement) {
+  if (RADIO_BUTTON !== selectedElement) {
     resetContainerVisuals(container);
-    if (themePreviewImg) {
-      if (activelySelectedRadios.gameTheme) {
-        themePreviewImg.src =
-          THEME_IMAGES[activelySelectedRadios.gameTheme.value];
+    if (THEME_PREVIEW_IMG) {
+      if (ACTIVELY_SELECTED_RADIOS.gameTheme) {
+        THEME_PREVIEW_IMG.src =
+          THEME_IMAGES[ACTIVELY_SELECTED_RADIOS.gameTheme.value];
       } else {
-        themePreviewImg.src = THEME_IMAGES["DAProjects"];
+        THEME_PREVIEW_IMG.src = THEME_IMAGES["DAProjects"];
       }
     }
   }
 }
 
-playBtn.addEventListener("mouseover", () => {
-  playBtnArrow.src = arrowHover;
+PLAY_BTN.addEventListener("mouseover", () => {
+  PLAY_BUTTON_ARROW.src = ARROW_HOVER;
 });
 
-playBtn.addEventListener("mouseleave", () => {
-  playBtnArrow.src = arrowNormal;
+PLAY_BTN.addEventListener("mouseleave", () => {
+  PLAY_BUTTON_ARROW.src = ARROW_NORMAL;
 });
 
-playBtn.addEventListener("click", () => {
+PLAY_BTN.addEventListener("click", () => {
   renderSettingsPage();
 });
 
-settingBox.addEventListener("click", () => {
-  if (isSettingsComplete() && !settingBox.classList.contains("streched")) {
+SETTING_BOX.addEventListener("click", () => {
+  if (isSettingsComplete() && !SETTING_BOX.classList.contains("streched")) {
     updateSettingBoxTexts();
     updateSettingBoxVisuals();
-    settingBox.classList.add("streched");
+    SETTING_BOX.classList.add("streched");
   }
 });
 
-function updateSettingBoxTexts() {
-  const theme = document.getElementById("game-theme-text") as HTMLSpanElement;
-  const player = document.getElementById("player-text") as HTMLSpanElement;
-  const size = document.getElementById("board-size-text") as HTMLSpanElement;
+function updateSettingBoxTexts(): void {
+  const THEME = document.getElementById("game-theme-text") as HTMLSpanElement;
+  const PLAYER = document.getElementById("player-text") as HTMLSpanElement;
+  const SIZE = document.getElementById("board-size-text") as HTMLSpanElement;
 
-  theme.innerText = gameLogic.currentTheme;
-  player.innerText = gameLogic.currentPlayer;
-  size.innerText = `${gameLogic.currentRows}x${gameLogic.currentColumns}-Cards`;
+  THEME.innerText = gameLogic.currentTheme;
+  PLAYER.innerText = gameLogic.currentPlayer;
+  SIZE.innerText = `${gameLogic.currentRows}x${gameLogic.currentColumns}-Cards`;
 }
 
-function updateSettingBoxVisuals() {
-  const yellowLines = settingBox.querySelectorAll(
+function updateSettingBoxVisuals(): void {
+  const YELLOW_LINES = SETTING_BOX.querySelectorAll(
     ".selected-setting img",
   ) as NodeListOf<HTMLImageElement>;
-  yellowLines.forEach((line) => {
+  YELLOW_LINES.forEach((line) => {
     line.src = "/assets/icons/settings/line-selected.svg";
   });
 }
 
-startBtn.addEventListener("click", () => {
+START_BTN.addEventListener("click", () => {
   renderBoardElements(gameLogic.currentTheme);
 });
 
-exitBtn?.addEventListener("mouseover", () => {
-  if (exitBtnIcon) exitBtnIcon.src = exitHover;
+EXIT_BTN?.addEventListener("mouseover", () => {
+  if (EXIT_BTN_ICON) EXIT_BTN_ICON.src = EXIT_HOVER;
 });
 
-exitBtn?.addEventListener("mouseleave", () => {
-  if (exitBtnIcon && gameLogic.currentTheme === "DAProjects")
-    exitBtnIcon.src = exitNormalBlue;
-  else if (exitBtnIcon && gameLogic.currentTheme === "foods")
-    exitBtnIcon.src = exitNormalOrange;
+EXIT_BTN?.addEventListener("mouseleave", () => {
+  if (EXIT_BTN_ICON && gameLogic.currentTheme === "DAProjects")
+    EXIT_BTN_ICON.src = EXIT_NORMAL_BLUE;
+  else if (EXIT_BTN_ICON && gameLogic.currentTheme === "foods")
+    EXIT_BTN_ICON.src = EXIT_NORMAL_ORANGE;
 });
 
-exitBtn?.addEventListener("click", openDialog);
+EXIT_BTN?.addEventListener("click", openDialog);
