@@ -13,10 +13,8 @@
   z-index: 0;
 
   &::before {
-    position: absolute;
+    @include position(absolute, 60%, 50%, -1);
     content: "";
-    top: 60%;
-    left: 50%;
     transform: translate(-50%, -50%);
     max-width: 1440px;
     width: 100%;
@@ -25,7 +23,6 @@
     background-image: url("/assets/icons/landing-page/stadia_controller-bg.svg");
     background-repeat: no-repeat;
     background-position: bottom left;
-    z-index: -1;
   }
 }
 
@@ -39,17 +36,14 @@
 
   &__title {
     @include flexStart(column);
-    color: $text-color-intro;
 
     &--first {
-      font-size: 48px;
-      font-family: $font-h3-intro;
+      @include text($font-h3-intro, $text-color-intro, 48px);
       font-weight: 400;
     }
 
     &--second {
-      font-size: 140px;
-      font-family: $font-h1-intro;
+      @include text($font-h1-intro, $text-color-intro, 140px);
     }
   }
 }

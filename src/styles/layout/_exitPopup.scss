@@ -3,12 +3,9 @@
 @use "../themes/theme" as *;
 
 .exitOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+  @include position(fixed, 0, 0, 110);
   width: 100vw;
   height: 100vh;
-  z-index: 110;
   background-color: rgba(0, 0, 0, 0.2);
   border: none;
   margin: 0;
@@ -17,12 +14,9 @@
   box-sizing: border-box;
 
   &__container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    @include position(absolute, 50%, 50%, 150);
     transform: translate(-50%, -50%);
     background-color: var(--overlay-bg-color);
-    z-index: 150;
     padding: 40px;
     border-radius: 20px;
     width: 450px;
@@ -30,16 +24,14 @@
     gap: 40px;
 
     & .overlay-text {
-      font-family: var(--overlay-text-font);
+      @include text(var(--overlay-text-font), var(--overlay-text-color), 28px);
       font-weight: var(--overlay-text-weight);
-      font-size: 28px;
       line-height: 40px;
       text-align: center;
-      color: var(--overlay-text-color);
     }
 
     & .overlay-btns {
-      @include flexSpace;
+      @include flexCenter(row);
       gap: 24px;
       width: 100%;
     }

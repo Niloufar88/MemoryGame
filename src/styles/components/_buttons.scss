@@ -126,6 +126,8 @@
     var(--exit-btn-text-color),
     var(--exit-btn-font)
   );
+  background-color: var(--overlay-back-btn-bg);
+  color: var(--overlay-back-btn-text);
   border-image: var(--exit-btn-border-image) 4 round;
   border-radius: 10px;
   font-weight: 700;
@@ -133,7 +135,9 @@
   transition: all 200ms ease-in;
 
   &:hover {
-    color: var(--exit-btn-text-hover);
+    background-color: var(--overlay-back-btn-bg-hover);
+    color: var(--overlay-back-btn-text-hover);
+    // color: var(--exit-btn-text-hover);
     background-color: var(--exit-btn-bg-hover);
     box-shadow: 3px 3px 5px 0 rgba(47, 46, 46, 0.2);
     border-image: none;

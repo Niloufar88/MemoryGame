@@ -47,6 +47,10 @@ html[data-theme="DAProjects"] {
   --overlay-btn-shadow: 3px 3px 5px 0 rgba(47, 46, 46, 0.2);
   --overlay-btn-shadow-hover: 0;
   --overlay-exit-bg-hover: rgba(237, 91, 80, 1);
+  --overlay-back-btn-bg: rgba(191, 229, 242, 1);
+  --overlay-back-btn-bg-hover: rgba(30, 117, 148, 1);
+  --overlay-back-btn-text: rgba(30, 117, 148, 1);
+  --overlay-back-btn-text-hover: rgba(255, 255, 255, 1);
 }
 
 html[data-theme="foods"] {
@@ -96,4 +100,8 @@ html[data-theme="foods"] {
   --overlay-btn-shadow: 0 rgba(0, 0, 0, 0);
   --overlay-btn-shadow-hover: 3px 3px 5px 0 rgba(47, 46, 46, 0.2);
   --overlay-exit-bg-hover: rgba(243, 131, 45, 1);
+  --overlay-back-btn-bg: rgba(255, 171, 62, 1);
+  --overlay-back-btn-bg-hover: rgba(243, 131, 45, 1);
+  --overlay-back-btn-text: rgba(255, 255, 255, 1);
+  --overlay-back-btn-text-hover: rgba(255, 255, 255, 1);
 }

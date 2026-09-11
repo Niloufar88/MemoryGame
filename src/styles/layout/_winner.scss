@@ -3,15 +3,12 @@
 @use "../themes/theme" as *;
 
 .winnerScreen {
-  position: fixed;
-  top: 0;
-  left: 0;
+  @include position(fixed, 0, 0, 100);
   width: 100%;
   height: 100vh;
   background-color: var(--winner-draw-bg-color);
   border: none;
   @include flexCenter(column);
-  z-index: 100;
   opacity: 0;
   pointer-events: none;
   transform: translateY(50%);
@@ -35,17 +32,21 @@
     @include flexCenter(column);
 
     & .winner-title {
-      color: var(--winner-text-color);
-      font-family: var(--gameOver-winner-draw-font);
+      @include text(
+        var(--gameOver-winner-draw-font),
+        var(--winner-text-color),
+        40px
+      );
       font-weight: var(--winner-title-weight);
-      font-size: 40px;
     }
 
     & .winner {
-      color: var(--winner-text-color);
-      font-family: var(--gameOver-winner-draw-font);
+      @include text(
+        var(--gameOver-winner-draw-font),
+        var(--winner-text-color),
+        80px
+      );
       font-weight: var(--winner-player-weight);
-      font-size: 80px;
     }
   }
 

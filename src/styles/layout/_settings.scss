@@ -18,18 +18,14 @@
       @include flexStart(column);
 
       & .title {
-        font-family: $settings-title-font;
-        font-size: 60px;
-        color: $primary-bg-dark;
+        @include text($settings-title-font, $primary-bg-dark, 60px);
         text-transform: capitalize;
         margin-left: 16px;
       }
     }
 
     &__container {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
+      @include flexSpace(flex-start);
       padding: 8px 16px;
       gap: 180px;
     }
@@ -55,10 +51,8 @@
     &--header {
       display: flex;
       align-items: center;
-
+      @include text($settings-subtitle-font, $primary-bg-dark, 24px);
       gap: 8px;
-      font-family: $settings-subtitle-font;
-      font-size: 24px;
     }
 
     &--options {

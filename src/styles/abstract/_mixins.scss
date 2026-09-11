@@ -11,10 +11,10 @@
   justify-content: flex-start;
 }
 
-@mixin flexSpace {
+@mixin flexSpace($align: center) {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: $align;
 }
 
 @mixin yellowBtn($color) {
@@ -48,4 +48,17 @@
 
 @mixin smoothRotate {
   transition: transform 250ms ease-in-out;
+}
+
+@mixin text($family, $color, $size) {
+  font-family: $family;
+  color: $color;
+  font-size: $size;
+}
+
+@mixin position($position, $top, $left, $z) {
+  position: $position;
+  top: $top;
+  left: $left;
+  z-index: $z;
 }
