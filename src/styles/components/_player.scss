@@ -6,14 +6,10 @@
   gap: 4px;
 
   &__score--orange {
-    color: $orange-color;
-    font-family: $font-score;
-    font-size: 30px;
+    @include text($font-score, $orange-color, 30px);
   }
 
   &__score--blue {
-    color: $blue-color;
-    font-family: $font-score;
-    font-size: 30px;
+    @include text($font-score, $blue-color, 30px);
   }
 }
