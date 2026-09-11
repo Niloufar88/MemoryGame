@@ -81,8 +81,19 @@ export function goBackToSettings() {
   hideWinnerScreen();
   boardContainer.classList.add("d-none");
   settingsContainer.classList.remove("d-none");
+  resetSettinBoxTexts();
   settingBox.classList.remove("streched");
   resetGameState();
+}
+
+function resetSettinBoxTexts() {
+  const theme = document.getElementById("game-theme-text") as HTMLSpanElement;
+  const player = document.getElementById("player-text") as HTMLSpanElement;
+  const size = document.getElementById("board-size-text") as HTMLSpanElement;
+
+  theme.innerText = `Theme`;
+  player.innerText = `Player`;
+  size.innerText = `Board-Size`;
 }
 
 export function resetGame() {
