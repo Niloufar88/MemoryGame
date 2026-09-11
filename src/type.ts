@@ -1,3 +1,6 @@
+/**
+ * an interface which defines types and parameters of a card which will be rendered accordingly on the board
+ */
 export interface Card {
   id: string;
   image: string;
@@ -5,6 +8,9 @@ export interface Card {
   isMatched: boolean;
 }
 
+/**
+ * an interface which defines heart of the game logic and manage different states of the game
+ */
 export interface GameState {
   currentPlayer: string;
   currentCardsPair: number;
@@ -17,6 +23,9 @@ export interface GameState {
   playerScore: Record<string, number>;
 }
 
+/**
+ * an object which holds two arrays of images srcs accordingly to the defined game themes
+ */
 export const THEME_OBJECTS: Record<string, string[]> = {
   foods: [
     "/assets/img/foods/food-01.svg",
