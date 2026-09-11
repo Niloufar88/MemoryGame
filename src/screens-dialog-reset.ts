@@ -29,7 +29,6 @@ const DIALOG_EL = document.getElementById("overlayDialog") as HTMLDialogElement;
  */
 export function openDialog(): void {
   const DIALOG = document.querySelector(".exitOverlay") as HTMLDialogElement;
-
   if (DIALOG) {
     renderDialogElements(gameLogic.currentTheme);
     DIALOG.showModal();
@@ -121,7 +120,6 @@ function resetSettinBoxTexts() {
   const THEME = document.getElementById("game-theme-text") as HTMLSpanElement;
   const PLAYER = document.getElementById("player-text") as HTMLSpanElement;
   const SIZE = document.getElementById("board-size-text") as HTMLSpanElement;
-
   THEME.innerText = `Theme`;
   PLAYER.innerText = `Player`;
   SIZE.innerText = `Board-Size`;
@@ -151,7 +149,6 @@ function resetradioButtons(): void {
   const ALL_RADIO_INPUTS = document.querySelectorAll<HTMLInputElement>(
     'input[type="radio"]',
   );
-
   ALL_RADIO_INPUTS.forEach((input: HTMLInputElement) => {
     input.checked = false;
   });
@@ -266,7 +263,6 @@ function updateWinnerVisuals(screen: HTMLDivElement): void {
 function blueOrOrangeFigure(img: HTMLImageElement): void {
   const ORANGE_SCORE = gameLogic.playerScore.orange;
   const BLUE_SCORE = gameLogic.playerScore.blue;
-
   if (ORANGE_SCORE > BLUE_SCORE) {
     if (gameLogic.currentTheme === "foods")
       img.src = "/assets/icons/orange-orange-winner.svg";
@@ -293,7 +289,6 @@ function blueOrOrangeWinner(
 ): void {
   const ORANGE_SCORE = gameLogic.playerScore.orange;
   const BLUE_SCORE = gameLogic.playerScore.blue;
-
   if (ORANGE_SCORE > BLUE_SCORE) {
     title.innerText = `The winner is`;
     winner.innerText = `Orange Player`;
@@ -339,7 +334,6 @@ function gameOverElementTemplate(): string {
               <img src="/assets/icons/orangeFigure.svg" alt="" />
               <span id="orangeScore">0</span>
             </div>
-
             <div class="bluePlayer">
               <img src="/assets/icons/blueFigure.svg" alt="" />
               <span id="blueScore">0</span>
@@ -356,7 +350,6 @@ function gameOverElementTemplate(): string {
  */
 function renderGameOverElements(): HTMLDivElement {
   const GAME_OVER_DIV = document.querySelector(".gameOver") as HTMLDivElement;
-
   GAME_OVER_DIV.innerHTML = gameOverElementTemplate();
   return GAME_OVER_DIV;
 }

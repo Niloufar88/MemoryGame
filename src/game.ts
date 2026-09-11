@@ -127,9 +127,7 @@ export function initializeCards(array: string[]): Card[] {
   const SHUFFELED_ARRAY = shuffleFinalArray(array);
   const SLICED_ARRAY = SHUFFELED_ARRAY.slice(0, gameLogic.currentCardsPair);
   const DOUBLED_ARRAY = [...SLICED_ARRAY, ...SLICED_ARRAY];
-
   let newCards: Card[] = [];
-
   DOUBLED_ARRAY.forEach((image, index) => {
     newCards.push({
       id: `card-${index + 1}`,
@@ -138,7 +136,6 @@ export function initializeCards(array: string[]): Card[] {
       isMatched: false,
     });
   });
-
   return newCards;
 }
 
@@ -158,10 +155,8 @@ export function shuffleFinalArray<T>(array: T[]): T[] {
       array[randomIndex],
       array[currentIndex],
     ];
-
     shuffeledArray.push(array[currentIndex]);
   }
-
   return shuffeledArray;
 }
 
@@ -225,7 +220,6 @@ function updateBoardGridTemplate(theme: string): void {
 export function startGame(cardsArray: string[]): void {
   const CARDS_PACK = initializeCards(cardsArray);
   const SHUFFELED_PACK = shuffleFinalArray(CARDS_PACK);
-
   renderCards(SHUFFELED_PACK);
 }
 
@@ -325,7 +319,6 @@ function scoreManager(): void {
       figure.innerText = String(gameLogic.playerScore[CURRENT_PLAYER]);
     }
   });
-
   checkGameOver();
 }
 
@@ -337,12 +330,10 @@ function scoreManager(): void {
 function checkGameOver(): void {
   const TOTAL_SCORE = gameLogic.playerScore.orange + gameLogic.playerScore.blue;
   const MAX_SCORE = gameLogic.currentCardsPair;
-
   if (TOTAL_SCORE !== MAX_SCORE) return;
   setTimeout(() => {
     showGameOverScreen();
   }, 1000);
-
   setTimeout(() => {
     hideGameOverScreen();
     showWinnerScreen();
@@ -376,13 +367,10 @@ function removeFlippedClass(
 CARDS_CONTAINER.addEventListener("click", (event) => {
   const CLICKED_CARD = event.target as HTMLDivElement;
   const TARGET = CLICKED_CARD.closest(".flipCard") as HTMLDivElement;
-
   if (!TARGET || gameLogic.lockBoard) return;
   if (TARGET.classList.contains("flipped")) return;
-
   TARGET.classList.add("flipped");
   gameLogic.flippedCards.push(TARGET);
-
   if (gameLogic.flippedCards.length === 2) {
     gameLogic.lockBoard = true;
     compareCardImg(gameLogic.flippedCards[0], gameLogic.flippedCards[1]);
@@ -450,7 +438,6 @@ export function isSettingsComplete(): boolean {
   const HAS_SIZE = gameLogic.currentRows > 0 && gameLogic.currentColumns > 0;
   const HAS_PLAYER = gameLogic.currentPlayer !== "";
   const HAS_THEME = gameLogic.currentTheme !== "";
-
   return HAS_SIZE && HAS_PLAYER && HAS_THEME;
 }
 
@@ -459,6 +446,5 @@ export function isSettingsComplete(): boolean {
  */
 export function updateStartButtonState(): void {
   const START_BTN = document.getElementById("start-Btn") as HTMLButtonElement;
-
   if (START_BTN) START_BTN.disabled = !isSettingsComplete();
 }

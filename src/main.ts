@@ -157,7 +157,6 @@ function handleRadioBtnSelection(
     const RADIO_BTN = container.querySelector('input[type="radio"]');
     if (RADIO_BTN !== target) resetContainerVisuals(container);
   });
-
   const CURRENT_CONTAINER = target.closest(
     ".options-container",
   ) as HTMLDivElement;
