@@ -6,7 +6,7 @@ An interactive memory game developed using **TypeScript**, **SCSS**, and **HTML5
 
 ## 🚀 Access
 
-Check out the **live version** [here](https://your-link.com).
+Check out the **live version** [here](https://niloufar-shirvani.developerakademie.net/index.html).
 
 ## ✨ Features
 
@@ -27,7 +27,7 @@ To run this project locally on your computer, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com
+   git clone https://github.com/Niloufar88/MemoryGame.git
    ```
 
 2. **Navigate into the project directory:**
