@@ -175,6 +175,7 @@ CHOOSE_PLAYER_DIV.addEventListener("click", (event) => {
     handlePlayerChange(TARGET.value);
     ACTIVELY_SELECTED_RADIOS.player = TARGET;
     handleRadioBtnSelection(TARGET, PLAYER_BUTTONS);
+    updatePlayerText();
     updateStartButtonState();
   }
 });
@@ -188,6 +189,7 @@ SET_BORAD_SIZE_DIV.addEventListener("click", (event) => {
     handleBoardSizeChange(TARGET);
     ACTIVELY_SELECTED_RADIOS.boardSize = TARGET;
     handleRadioBtnSelection(TARGET, BOARD_SIZE_BUTTONS);
+    updateBoardSizeText();
     updateStartButtonState();
   }
 });
@@ -203,6 +205,7 @@ CHOOSE_GAME_THEME_DIV.addEventListener("click", (event) => {
     if (THEME_PREVIEW_IMG && THEME_IMAGES[TARGET.value])
       THEME_PREVIEW_IMG.src = THEME_IMAGES[TARGET.value];
     handleRadioBtnSelection(TARGET, THEMES_BUTTONS);
+    updateGameThemeText();
     updateStartButtonState();
   }
 });
@@ -335,7 +338,7 @@ PLAY_BTN.addEventListener("click", () => {
  */
 SETTING_BOX.addEventListener("click", () => {
   if (isSettingsComplete() && !SETTING_BOX.classList.contains("stretched")) {
-    updateSettingBoxTexts();
+    // updateSettingBoxTexts();
     updateSettingBoxVisuals();
     SETTING_BOX.classList.add("stretched");
   }
@@ -344,13 +347,25 @@ SETTING_BOX.addEventListener("click", () => {
 /**
  * updating selected settings box text after clicking on it and show the selected options
  */
-function updateSettingBoxTexts(): void {
+function updateGameThemeText(): void {
   const THEME = document.getElementById("game-theme-text") as HTMLSpanElement;
+  THEME.innerText = `Theme: ${gameLogic.currentTheme}`;
+}
+
+/**
+ * updating selected settings box text after clicking on it and show the selected options
+ */
+function updatePlayerText(): void {
   const PLAYER = document.getElementById("player-text") as HTMLSpanElement;
+  PLAYER.innerText = `Player: ${gameLogic.currentPlayer}`;
+}
+
+/**
+ * updating selected settings box text after clicking on it and show the selected options
+ */
+function updateBoardSizeText(): void {
   const SIZE = document.getElementById("board-size-text") as HTMLSpanElement;
-  THEME.innerText = gameLogic.currentTheme;
-  PLAYER.innerText = gameLogic.currentPlayer;
-  SIZE.innerText = `${gameLogic.currentRows}x${gameLogic.currentColumns}-Cards`;
+  SIZE.innerText = `Board: ${gameLogic.currentRows * gameLogic.currentColumns}-Cards`;
 }
 
 /**

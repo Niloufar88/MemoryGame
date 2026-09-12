@@ -135,6 +135,16 @@
     & span {
       font-family: $settings-box-text;
       font-size: 20px;
+
+      &#game-theme-text {
+        width: 85px;
+      }
+      &#player-text {
+        width: 80px;
+      }
+      &#board-size-text {
+        width: 80px;
+      }
     }
 
     & .settingBox {
