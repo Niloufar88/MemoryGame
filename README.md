@@ -33,7 +33,7 @@ To run this project locally on your computer, follow these steps:
 2. **Navigate into the project directory:**
 
    ```bash
-   cd your-project-name
+   cd MemoryGame
    ```
 
 3. **Install all required dependencies:**
