@@ -1,6 +1,6 @@
-# Memory-Game
+# 🎮 Memory Game
 
-[in two themes: foods and Developer Akademie Projects]
+_An interactive memory game featuring two custom themes: Foods and Developer Akademie Projects._
 
 An interactive memory game developed using **TypeScript**, **SCSS**, and **HTML5**, following modern clean code principles.
 
@@ -14,7 +14,7 @@ Check out the **live version** [here](https://your-link.com).
 - **Clean Code Architecture:** Strict adherence to the single-task function rule (functions under 14 lines) and documentation using TSDoc.
 - **Interactive UI:** Hover and click logic for radio buttons with visual feedback (yellow lines).
 
-### 🛠️ Technologies
+## 🛠️ Technologies
 
 - **Programming language:** TypeScript
 - **Styling:** SASS / SCSS

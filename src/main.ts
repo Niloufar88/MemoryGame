@@ -298,16 +298,13 @@ function handleMouseLeave(
   const RADIO_BUTTON = container.querySelector(
     'input[type="radio"]',
   ) as HTMLInputElement;
-
   if (RADIO_BUTTON !== selectedElement) {
     resetContainerVisuals(container);
     if (THEME_PREVIEW_IMG) {
-      if (ACTIVELY_SELECTED_RADIOS.gameTheme) {
+      if (ACTIVELY_SELECTED_RADIOS.gameTheme)
         THEME_PREVIEW_IMG.src =
           THEME_IMAGES[ACTIVELY_SELECTED_RADIOS.gameTheme.value];
-      } else {
-        THEME_PREVIEW_IMG.src = THEME_IMAGES["DAProjects"];
-      }
+      else THEME_PREVIEW_IMG.src = THEME_IMAGES["DAProjects"];
     }
   }
 }
@@ -351,7 +348,6 @@ function updateSettingBoxTexts(): void {
   const THEME = document.getElementById("game-theme-text") as HTMLSpanElement;
   const PLAYER = document.getElementById("player-text") as HTMLSpanElement;
   const SIZE = document.getElementById("board-size-text") as HTMLSpanElement;
-
   THEME.innerText = gameLogic.currentTheme;
   PLAYER.innerText = gameLogic.currentPlayer;
   SIZE.innerText = `${gameLogic.currentRows}x${gameLogic.currentColumns}-Cards`;

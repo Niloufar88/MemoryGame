@@ -6,24 +6,8 @@
   max-width: 1440px;
   min-height: 100vh;
   max-height: 1024px;
-  background-color: $primary-bg-dark;
-  position: relative;
   @include flexCenter(column);
   overflow: hidden;
-  z-index: 0;
-
-  &::before {
-    @include position(absolute, 60%, 50%, -1);
-    content: "";
-    transform: translate(-50%, -50%);
-    max-width: 1440px;
-    width: 100%;
-    max-height: 1024px;
-    height: 100%;
-    background-image: url("/assets/icons/landing-page/stadia_controller-bg.svg");
-    background-repeat: no-repeat;
-    background-position: bottom left;
-  }
 }
 
 .game-intro.d-none {

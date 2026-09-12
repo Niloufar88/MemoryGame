@@ -5,57 +5,26 @@ import {
   showWinnerScreen,
 } from "./screens-dialog-reset";
 
-/**
- * body element on page load
- */
 export const BODY_EL = document.querySelector("body") as HTMLBodyElement;
-
-/**
- * game intro container element
- */
 export const GAME_INTRO_CONTAINER = document.querySelector(
   ".game-intro",
 ) as HTMLDivElement;
-
-/**
- * board container element
- */
 export const BOARD_CONTAINER = document.querySelector(
   ".board",
 ) as HTMLDivElement;
-
-/**
- * settings container element
- */
 export const SETTINGS_CONTAINER = document.querySelector(
   ".settings-main",
 ) as HTMLDivElement;
-
-/**
- * cards container element in board section
- */
 const CARDS_CONTAINER = document.querySelector(
   ".board__main",
 ) as HTMLDivElement;
-
-/**
- * current player figure element in board navbar
- */
 const PLAYER_FIGURE_ELEMENT = document.querySelector(
   ".board__navbar--currentPlayer--figure",
 ) as HTMLDivElement;
-
-/**
- * exit button SVG element  in board navbar
- */
 const EXIT_BTN_SVG = document.getElementById("exit-svg") as HTMLImageElement;
 export const PLAYER_FIGURES = document.querySelectorAll(
   ".playerFigure span",
 ) as NodeListOf<HTMLSpanElement>;
-
-/**
- * managing game logic which contains the current state of the game, including players, cards, and scores
- */
 export let gameLogic: GameState = {
   currentPlayer: "",
   currentCardsPair: 0,
@@ -289,7 +258,8 @@ function handleCardsMismatch(
 ): void {
   gameLogic.lockBoard = true;
   setTimeout(() => {
-    removeFlippedClass(firstCard, secondCard);
+    firstCard.classList.remove("flipped");
+    secondCard.classList.remove("flipped");
     resetFlippedCardsArray();
     changePlayerTurn();
   }, 800);
@@ -346,19 +316,6 @@ function checkGameOver(): void {
 function resetFlippedCardsArray(): void {
   gameLogic.flippedCards = [];
   gameLogic.lockBoard = false;
-}
-
-/**
- * removing flipped card class from the clicked cards
- * @param firstCard first clicked Card Element which has been saved as HTMLElement in an array
- * @param secondCard second clicked Card Element which has been saved as HTMLElement in an array
- */
-function removeFlippedClass(
-  firstCard: HTMLElement,
-  secondCard: HTMLElement,
-): void {
-  firstCard.classList.remove("flipped");
-  secondCard.classList.remove("flipped");
 }
 
 /**
