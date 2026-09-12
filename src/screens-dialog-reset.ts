@@ -108,8 +108,9 @@ export function goBackToSettings(): void {
   hideWinnerScreen();
   BOARD_CONTAINER.classList.add("d-none");
   SETTINGS_CONTAINER.classList.remove("d-none");
-  resetSettinBoxTexts();
   SETTING_BOX.classList.remove("streched");
+  resetSettinBoxTexts();
+  resetBoxVisuals();
   resetGameState();
 }
 
@@ -123,6 +124,18 @@ function resetSettinBoxTexts() {
   THEME.innerText = `Theme`;
   PLAYER.innerText = `Player`;
   SIZE.innerText = `Board-Size`;
+}
+
+/**
+ * setting the visual state of the setting box to its default phase by resetting the yellow lines
+ */
+function resetBoxVisuals(): void {
+  const YELLOW_LINES = SETTING_BOX.querySelectorAll(
+    ".selected-setting img",
+  ) as NodeListOf<HTMLImageElement>;
+  YELLOW_LINES.forEach((line) => {
+    line.src = "./assets/icons/settings/line.svg";
+  });
 }
 
 /**
